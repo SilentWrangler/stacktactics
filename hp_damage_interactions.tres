@@ -1,0 +1,22 @@
+[gd_resource type="JSON" format=3 uid="uid://bp53bhehd1t28"]
+
+[resource]
+data = {
+"damage_types": [&"pierce", &"slash", &"impact", &"fire", &"electricity", &"cold", &"acid", &"arcane"],
+"hp_types": [&"flesh", &"metal", &"leather", &"wood", &"rock", &"fire", &"electricity", &"water", &"block", &"dodge"],
+"special_interactions": {
+"fire": {
+"cold": 1.0,
+"fire": 3.0
+},
+"flesh": {},
+"ice": {
+"cold": 3.0,
+"fire": 1.0,
+"impact": 1.0
+},
+"wood": {
+"fire": 1.0
+}
+}
+}

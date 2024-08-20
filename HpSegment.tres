@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://2jmpf4iktvdg"]
+
+[ext_resource type="Script" path="res://HpSegment.gd" id="1_yhe0g"]
+
+[resource]
+script = ExtResource("1_yhe0g")
+Type = ""
+amount = 0
+isVital = false
+duration = 0

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dakdvkiqxit3m"]
+
+[ext_resource type="Script" path="res://HpStack.gd" id="1_qixxx"]
+
+[node name="HpStack" type="Node"]
+script = ExtResource("1_qixxx")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityTargteting" load_steps=2 format=3 uid="uid://dmardkfx8fehf"]
+
+[ext_resource type="Script" path="res://abilities/AbilityTargeting.gd" id="1_2jhre"]
+
+[resource]
+script = ExtResource("1_2jhre")
+targets = 0
+range = 1
+target_hex = Vector2(0, 0)
+select_target_hex = true
+area = 0
+area_size = 0
+target_allegiance = 0
+require_tags = Array[String]([])
+exclude_tags = Array[String]([])

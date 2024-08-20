@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://8db05oxf1e3v"]
+
+[ext_resource type="Script" path="res://unit.gd" id="1_owko7"]
+[ext_resource type="Script" path="res://HpStack.gd" id="1_y1ui3"]
+[ext_resource type="Script" path="res://HpSegment.gd" id="2_jiw2d"]
+[ext_resource type="Texture2D" uid="uid://b1ethei675ctq" path="res://icon.svg" id="2_l02tc"]
+
+[sub_resource type="Resource" id="Resource_4pfig"]
+script = ExtResource("2_jiw2d")
+Type = &""
+amount = 5
+isVital = true
+duration = -1
+
+[sub_resource type="Resource" id="Resource_l73ce"]
+script = ExtResource("2_jiw2d")
+Type = &""
+amount = 2
+isVital = false
+duration = -1
+
+[sub_resource type="Resource" id="Resource_mwaso"]
+script = ExtResource("2_jiw2d")
+Type = &""
+amount = 4
+isVital = false
+duration = -1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucjkq"]
+radius = 57.0
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_owko7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l02tc")
+
+[node name="HpStack" type="Node2D" parent="."]
+position = Vector2(-52, -52)
+script = ExtResource("1_y1ui3")
+Stack = Array[ExtResource("2_jiw2d")]([SubResource("Resource_4pfig"), SubResource("Resource_l73ce"), SubResource("Resource_mwaso")])
+max_health_sprites = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ucjkq")
+
+[connection signal="damage" from="HpStack" to="." method="_on_hp_stack_damage"]
+[connection signal="death" from="HpStack" to="." method="_on_hp_stack_death"]
+[connection signal="hp_added" from="HpStack" to="." method="_on_hp_stack_hp_added"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

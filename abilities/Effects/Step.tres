@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="StepEfect" load_steps=2 format=3 uid="uid://dpn4lvkugsvmt"]
+
+[ext_resource type="Script" path="res://abilities/Code/Step.gd" id="1_h85qx"]
+
+[resource]
+script = ExtResource("1_h85qx")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://cqvots3y11380"]
+
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_skksp"]
+[ext_resource type="Resource" uid="uid://dvyu0sjxw2plb" path="res://abilities/parts/MeleeSlash.tres" id="2_27rks"]
+[ext_resource type="Script" path="res://abilities/Ability.gd" id="2_kjd3g"]
+[ext_resource type="Texture2D" uid="uid://l3hgh5qt3ano" path="res://img/ablilties/slash.png" id="5_v6aal"]
+
+[resource]
+script = ExtResource("2_kjd3g")
+parts = Array[ExtResource("1_skksp")]([ExtResource("2_27rks")])
+tags = Array[StringName]([])
+ap_cost = 1
+Name = "Slash"
+Description = ""
+sprite = ExtResource("5_v6aal")

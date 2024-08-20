@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityPart" load_steps=4 format=3 uid="uid://dvyu0sjxw2plb"]
+
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_3bsmm"]
+[ext_resource type="Resource" uid="uid://c21j8lyk0ih2b" path="res://abilities/Effects/Attacks/BasicSlash.tres" id="1_8v85d"]
+[ext_resource type="Resource" uid="uid://beok2up1on3tp" path="res://abilities/target_templates/melee.tres" id="3_0vwe7"]
+
+[resource]
+script = ExtResource("1_3bsmm")
+effect = ExtResource("1_8v85d")
+targeting = ExtResource("3_0vwe7")

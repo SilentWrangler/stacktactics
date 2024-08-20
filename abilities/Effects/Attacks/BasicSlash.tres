@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SimpleDamage" load_steps=2 format=3 uid="uid://c21j8lyk0ih2b"]
+
+[ext_resource type="Script" path="res://abilities/Code/SimpleDamage.gd" id="1_g4keq"]
+
+[resource]
+script = ExtResource("1_g4keq")
+damage_type = &"slash"
+attribute_scaling = 2
+attribute_multiplier = 1.0
+flat_damage = 0

@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=4 uid="uid://ia5m15im0lkk"]
+
+[ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
+[ext_resource type="Script" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
+[ext_resource type="Script" path="res://Scenes/test_deployer.gd" id="1_om6vt"]
+[ext_resource type="Script" path="res://UnitData.gd" id="2_txcir"]
+[ext_resource type="Resource" uid="uid://tlorrb23b71t" path="res://Units/TestUnit.tres" id="3_qw0ws"]
+[ext_resource type="Resource" uid="uid://dcslgux2a2ssc" path="res://Units/Target.tres" id="4_dmfho"]
+[ext_resource type="Script" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
+[ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="5_h5ovu"]
+[ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="6_4r61t"]
+[ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="7_0prk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjkha"]
+size = Vector2(514, 595)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TestDeployer" type="Node2D" parent="." node_paths=PackedStringArray("manager")]
+script = ExtResource("1_om6vt")
+units_to_deploy = Array[ExtResource("2_txcir")]([ExtResource("3_qw0ws"), ExtResource("3_qw0ws"), ExtResource("3_qw0ws")])
+manager = NodePath("../BattleManager")
+target = ExtResource("4_dmfho")
+target_location = Vector2i(5, 1)
+
+[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display")]
+script = ExtResource("1_jr73g")
+tilemap = NodePath("../Map")
+unit_parent = NodePath("../Units")
+player_deploy_locations = Array[Vector2i]([Vector2i(5, 3), Vector2i(4, 4), Vector2i(6, 4), Vector2i(5, 4)])
+AbilityButtonContainer = NodePath("../BattleGUI/NinePatchRect/HBoxContainer2/AbilityButtonCont")
+blocked_ability_texture = ExtResource("6_4r61t")
+AP_display = NodePath("../BattleGUI/NinePatchRect/HBoxContainer2/APDisplay")
+
+[node name="Map" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAFAAEAAAAAAAAAAQAHAAMAAAAAAAAAAQAGAAMAAAAAAAAAAQAFAAMAAAAAAAAAAQAEAAMAAAAAAAAAAQAEAAIAAAAAAAAAAQAFAAIAAAAAAAAAAQAGAAIAAAAAAAAAAQADAAMAAAAAAAAAAQAEAAQAAAAAAAAAAQAGAAQAAAAAAAAAAQAFAAQAAAAAAAAAAQADAAIAAAAAAAAAAQADAAEAAAAAAAAAAQAEAAEAAAAAAAAAAQAFAAAAAAAAAAAAAQAGAAEAAAAAAAAAAQAHAAEAAAAAAAAAAQAHAAIAAAAAAAAAAQA=")
+tile_set = ExtResource("1_3qm0u")
+
+[node name="MapArea" type="Area2D" parent="Map"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/MapArea"]
+position = Vector2(541, 345.5)
+shape = SubResource("RectangleShape2D_cjkha")
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="BattleGUI" type="CanvasLayer" parent="."]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BattleGUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -149.0
+offset_right = 145.0
+offset_bottom = 2.0
+grow_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BattleGUI/NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="APDisplay" type="VBoxContainer" parent="BattleGUI/NinePatchRect/HBoxContainer2" node_paths=PackedStringArray("icons")]
+layout_mode = 2
+script = ExtResource("5_cfkqy")
+icons = [NodePath("TextureRect"), NodePath("TextureRect2"), NodePath("TextureRect3")]
+full = ExtResource("5_h5ovu")
+spent = ExtResource("7_0prk5")
+
+[node name="TextureRect" type="TextureRect" parent="BattleGUI/NinePatchRect/HBoxContainer2/APDisplay"]
+visible = false
+layout_mode = 2
+texture = ExtResource("5_h5ovu")
+
+[node name="TextureRect2" type="TextureRect" parent="BattleGUI/NinePatchRect/HBoxContainer2/APDisplay"]
+visible = false
+layout_mode = 2
+texture = ExtResource("5_h5ovu")
+
+[node name="TextureRect3" type="TextureRect" parent="BattleGUI/NinePatchRect/HBoxContainer2/APDisplay"]
+visible = false
+layout_mode = 2
+texture = ExtResource("5_h5ovu")
+
+[node name="AbilityButtonCont" type="HBoxContainer" parent="BattleGUI/NinePatchRect/HBoxContainer2"]
+layout_mode = 2
+
+[connection signal="input_event" from="Map/MapArea" to="BattleManager" method="_on_map_area_input_event"]

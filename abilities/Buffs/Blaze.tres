@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://clkbv5hvi2vn4"]
+
+[ext_resource type="Script" path="res://abilities/Buff.gd" id="1_6vdwu"]
+
+[resource]
+script = ExtResource("1_6vdwu")
+positivity = 1
+duration = 0
+amount = 0
+Name = ""
+Description = ""
+tags = Array[String]([])
+attribute_mod_attribute = 0
+attribute_mod_amount = 0
+damage_placement = 1
+damage_attr_scaling = 0
+damage_attr_multiplier = 0
+damage_flat_modifier = 1
+damage_type = "fire"

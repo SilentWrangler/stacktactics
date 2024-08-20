@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityPart" load_steps=4 format=3 uid="uid://jsduqyyw17el"]
+
+[ext_resource type="Resource" uid="uid://dpn4lvkugsvmt" path="res://abilities/Effects/Step.tres" id="1_3noej"]
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_u1c5s"]
+[ext_resource type="Resource" uid="uid://dmardkfx8fehf" path="res://abilities/target_templates/adjacent_hex.tres" id="3_m27yn"]
+
+[resource]
+script = ExtResource("1_u1c5s")
+effect = ExtResource("1_3noej")
+targeting = ExtResource("3_m27yn")
