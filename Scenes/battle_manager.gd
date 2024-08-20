@@ -44,9 +44,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 
 func can_use_ability(unit: Unit, ability: Ability) -> bool:
 	if not is_palyer_turn:
@@ -87,9 +85,9 @@ func deploy_unit(unitData: UnitData, location: Vector2i, side: Unit.Team = Unit.
 	unit.unitData = unitData
 	unit.side= side
 	unit_parent.add_child(unit)
-	var position = tilemap.map_to_local(location)
+	var unit_position = tilemap.map_to_local(location)
 	unit.map_position = location
-	unit.position = position
+	unit.position = unit_position
 	end_turn.connect(unit._on_end_turn)
 	start_turn.connect(unit._on_start_turn)
 	unit_list.append(unit)
@@ -124,7 +122,7 @@ func unit_on_hex(hex: Vector2i) -> Unit:
 			return u
 	return null
 
-func _on_map_area_input_event(viewport, event, shape_idx):
+func _on_map_area_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_RIGHT:
 		var coords = tilemap.local_to_map(event.position)
@@ -141,7 +139,8 @@ func _shortcut_input(event):
 func use_abilities(event):
 	if selected_unit==null:
 		return
-	for i in range(len(selected_unit.Abilities)):
+	var max_idx= min(len(selected_unit.Abilities),10)
+	for i in range(max_idx):
 		var ability = selected_unit.Abilities[i]
 		var act = "ability_%d" % (i+1)
 		if event.is_action_released(act):
