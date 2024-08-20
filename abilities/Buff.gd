@@ -14,10 +14,15 @@ enum Positivity{
 	Harmful
 }
 
+const INFINITE_DURATION = -1
+
 @export var positivity: Positivity
+
+@export var stack_id: StringName
 
 @export var duration: int
 @export var amount: int
+@export var decaying: bool
 
 @export var Name: String
 @export var Description: String

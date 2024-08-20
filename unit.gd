@@ -52,9 +52,7 @@ func load_data(data: UnitData = null):
 	power = data.power
 	fortitude = data.fortitude
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 
 func  move(to: Vector2):
 	var target_coords = map.map_to_local(to)
@@ -105,6 +103,23 @@ func modify_stack(base_stack: DamageStack):
 				base_stack.prepend_damage(buff.damage_type,amount)
 			
 
+func applyBuff(buff: Buff):
+	for b in Buffs:
+		if buff.stack_id==b.stack_id:
+			b.amount += buff.amount
+			b.duration = max(b.duration,buff.duration)
+			return
+	Buffs.append(buff)
+
+
+func decrement_buffs():
+	for buff in Buffs:
+		if buff.duration != Buff.INFINITE_DURATION:
+			buff.duration-=1
+			if buff.duration < 1:
+				Buffs.erase(buff)
+		if buff.decaying:
+			buff.amount = max(1, buff.amount-1)
 
 func has_tag(tag: StringName) -> bool:
 	if tags.has(tag):
@@ -130,6 +145,8 @@ func _on_start_turn(side: Team):
 		action_points = AP_MAX
 
 func _on_end_turn(side: Team):
+	stack.decrement_duratuions()
+	decrement_buffs()
 	if side==self.side:
 		pass
 
