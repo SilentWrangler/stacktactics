@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=9 format=3 uid="uid://tlorrb23b71t"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://tlorrb23b71t"]
 
 [ext_resource type="Script" path="res://abilities/Ability.gd" id="1_tjprx"]
 [ext_resource type="Script" path="res://HpSegment.gd" id="2_5f13m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cqvots3y11380" path="res://abilities/full_abilities/Attacks/Slash.tres" id="3_6ciic"]
 [ext_resource type="Script" path="res://UnitData.gd" id="3_h4kal"]
 [ext_resource type="Texture2D" uid="uid://b1ethei675ctq" path="res://icon.svg" id="4_lxjx1"]
+[ext_resource type="Resource" uid="uid://bmghwcsjs8a4a" path="res://abilities/full_abilities/Support/FlamingWeapons.tres" id="4_skc2p"]
 
 [sub_resource type="Resource" id="Resource_itwdt"]
 script = ExtResource("2_5f13m")
@@ -28,5 +29,5 @@ default_hp = Array[ExtResource("2_5f13m")]([SubResource("Resource_itwdt"), SubRe
 power = 2
 arcana = 0
 fortitude = 0
-abilities = Array[ExtResource("1_tjprx")]([ExtResource("2_l7dt6"), ExtResource("3_6ciic")])
+abilities = Array[ExtResource("1_tjprx")]([ExtResource("2_l7dt6"), ExtResource("3_6ciic"), ExtResource("4_skc2p")])
 inherent_tags = Array[StringName]([])

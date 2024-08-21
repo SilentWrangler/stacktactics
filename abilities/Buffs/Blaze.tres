@@ -5,15 +5,17 @@
 [resource]
 script = ExtResource("1_6vdwu")
 positivity = 1
+stack_id = &"blaze"
 duration = 0
 amount = 0
-Name = ""
+decaying = true
+Name = "Blaze"
 Description = ""
-tags = Array[String]([])
+tags = Array[StringName]([])
 attribute_mod_attribute = 0
 attribute_mod_amount = 0
 damage_placement = 1
 damage_attr_scaling = 0
-damage_attr_multiplier = 0
+damage_attr_multiplier = 0.0
 damage_flat_modifier = 1
 damage_type = "fire"

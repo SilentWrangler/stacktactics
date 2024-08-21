@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GrantBuff" load_steps=3 format=3 uid="uid://mbwyxeap453f"]
+
+[ext_resource type="Script" path="res://abilities/Code/GrantBuff.gd" id="1_6iecn"]
+[ext_resource type="Resource" uid="uid://clkbv5hvi2vn4" path="res://abilities/Buffs/Blaze.tres" id="1_int05"]
+
+[resource]
+script = ExtResource("1_6iecn")
+buff = ExtResource("1_int05")
+flat_duration = 3
+duration_scaling_attribute = 1
+duration_scaling_multiplier = 0.25
+is_infinite = false
+flat_amount = 1
+amount_scaling_attribute = 1
+amount_scaling_multiplier = 0.25

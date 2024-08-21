@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://bmghwcsjs8a4a"]
+
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_dab0d"]
+[ext_resource type="Script" path="res://abilities/Ability.gd" id="2_i27a6"]
+[ext_resource type="Resource" uid="uid://c6ue788eqhbyy" path="res://abilities/parts/BlazingWeapon.tres" id="2_mscvd"]
+[ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="4_b2hn8"]
+
+[resource]
+script = ExtResource("2_i27a6")
+parts = Array[ExtResource("1_dab0d")]([ExtResource("2_mscvd")])
+tags = Array[StringName]([])
+ap_cost = 1
+Name = "Blazing Weapon"
+Description = ""
+sprite = ExtResource("4_b2hn8")
