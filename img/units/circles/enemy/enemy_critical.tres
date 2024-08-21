@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://64q650u3hewc"]
+
+[ext_resource type="Texture2D" uid="uid://rk4wnfke6p6v" path="res://img/units/circles/enemy/enemy_circle.tres" id="1_kgf88"]
+
+[resource]
+atlas = ExtResource("1_kgf88")
+region = Rect2(0, 128, 512, 128)

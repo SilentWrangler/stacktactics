@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://cdgu04eocftr7"]
+
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_ccwym"]
+[ext_resource type="Resource" uid="uid://d0sqkt62o2utp" path="res://abilities/parts/MeleeStab.tres" id="2_1mhly"]
+[ext_resource type="Script" path="res://abilities/Ability.gd" id="3_0m0dg"]
+[ext_resource type="Texture2D" uid="uid://l3hgh5qt3ano" path="res://img/ablilties/slash.png" id="4_wkgm2"]
+
+[resource]
+script = ExtResource("3_0m0dg")
+parts = Array[ExtResource("1_ccwym")]([ExtResource("2_1mhly")])
+tags = Array[StringName]([])
+ap_cost = 1
+Name = "Stab"
+Description = ""
+sprite = ExtResource("4_wkgm2")

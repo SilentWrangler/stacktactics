@@ -36,7 +36,9 @@ func start_ability_targeting(ability: Ability):
 func process_ablity(ability: Ability, user: Unit, target_grab: AbilityTargteting.GrabReturn):
 	ability.applyAbility(user,target_grab.hex, target_grab.units)
 	user.action_points -= ability.ap_cost
-	select_unit(user)
+	if user.side == user.Team.Player:
+		select_unit(user)
+	user.update_circle()
 	
 	
 # Called when the node enters the scene tree for the first time.
@@ -55,27 +57,34 @@ func can_use_ability(unit: Unit, ability: Ability) -> bool:
 
 
 func hex_distance(A: Vector2i, B: Vector2i) -> int:
-	var diff = A - B 
-	var lesser_coord = abs(diff.x) if (abs(diff.x) < abs(diff.y)) else abs(diff.y)
 	
-	var diagonal = Vector2i(sign(diff.x)*lesser_coord, sign(diff.y)*lesser_coord)
+	print("Calculating between ",A,B)
 	
-	var straight =  diff - diagonal
+	var A_c = convert_to_cube(A)
+	var B_c = convert_to_cube(B)
 	
-	var straight_dist = abs(straight.x) + abs(straight.y)
-	var diag_dist = abs(diagonal.x)
+	print("Converted to cube: ",A_c,B_c)
 	
-	if (sign(diagonal.x)!=sign(diagonal.y)):
-		diag_dist = diag_dist * 2
-	return straight_dist + diag_dist
+	var diff = A_c-B_c
+	print("Difference: ", diff)
 	
+	return (abs(diff.x)+abs(diff.y)+abs(diff.z))/2
 
-func is_in_range(unit: Unit, coords: Vector2) -> bool:
+func is_in_range(unit: Unit, coords: Vector2i) -> bool:
 	var dist = hex_distance(unit.map_position, coords)
-	return used_ability.parts[0].targeting.range <= dist
+	print("distance: ",dist)
+	return used_ability.parts[0].targeting.radius >= dist
+
+func convert_to_cube(oddq: Vector2i) -> Vector3i:
+	var q = oddq.x
+	var r = oddq.y - (oddq.x - (oddq.x&1))/2
+	return Vector3i(q,r,-q-r)
+
 	
 
 func pass_turn():
+	print("turn passed")
+	select_unit(null)
 	emit_signal("end_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
 	is_palyer_turn=not is_palyer_turn
 	emit_signal("start_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
@@ -114,6 +123,21 @@ func select_unit(u: Unit):
 			AbilityButtonContainer.add_child(newButton)
 
 
+func next_unit():
+	var next = selected_unit
+	for u in unit_list:
+		if not is_instance_valid(u):
+			continue
+		if u==selected_unit:
+			continue
+		if not u.side == u.Team.Player:
+			continue
+		if not u.action_points > 0:
+			continue
+		next = u
+		break
+	select_unit(next)
+
 func unit_on_hex(hex: Vector2i) -> Unit:
 	for u in unit_list:
 		if not is_instance_valid(u):
@@ -134,6 +158,7 @@ func _on_map_area_input_event(_viewport, event, _shape_idx):
 
 func _shortcut_input(event):
 	use_abilities(event)
+		
 
 
 func use_abilities(event):
@@ -146,3 +171,17 @@ func use_abilities(event):
 		if event.is_action_released(act):
 			if can_use_ability(selected_unit, ability):
 				start_ability_targeting(ability)
+
+
+func _on_deploy_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_nextunitbutton_pressed():
+	next_unit()# Replace with function body.
+
+
+func _on_end_turn_button_pressed():
+	if is_palyer_turn:
+			pass_turn()
+			pass_turn() 

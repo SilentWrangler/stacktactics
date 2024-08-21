@@ -3,5 +3,5 @@ extends Resource
 
 
 
-func applyEffect(user: Unit, target_hex: Vector2, targets: Array[Unit]):
+func applyEffect(_user: Unit, _target_hex: Vector2, _targets: Array[Unit]):
 	pass

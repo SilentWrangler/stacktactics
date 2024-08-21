@@ -24,7 +24,7 @@ enum AllegianceFilter{
 
 
 @export var targets: TargetedUnits
-@export var range: int
+@export var radius: int
 
 @export var target_hex: Vector2
 @export var select_target_hex: bool

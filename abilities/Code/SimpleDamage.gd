@@ -8,7 +8,7 @@ extends BaseAbilityEffect
 
 
 
-func applyEffect(user: Unit, target_hex: Vector2, targets: Array[Unit]):
+func applyEffect(user: Unit, _target_hex: Vector2, targets: Array[Unit]):
 	print("Trying to deal damage")
 	var stack = DamageStack.new()
 	var damage = user.calculate_power(flat_damage,attribute_scaling,attribute_multiplier)

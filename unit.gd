@@ -5,11 +5,13 @@ extends Node2D
 
 @onready var stack : HpStack = $"HpStack"
 @onready var sprite : Sprite2D = $'Sprite2D'
+@onready var circle: Sprite2D = $'Sprite2D_circle'
 
 @onready var manager = $"../../BattleManager"
 @onready var map = $"../../Map"
 
 @export var side: Team
+@export var critical: bool
 @export var tags: Array[StringName]
 
 @export var Buffs: Array[Buff]
@@ -17,6 +19,15 @@ extends Node2D
 @export var Abilities: Array[Ability]
 
 @export var map_position: Vector2i
+
+@export_group("Circles")
+@export_subgroup("player")
+@export var player_circles_normal: Array[Texture2D]
+@export var player_circles_critical: Array[Texture2D]
+@export_subgroup("enemy")
+@export var enemy_circles_normal: Array[Texture2D]
+@export var enemy_circles_critical: Array[Texture2D]
+
 
 var action_points: int = 3
 const AP_MAX = 3
@@ -51,15 +62,21 @@ func load_data(data: UnitData = null):
 	arcana = data.arcana
 	power = data.power
 	fortitude = data.fortitude
+	update_circle()
 
-
+func update_circle():
+	var texture: AtlasTexture = null
+	if side==Team.Player:
+		texture = player_circles_critical[action_points] if critical else player_circles_normal[action_points]
+	elif side==Team.Enemy:
+		texture = enemy_circles_critical[action_points] if critical else enemy_circles_normal[action_points]
+	circle.texture = texture
 
 func  move(to: Vector2):
 	var target_coords = map.map_to_local(to)
 	var tween = create_tween()
 	tween.tween_property(self,"position",target_coords,0.5)
 	map_position = to
-	print("move() finished")
 	
 
 func total_attribute(attribute: Attribute) -> int:
@@ -132,7 +149,7 @@ func has_tag(tag: StringName) -> bool:
 	return false
 
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_LEFT \
 	and event.is_pressed():
@@ -145,6 +162,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 func _on_start_turn(side: Team):
 	if side==self.side:
 		action_points = AP_MAX
+		update_circle()
 
 func _on_end_turn(side: Team):
 	stack.decrement_duratuions()

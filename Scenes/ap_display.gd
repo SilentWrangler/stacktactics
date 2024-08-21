@@ -10,13 +10,11 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
-func show_icons(show: bool = true):
+
+func show_icons(show_icon: bool = true):
 	for icon in icons:
-		icon.visible = show
+		icon.visible = show_icon
 
 func adjust_amount(amount: int):
 	for i in range(len(icons)):

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_j43m2")
 targets = 2
-range = 1
+radius = 1
 target_hex = Vector2(0, 0)
 select_target_hex = false
 area = 0

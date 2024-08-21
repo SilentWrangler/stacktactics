@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=8 format=3 uid="uid://dw6g8iiiunxk5"]
+
+[ext_resource type="Script" path="res://abilities/Ability.gd" id="1_gbu1f"]
+[ext_resource type="Resource" uid="uid://bwywpknjb8ll" path="res://abilities/full_abilities/BasicMove.tres" id="2_4rk81"]
+[ext_resource type="Script" path="res://HpSegment.gd" id="2_o6uy5"]
+[ext_resource type="Resource" uid="uid://cdgu04eocftr7" path="res://abilities/full_abilities/Attacks/Stab.tres" id="3_4jn0e"]
+[ext_resource type="Script" path="res://UnitData.gd" id="3_txfg1"]
+[ext_resource type="Texture2D" uid="uid://buxmh6qsv15dy" path="res://img/units/humanoids/humans/peasant.png" id="4_1jdqe"]
+
+[sub_resource type="Resource" id="Resource_yj4ol"]
+script = ExtResource("2_o6uy5")
+Type = &"flesh"
+amount = 4
+isVital = false
+duration = -1
+
+[resource]
+script = ExtResource("3_txfg1")
+sprite_texture = ExtResource("4_1jdqe")
+default_hp = Array[ExtResource("2_o6uy5")]([SubResource("Resource_yj4ol")])
+power = 2
+arcana = 0
+fortitude = 0
+abilities = Array[ExtResource("1_gbu1f")]([ExtResource("2_4rk81"), ExtResource("3_4jn0e")])
+inherent_tags = Array[StringName]([&"humanoid", &"human"])

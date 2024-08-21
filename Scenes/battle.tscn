@@ -1,24 +1,37 @@
-[gd_scene load_steps=12 format=4 uid="uid://ia5m15im0lkk"]
+[gd_scene load_steps=17 format=4 uid="uid://ia5m15im0lkk"]
 
 [ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
 [ext_resource type="Script" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
 [ext_resource type="Script" path="res://Scenes/test_deployer.gd" id="1_om6vt"]
 [ext_resource type="Script" path="res://UnitData.gd" id="2_txcir"]
-[ext_resource type="Resource" uid="uid://tlorrb23b71t" path="res://Units/TestUnit.tres" id="3_qw0ws"]
+[ext_resource type="Resource" uid="uid://dw6g8iiiunxk5" path="res://Units/humanoids/humans/peasant.tres" id="3_mgvb7"]
 [ext_resource type="Resource" uid="uid://dcslgux2a2ssc" path="res://Units/Target.tres" id="4_dmfho"]
 [ext_resource type="Script" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
 [ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="5_h5ovu"]
 [ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="6_4r61t"]
 [ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="7_0prk5"]
+[ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="8_jg2a3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjkha"]
 size = Vector2(514, 595)
+
+[sub_resource type="InputEventAction" id="InputEventAction_j1lrc"]
+action = &"end_turn"
+
+[sub_resource type="Shortcut" id="Shortcut_ut5cq"]
+events = [SubResource("InputEventAction_j1lrc")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_05fsw"]
+action = &"next"
+
+[sub_resource type="Shortcut" id="Shortcut_1qhf8"]
+events = [SubResource("InputEventAction_05fsw")]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TestDeployer" type="Node2D" parent="." node_paths=PackedStringArray("manager")]
 script = ExtResource("1_om6vt")
-units_to_deploy = Array[ExtResource("2_txcir")]([ExtResource("3_qw0ws"), ExtResource("3_qw0ws"), ExtResource("3_qw0ws")])
+units_to_deploy = Array[ExtResource("2_txcir")]([ExtResource("3_mgvb7"), ExtResource("3_mgvb7")])
 manager = NodePath("../BattleManager")
 target = ExtResource("4_dmfho")
 target_location = Vector2i(5, 1)
@@ -28,9 +41,9 @@ script = ExtResource("1_jr73g")
 tilemap = NodePath("../Map")
 unit_parent = NodePath("../Units")
 player_deploy_locations = Array[Vector2i]([Vector2i(5, 3), Vector2i(4, 4), Vector2i(6, 4), Vector2i(5, 4)])
-AbilityButtonContainer = NodePath("../BattleGUI/NinePatchRect/HBoxContainer2/AbilityButtonCont")
+AbilityButtonContainer = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/AbilityButtonCont")
 blocked_ability_texture = ExtResource("6_4r61t")
-AP_display = NodePath("../BattleGUI/NinePatchRect/HBoxContainer2/APDisplay")
+AP_display = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay")
 
 [node name="Map" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -47,43 +60,92 @@ shape = SubResource("RectangleShape2D_cjkha")
 
 [node name="BattleGUI" type="CanvasLayer" parent="."]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="BattleGUI"]
+[node name="Control" type="Control" parent="BattleGUI"]
+z_index = -1
+custom_minimum_size = Vector2(1024, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleGUI/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -168.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="DeployButton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("8_jg2a3")
+texture_disabled = ExtResource("6_4r61t")
+
+[node name="EndTurnButton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ut5cq")
+texture_normal = ExtResource("8_jg2a3")
+texture_disabled = ExtResource("6_4r61t")
+
+[node name="Nextunitbutton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_1qhf8")
+texture_normal = ExtResource("8_jg2a3")
+texture_disabled = ExtResource("6_4r61t")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BattleGUI/Control"]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -149.0
-offset_right = 145.0
-offset_bottom = 2.0
+offset_left = 16.0
+offset_top = -168.0
+offset_right = 161.0
+offset_bottom = -17.0
 grow_vertical = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BattleGUI/NinePatchRect"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="BattleGUI/Control/NinePatchRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="APDisplay" type="VBoxContainer" parent="BattleGUI/NinePatchRect/HBoxContainer2" node_paths=PackedStringArray("icons")]
+[node name="APDisplay" type="VBoxContainer" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2" node_paths=PackedStringArray("icons")]
 layout_mode = 2
 script = ExtResource("5_cfkqy")
 icons = [NodePath("TextureRect"), NodePath("TextureRect2"), NodePath("TextureRect3")]
 full = ExtResource("5_h5ovu")
 spent = ExtResource("7_0prk5")
 
-[node name="TextureRect" type="TextureRect" parent="BattleGUI/NinePatchRect/HBoxContainer2/APDisplay"]
+[node name="TextureRect" type="TextureRect" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay"]
 visible = false
 layout_mode = 2
 texture = ExtResource("5_h5ovu")
 
-[node name="TextureRect2" type="TextureRect" parent="BattleGUI/NinePatchRect/HBoxContainer2/APDisplay"]
+[node name="TextureRect2" type="TextureRect" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay"]
 visible = false
 layout_mode = 2
 texture = ExtResource("5_h5ovu")
 
-[node name="TextureRect3" type="TextureRect" parent="BattleGUI/NinePatchRect/HBoxContainer2/APDisplay"]
+[node name="TextureRect3" type="TextureRect" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay"]
 visible = false
 layout_mode = 2
 texture = ExtResource("5_h5ovu")
 
-[node name="AbilityButtonCont" type="HBoxContainer" parent="BattleGUI/NinePatchRect/HBoxContainer2"]
+[node name="AbilityButtonCont" type="HBoxContainer" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2"]
 layout_mode = 2
 
 [connection signal="input_event" from="Map/MapArea" to="BattleManager" method="_on_map_area_input_event"]
+[connection signal="pressed" from="BattleGUI/Control/VBoxContainer/DeployButton" to="BattleManager" method="_on_deploy_button_pressed"]
+[connection signal="pressed" from="BattleGUI/Control/VBoxContainer/EndTurnButton" to="BattleManager" method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="BattleGUI/Control/VBoxContainer/Nextunitbutton" to="BattleManager" method="_on_nextunitbutton_pressed"]

@@ -1,9 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://8db05oxf1e3v"]
+[gd_scene load_steps=25 format=3 uid="uid://8db05oxf1e3v"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_owko7"]
 [ext_resource type="Script" path="res://HpStack.gd" id="1_y1ui3"]
+[ext_resource type="Texture2D" uid="uid://bacm50loq5xsb" path="res://img/units/structures/target.png" id="2_ghytp"]
+[ext_resource type="Texture2D" uid="uid://7bl2ats1w3og" path="res://img/units/circles/player/normal/player_circle_normal_0.tres" id="2_h6gau"]
 [ext_resource type="Script" path="res://HpSegment.gd" id="2_jiw2d"]
-[ext_resource type="Texture2D" uid="uid://b1ethei675ctq" path="res://icon.svg" id="2_l02tc"]
+[ext_resource type="Texture2D" uid="uid://cvhlsfjroidcf" path="res://img/units/circles/enemy/normal/enemy_circle_normal_0.tres" id="2_pc5u2"]
+[ext_resource type="Texture2D" uid="uid://df3a1cuc8nem0" path="res://img/units/circles/player/normal/player_circle_normal_1.tres" id="3_0qcyj"]
+[ext_resource type="Texture2D" uid="uid://coy84hd3mcpek" path="res://img/units/circles/enemy/normal/enemy_circle_normal_1.tres" id="3_vhuht"]
+[ext_resource type="Texture2D" uid="uid://dng8fn10gwp3d" path="res://img/units/circles/player/normal/player_circle_normal_2.tres" id="4_k1v4w"]
+[ext_resource type="Texture2D" uid="uid://vyf3qsvtfnbf" path="res://img/units/circles/enemy/normal/enemy_circle_normal_2.tres" id="4_kooo2"]
+[ext_resource type="Texture2D" uid="uid://bvhjtebfqxgrq" path="res://img/units/circles/player/normal/player_circle_normal_3.tres" id="5_20tdy"]
+[ext_resource type="Texture2D" uid="uid://ka51fa1htobi" path="res://img/units/circles/enemy/normal/enemy_circle_normal_3.tres" id="5_jcx2g"]
+[ext_resource type="Texture2D" uid="uid://dujhric73do25" path="res://img/units/circles/player/critical/player_circle_crit_0.tres" id="6_llokc"]
+[ext_resource type="Texture2D" uid="uid://c6fb71xd5ikyy" path="res://img/units/circles/enemy/critical/enemy_circle_crit_0.tres" id="6_vqfca"]
+[ext_resource type="Texture2D" uid="uid://cfn8agkb5jk41" path="res://img/units/circles/player/critical/player_circle_crit_1.tres" id="7_0pfg6"]
+[ext_resource type="Texture2D" uid="uid://bv7uqw0bisdhj" path="res://img/units/circles/enemy/critical/enemy_circle_crit_1.tres" id="7_gsf5t"]
+[ext_resource type="Texture2D" uid="uid://bjfpedqbdxwoe" path="res://img/units/circles/enemy/critical/enemy_circle_crit_2.tres" id="8_2jih1"]
+[ext_resource type="Texture2D" uid="uid://bh1topvowqdni" path="res://img/units/circles/player/critical/player_circle_crit_2.tres" id="8_mbyr8"]
+[ext_resource type="Texture2D" uid="uid://iql4w5dnisi8" path="res://img/units/circles/player/critical/player_circle_crit_3.tres" id="9_4sxns"]
+[ext_resource type="Texture2D" uid="uid://2aakp7mqetti" path="res://img/units/circles/enemy/critical/enemy_circle_crit_3.tres" id="9_axukg"]
 
 [sub_resource type="Resource" id="Resource_4pfig"]
 script = ExtResource("2_jiw2d")
@@ -31,9 +47,16 @@ radius = 57.0
 
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_owko7")
+player_circles_normal = Array[Texture2D]([ExtResource("2_h6gau"), ExtResource("3_0qcyj"), ExtResource("4_k1v4w"), ExtResource("5_20tdy")])
+player_circles_critical = Array[Texture2D]([ExtResource("6_llokc"), ExtResource("7_0pfg6"), ExtResource("8_mbyr8"), ExtResource("9_4sxns")])
+enemy_circles_normal = Array[Texture2D]([ExtResource("2_pc5u2"), ExtResource("3_vhuht"), ExtResource("4_kooo2"), ExtResource("5_jcx2g")])
+enemy_circles_critical = Array[Texture2D]([ExtResource("6_vqfca"), ExtResource("7_gsf5t"), ExtResource("8_2jih1"), ExtResource("9_axukg")])
+
+[node name="Sprite2D_circle" type="Sprite2D" parent="."]
+texture = ExtResource("2_h6gau")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_l02tc")
+texture = ExtResource("2_ghytp")
 
 [node name="HpStack" type="Node2D" parent="."]
 position = Vector2(-52, -52)
@@ -45,6 +68,9 @@ max_health_sprites = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ucjkq")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(43, -43)
 
 [connection signal="damage" from="HpStack" to="." method="_on_hp_stack_damage"]
 [connection signal="death" from="HpStack" to="." method="_on_hp_stack_death"]
