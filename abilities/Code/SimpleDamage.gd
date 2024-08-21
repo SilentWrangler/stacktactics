@@ -17,5 +17,5 @@ func applyEffect(user: Unit, target_hex: Vector2, targets: Array[Unit]):
 	user.modify_stack(stack)
 	print("post_mod: "+stack.debug_text())
 	for t in targets:
-		t.stack.take_damage(stack)
+		t.take_damage(stack)
 	

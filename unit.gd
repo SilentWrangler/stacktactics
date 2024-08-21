@@ -89,6 +89,8 @@ func calculate_power(flat:int, scaling: Attribute, multiplier:float) -> int:
 		result += scaled
 	return result
 
+func take_damage(damage: DamageStack):
+	stack.take_damage(damage)
 
 func modify_stack(base_stack: DamageStack):
 	for buff in Buffs:
