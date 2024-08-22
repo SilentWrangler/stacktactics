@@ -9,6 +9,7 @@ extends Node2D
 
 @onready var manager = $"../../BattleManager"
 @onready var map = $"../../Map"
+@onready var buff_display = $BuffDisplay
 
 @export var side: Team
 @export var critical: bool
@@ -127,8 +128,10 @@ func applyBuff(buff: Buff):
 		if buff.stack_id==b.stack_id:
 			b.amount += buff.amount
 			b.duration = max(b.duration,buff.duration)
+			buff_display.queue_redraw()
 			return
-	Buffs.append(buff)
+	Buffs.append(buff.duplicate())
+	buff_display.queue_redraw()
 
 
 func decrement_buffs():
@@ -139,6 +142,7 @@ func decrement_buffs():
 				Buffs.erase(buff)
 		if buff.decaying:
 			buff.amount = max(1, buff.amount-1)
+	buff_display.queue_redraw()
 
 func has_tag(tag: StringName) -> bool:
 	if tags.has(tag):

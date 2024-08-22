@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://8db05oxf1e3v"]
+[gd_scene load_steps=26 format=3 uid="uid://8db05oxf1e3v"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_owko7"]
 [ext_resource type="Script" path="res://HpStack.gd" id="1_y1ui3"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bh1topvowqdni" path="res://img/units/circles/player/critical/player_circle_crit_2.tres" id="8_mbyr8"]
 [ext_resource type="Texture2D" uid="uid://iql4w5dnisi8" path="res://img/units/circles/player/critical/player_circle_crit_3.tres" id="9_4sxns"]
 [ext_resource type="Texture2D" uid="uid://2aakp7mqetti" path="res://img/units/circles/enemy/critical/enemy_circle_crit_3.tres" id="9_axukg"]
+[ext_resource type="Script" path="res://buff_display.gd" id="21_5l2oj"]
 
 [sub_resource type="Resource" id="Resource_4pfig"]
 script = ExtResource("2_jiw2d")
@@ -69,8 +70,9 @@ max_health_sprites = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ucjkq")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="BuffDisplay" type="Node2D" parent="."]
 position = Vector2(43, -43)
+script = ExtResource("21_5l2oj")
 
 [connection signal="damage" from="HpStack" to="." method="_on_hp_stack_damage"]
 [connection signal="death" from="HpStack" to="." method="_on_hp_stack_death"]

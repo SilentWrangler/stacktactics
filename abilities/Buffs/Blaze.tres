@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://clkbv5hvi2vn4"]
+[gd_resource type="Resource" script_class="Buff" load_steps=3 format=3 uid="uid://clkbv5hvi2vn4"]
 
 [ext_resource type="Script" path="res://abilities/Buff.gd" id="1_6vdwu"]
+[ext_resource type="Texture2D" uid="uid://dboh52fl1t1wp" path="res://img/hp-icons/swirl.png" id="1_iguod"]
 
 [resource]
 script = ExtResource("1_6vdwu")
@@ -11,6 +12,7 @@ amount = 0
 decaying = true
 Name = "Blaze"
 Description = ""
+Icon = ExtResource("1_iguod")
 tags = Array[StringName]([])
 attribute_mod_attribute = 0
 attribute_mod_amount = 0
@@ -18,4 +20,4 @@ damage_placement = 1
 damage_attr_scaling = 0
 damage_attr_multiplier = 0.0
 damage_flat_modifier = 1
-damage_type = "fire"
+damage_type = &"fire"
