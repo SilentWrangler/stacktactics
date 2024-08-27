@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Rewards" load_steps=4 format=3 uid="uid://bnyckop0es28l"]
+
+[ext_resource type="Script" path="res://campaign/Rewards.gd" id="1_clmnv"]
+[ext_resource type="Script" path="res://UnitData.gd" id="2_pvaok"]
+[ext_resource type="Resource" uid="uid://dw6g8iiiunxk5" path="res://Units/humanoids/humans/peasant.tres" id="3_nt3m6"]
+
+[resource]
+script = ExtResource("1_clmnv")
+node_rewards = Array[StringName]([&"test2"])
+unitRewards = Array[ExtResource("2_pvaok")]([ExtResource("3_nt3m6"), ExtResource("3_nt3m6")])

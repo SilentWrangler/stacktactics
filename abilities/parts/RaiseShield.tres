@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityPart" load_steps=4 format=3 uid="uid://cx8ynwfkvghkh"]
+
+[ext_resource type="Resource" uid="uid://csliw78uhsj21" path="res://abilities/Effects/Hp/Block.tres" id="1_df6oo"]
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_qnspj"]
+[ext_resource type="Resource" uid="uid://c617rj805ec2m" path="res://abilities/target_templates/self.tres" id="3_wwoso"]
+
+[resource]
+script = ExtResource("1_qnspj")
+effect = ExtResource("1_df6oo")
+targeting = ExtResource("3_wwoso")

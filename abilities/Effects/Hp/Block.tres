@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GrantHp" load_steps=2 format=3 uid="uid://csliw78uhsj21"]
+
+[ext_resource type="Script" path="res://abilities/Code/GrantHp.gd" id="1_7lv0u"]
+
+[resource]
+script = ExtResource("1_7lv0u")
+hp_type = &"block"
+attribute_scaling = 3
+attribute_multiplier = 1.0
+flat_amount = 2
+attribute_scaling_duration = 0
+attribute_multiplier_duration = 0.0
+flat_duration = 3

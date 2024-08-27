@@ -183,7 +183,8 @@ func _on_hp_stack_damage():
 
 
 func _on_hp_stack_death():
-	queue_free()# Replace with function body.
+	manager.check_win_condition(self)
+	queue_free()
 
 
 func _on_hp_stack_hp_added():

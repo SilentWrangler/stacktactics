@@ -1,0 +1,16 @@
+extends Node
+
+var victory: bool
+var from_battle: bool
+var node_id: StringName
+var campaign
+
+var player_vanguard: Array[UnitData]
+var player_reserve:  Array[UnitData]
+var player_initiative: int = 5
+
+var enemy_vanguard: Array[UnitData]
+var enemy_reserve:  Array[UnitData]
+var enemy_initiative: int = 5
+
+var unlocked_nodes: Array[StringName]

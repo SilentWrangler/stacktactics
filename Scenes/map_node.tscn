@@ -1,0 +1,38 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsybr2rdxcn6s"]
+
+[ext_resource type="Texture2D" uid="uid://bs37gjngt2uxv" path="res://img/ablilties/battle.png" id="1_soxc6"]
+[ext_resource type="Script" path="res://Scenes/map_node.gd" id="2_62dhh"]
+[ext_resource type="PackedScene" uid="uid://ia5m15im0lkk" path="res://Scenes/battle.tscn" id="2_fslns"]
+[ext_resource type="Script" path="res://campaign/Rewards.gd" id="3_0fwe5"]
+[ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="3_kqcfr"]
+[ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="4_v5snr"]
+[ext_resource type="Script" path="res://UnitData.gd" id="4_xkgxe"]
+
+[sub_resource type="Resource" id="Resource_sl86b"]
+script = ExtResource("3_0fwe5")
+node_rewards = Array[StringName]([&"test3"])
+unitRewards = Array[ExtResource("4_xkgxe")]([])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gap6"]
+
+[node name="MapNode" type="Node2D"]
+position = Vector2(109, 253)
+script = ExtResource("2_62dhh")
+battle_scene = ExtResource("2_fslns")
+reward = SubResource("Resource_sl86b")
+battle_tex = ExtResource("1_soxc6")
+camp_tex = ExtResource("3_kqcfr")
+event_tex = ExtResource("3_kqcfr")
+boss_tex = ExtResource("3_kqcfr")
+locked_tex = ExtResource("4_v5snr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.785398
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_8gap6")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

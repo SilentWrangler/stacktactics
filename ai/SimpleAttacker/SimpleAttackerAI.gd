@@ -37,9 +37,14 @@ func processAI(unit: Unit, manager: BattleManager):
 		if grab.status == AbilityTargteting.Status.Success:
 			manager.process_ablity(move,unit,grab)
 			await move.ability_done
+			if not is_instance_valid(unit):
+				print("WHAT THE FUCK")
+				return
 			print("unit moved, ap left: ",unit.action_points," new pos: ", unit.map_position)
 			idx+=1
 		else:
+			return
+		if not is_instance_valid(target):
 			return
 		dist = manager.hex_distance(unit.map_position,target.map_position)
 		if dist<=attack.parts[0].targeting.radius:

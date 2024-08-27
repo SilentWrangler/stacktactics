@@ -1,20 +1,16 @@
-[gd_scene load_steps=21 format=4 uid="uid://ia5m15im0lkk"]
+[gd_scene load_steps=17 format=4 uid="uid://ia5m15im0lkk"]
 
 [ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
 [ext_resource type="Script" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
-[ext_resource type="Script" path="res://Scenes/test_deployer.gd" id="1_om6vt"]
-[ext_resource type="Script" path="res://UnitData.gd" id="2_txcir"]
-[ext_resource type="Resource" uid="uid://dw6g8iiiunxk5" path="res://Units/humanoids/humans/peasant.tres" id="3_mgvb7"]
-[ext_resource type="Resource" uid="uid://dcslgux2a2ssc" path="res://Units/Target.tres" id="4_dmfho"]
-[ext_resource type="Resource" uid="uid://tlorrb23b71t" path="res://Units/TestUnit.tres" id="4_oniwb"]
 [ext_resource type="Script" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
 [ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="5_h5ovu"]
 [ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="6_4r61t"]
-[ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="6_mn2d2"]
 [ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="7_0prk5"]
 [ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="8_jg2a3"]
+[ext_resource type="Texture2D" uid="uid://cl0cmduifjims" path="res://img/interface/enemy_turn.png" id="10_u5so6"]
 [ext_resource type="Texture2D" uid="uid://cr06jnq3easiq" path="res://img/ablilties/end_turn.png" id="11_k3aoa"]
 [ext_resource type="Texture2D" uid="uid://dx0q5yaafedly" path="res://img/ablilties/next.png" id="12_qy12n"]
+[ext_resource type="Texture2D" uid="uid://c7kfupbi4qn06" path="res://img/interface/player_turn.png" id="16_bs478"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjkha"]
 size = Vector2(514, 595)
@@ -33,15 +29,7 @@ events = [SubResource("InputEventAction_05fsw")]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="TestDeployer" type="Node2D" parent="." node_paths=PackedStringArray("manager")]
-script = ExtResource("1_om6vt")
-units_to_deploy = Array[ExtResource("2_txcir")]([ExtResource("3_mgvb7"), ExtResource("3_mgvb7"), ExtResource("4_oniwb")])
-manager = NodePath("../BattleManager")
-target = ExtResource("4_dmfho")
-target_location = Vector2i(5, 1)
-enemies_to_deploy = Array[ExtResource("2_txcir")]([ExtResource("6_mn2d2"), ExtResource("6_mn2d2"), ExtResource("6_mn2d2")])
-
-[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display", "end_button")]
+[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display", "end_button", "turn_indicator")]
 script = ExtResource("1_jr73g")
 tilemap = NodePath("../Map")
 unit_parent = NodePath("../Units")
@@ -51,6 +39,9 @@ AbilityButtonContainer = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContai
 blocked_ability_texture = ExtResource("6_4r61t")
 AP_display = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay")
 end_button = NodePath("../BattleGUI/Control/VBoxContainer/EndTurnButton")
+turn_indicator = NodePath("../BattleGUI/Control/Turn_indicator")
+player_turn_tex = ExtResource("16_bs478")
+enemy_turn_tex = ExtResource("10_u5so6")
 
 [node name="Map" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -151,6 +142,19 @@ texture = ExtResource("5_h5ovu")
 
 [node name="AbilityButtonCont" type="HBoxContainer" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2"]
 layout_mode = 2
+
+[node name="Turn_indicator" type="TextureRect" parent="BattleGUI/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+pivot_offset = Vector2(0, 1)
+texture = ExtResource("16_bs478")
+expand_mode = 3
 
 [connection signal="input_event" from="Map/MapArea" to="BattleManager" method="_on_map_area_input_event"]
 [connection signal="pressed" from="BattleGUI/Control/VBoxContainer/DeployButton" to="BattleManager" method="_on_deploy_button_pressed"]

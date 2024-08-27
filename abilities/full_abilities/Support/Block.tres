@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://4yc20q68stef"]
+
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_ltt4c"]
+[ext_resource type="Script" path="res://abilities/Ability.gd" id="2_7uuo8"]
+[ext_resource type="Resource" uid="uid://cx8ynwfkvghkh" path="res://abilities/parts/RaiseShield.tres" id="2_t0f6r"]
+[ext_resource type="Texture2D" uid="uid://b3yq3h3ppjnyt" path="res://img/ablilties/shield.png" id="4_dkr5q"]
+
+[resource]
+script = ExtResource("2_7uuo8")
+parts = Array[ExtResource("1_ltt4c")]([ExtResource("2_t0f6r")])
+tags = Array[StringName]([])
+ap_cost = 1
+Name = "Raise Shiled"
+Description = ""
+sprite = ExtResource("4_dkr5q")

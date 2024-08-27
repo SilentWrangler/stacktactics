@@ -11,18 +11,23 @@ config_version=5
 [application]
 
 config/name="StackTactics"
-run/main_scene="res://Scenes/battle.tscn"
+run/main_scene="res://Scenes/campaign_1.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 StaticData="*res://Singletons/StaticData.gd"
+BattleData="*res://Singletons/BattleData.gd"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[gui]
+
+theme/custom_font="res://fonts/alagard_by_pix3m-d6awiwp.ttf"
 
 [input]
 

@@ -22,7 +22,10 @@ signal start_turn(side: Unit.Team)
 @export var blocked_ability_texture: Texture
 @export var AP_display: ApDisplay
 @export var end_button: TextureButton
-
+@export var turn_indicator: TextureRect
+@export_subgroup("Turn images")
+@export var player_turn_tex: Texture2D
+@export var enemy_turn_tex: Texture2D
 
 var is_palyer_turn: bool = true
 
@@ -38,6 +41,7 @@ func start_ability_targeting(ability: Ability):
 
 func process_ablity(ability: Ability, user: Unit, target_grab: AbilityTargteting.GrabReturn):
 	ability.applyAbility(user,target_grab.hex, target_grab.units)
+	#await ability.ability_done
 	user.action_points -= ability.ap_cost
 	if user.side == user.Team.Player:
 		select_unit(user)
@@ -45,7 +49,27 @@ func process_ablity(ability: Ability, user: Unit, target_grab: AbilityTargteting
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var rng = RandomNumberGenerator.new()
+	
+	
+	
+	for i in range(len(BattleData.enemy_vanguard)):
+		deploy_unit(BattleData.enemy_vanguard[i],enemy_deploy_locations[i],Unit.Team.Enemy)
+	for i in range(len(BattleData.player_vanguard)):
+		deploy_unit(BattleData.player_vanguard[i],player_deploy_locations[i],Unit.Team.Player)
+	
+	var turn = [true,false]
+	var weights = [BattleData.player_initiative, BattleData.enemy_initiative]
+	
+	is_palyer_turn = turn[rng.rand_weighted(weights)]
+	for unit in unit_list:
+		await  unit.ready
+	emit_signal("start_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
+	
+	if not is_palyer_turn:
+		process_ais()
+		pass_turn()
+	
 
 
 
@@ -88,6 +112,7 @@ func pass_turn():
 	select_unit(null)
 	emit_signal("end_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
 	is_palyer_turn=not is_palyer_turn
+	turn_indicator.texture = player_turn_tex if is_palyer_turn else enemy_turn_tex
 	emit_signal("start_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
 
 func deploy_unit(unitData: UnitData, location: Vector2i, side: Unit.Team = Unit.Team.Player):
@@ -245,3 +270,13 @@ func process_ais():
 		var AI = u.unitData.AI
 		if AI!=null:
 			AI.processAI(u,self)
+
+func check_win_condition(kill: Unit):
+	print("++++++", kill.unitData.resource_name, " is dead ******")
+	var remaining = count_side(kill.side)
+	if kill.critical or remaining<=1: #either critical unit or last one remaining
+		BattleData.victory = kill.side == kill.Team.Enemy
+		BattleData.from_battle = true
+		get_tree().change_scene_to_file(BattleData.campaign)
+			
+		

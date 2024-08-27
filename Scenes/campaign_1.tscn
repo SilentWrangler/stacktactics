@@ -1,0 +1,45 @@
+[gd_scene load_steps=11 format=3 uid="uid://cv2ejho1e76f7"]
+
+[ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/map_node.tscn" id="1_hcet8"]
+[ext_resource type="Script" path="res://Scenes/campaign.gd" id="1_kep3p"]
+[ext_resource type="Resource" uid="uid://bx5lk8ls0bbtc" path="res://Units/humanoids/humans/nornoth_merc.tres" id="3_8fo00"]
+[ext_resource type="Script" path="res://UnitData.gd" id="3_cumec"]
+[ext_resource type="Resource" uid="uid://dcslgux2a2ssc" path="res://Units/Target.tres" id="4_grspx"]
+[ext_resource type="Script" path="res://campaign/Rewards.gd" id="6_dtusu"]
+[ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="6_m2vop"]
+[ext_resource type="Resource" uid="uid://dw6g8iiiunxk5" path="res://Units/humanoids/humans/peasant.tres" id="7_mslcx"]
+
+[sub_resource type="Resource" id="Resource_twf0m"]
+script = ExtResource("6_dtusu")
+node_rewards = Array[StringName]([&"test2"])
+unitRewards = Array[ExtResource("3_cumec")]([ExtResource("7_mslcx"), ExtResource("7_mslcx")])
+
+[sub_resource type="Resource" id="Resource_ugjns"]
+script = ExtResource("6_dtusu")
+node_rewards = Array[StringName]([&"test3"])
+unitRewards = Array[ExtResource("3_cumec")]([])
+
+[node name="Campaign" type="Node2D"]
+script = ExtResource("1_kep3p")
+vanguard = Array[ExtResource("3_cumec")]([ExtResource("3_8fo00")])
+player_location = &"test1"
+
+[node name="MapNode" parent="." instance=ExtResource("1_hcet8")]
+id = &"test1"
+paths = Array[StringName]([&"test2"])
+enemy_vanguard = Array[ExtResource("3_cumec")]([ExtResource("4_grspx"), ExtResource("4_grspx")])
+reward = SubResource("Resource_twf0m")
+
+[node name="MapNode2" parent="." instance=ExtResource("1_hcet8")]
+position = Vector2(360, 200)
+locked = true
+id = &"test2"
+paths = Array[StringName]([&"test3"])
+enemy_vanguard = Array[ExtResource("3_cumec")]([ExtResource("6_m2vop"), ExtResource("6_m2vop"), ExtResource("6_m2vop"), ExtResource("6_m2vop")])
+reward = SubResource("Resource_ugjns")
+
+[node name="MapNode3" parent="." instance=ExtResource("1_hcet8")]
+position = Vector2(489, 375)
+locked = true
+type = 1
+id = &"test3"
