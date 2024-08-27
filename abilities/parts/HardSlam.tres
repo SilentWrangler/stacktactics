@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityPart" load_steps=4 format=3 uid="uid://dq7aemkta4r8c"]
+
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_h005e"]
+[ext_resource type="Resource" uid="uid://d2lq5s0i4cloi" path="res://abilities/Effects/Attacks/PowerfulImpact.tres" id="1_tpbbm"]
+[ext_resource type="Resource" uid="uid://beok2up1on3tp" path="res://abilities/target_templates/melee.tres" id="3_aoo24"]
+
+[resource]
+script = ExtResource("1_h005e")
+effect = ExtResource("1_tpbbm")
+targeting = ExtResource("3_aoo24")

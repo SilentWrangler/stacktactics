@@ -73,10 +73,12 @@ func update_circle():
 		texture = enemy_circles_critical[action_points] if critical else enemy_circles_normal[action_points]
 	circle.texture = texture
 
+signal move_finished
 func  move(to: Vector2):
 	var target_coords = map.map_to_local(to)
 	var tween = create_tween()
 	tween.tween_property(self,"position",target_coords,0.5)
+	tween.tween_callback(func():move_finished.emit())
 	map_position = to
 	
 
@@ -165,6 +167,7 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 
 func _on_start_turn(side: Team):
 	if side==self.side:
+		print(side," UNIT TURN START")
 		action_points = AP_MAX
 		update_circle()
 

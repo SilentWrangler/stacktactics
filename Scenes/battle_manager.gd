@@ -21,11 +21,13 @@ signal start_turn(side: Unit.Team)
 @export var AbilityButtonContainer: HBoxContainer
 @export var blocked_ability_texture: Texture
 @export var AP_display: ApDisplay
+@export var end_button: TextureButton
 
 
 var is_palyer_turn: bool = true
 
 var used_ability: Ability = null
+
 
 func start_ability_targeting(ability: Ability):
 	used_ability = ability
@@ -39,8 +41,7 @@ func process_ablity(ability: Ability, user: Unit, target_grab: AbilityTargteting
 	if user.side == user.Team.Player:
 		select_unit(user)
 	user.update_circle()
-	
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -58,15 +59,11 @@ func can_use_ability(unit: Unit, ability: Ability) -> bool:
 
 func hex_distance(A: Vector2i, B: Vector2i) -> int:
 	
-	print("Calculating between ",A,B)
 	
 	var A_c = convert_to_cube(A)
 	var B_c = convert_to_cube(B)
 	
-	print("Converted to cube: ",A_c,B_c)
-	
 	var diff = A_c-B_c
-	print("Difference: ", diff)
 	
 	return (abs(diff.x)+abs(diff.y)+abs(diff.z))/2
 
@@ -80,7 +77,10 @@ func convert_to_cube(oddq: Vector2i) -> Vector3i:
 	var r = oddq.y - (oddq.x - (oddq.x&1))/2
 	return Vector3i(q,r,-q-r)
 
-	
+func convert_to_tilemap(cube: Vector3i) -> Vector2i:
+	var col = cube.x
+	var row = cube.y + (cube.x-(cube.x&1))/2
+	return Vector2i(col,row)
 
 func pass_turn():
 	print("turn passed")
@@ -146,6 +146,37 @@ func unit_on_hex(hex: Vector2i) -> Unit:
 			return u
 	return null
 
+func get_taken_hexes() -> Array[Vector2i]:
+	var result: Array[Vector2i]
+	for u in unit_list:
+		if not is_instance_valid(u):
+			continue
+		result.append(u.map_position)
+	return result
+
+func get_free_hexes_in_radius(center: Vector2i, radius:int, exclude_center: bool = false) -> Array[Vector2i]:
+	var cube_results: Array[Vector3i]
+	var center_cube = convert_to_cube(center)
+	
+	for q in range(-radius,radius+1):
+		for r in range(-radius,radius+1):
+			for s in range(-radius,radius+1):
+				if (q+r+s)==0:
+					cube_results.append(center_cube+Vector3i(q,r,s))
+	
+	var taken = get_taken_hexes()
+	var used_cells = tilemap.get_used_cells()
+	var tilemap_results : Array[Vector2i]
+	
+	for cube in cube_results:
+		var tm = convert_to_tilemap(cube)
+		if tm not in used_cells:
+			continue
+		if not exclude_center or tm != center:
+			if tm not in taken:
+				tilemap_results.append(tm)
+	return tilemap_results
+
 func _on_map_area_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -184,4 +215,17 @@ func _on_nextunitbutton_pressed():
 func _on_end_turn_button_pressed():
 	if is_palyer_turn:
 			pass_turn()
+			end_button.disabled = true
+			process_ais()
 			pass_turn() 
+			end_button.disabled = false
+
+func process_ais():
+	for u in unit_list:
+		if not is_instance_valid(u):
+			continue
+		if u.side != u.Team.Enemy:
+			continue
+		var AI = u.unitData.AI
+		if AI!=null:
+			AI.processAI(u,self)

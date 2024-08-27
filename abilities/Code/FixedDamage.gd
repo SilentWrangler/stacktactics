@@ -6,3 +6,4 @@ extends BaseAbilityEffect
 func applyEffect(user: Unit, target_hex: Vector2, targets: Array[Unit]):
 	for t in targets:
 		t.take_damage(damage)
+	ability_part_finished.emit()

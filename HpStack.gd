@@ -23,7 +23,7 @@ signal damage
 signal hp_added
 
 func get_interaction(hp_type: StringName,damage_type: StringName): 
-	return data.damage_data.special_interactions[hp_type].get(damage_type,0) as InteractionType
+	return data.damage_data.special_interactions.get(hp_type,{}).get(damage_type,0) as InteractionType
 
 
 func take_damage(incoming_damage: DamageStack):
@@ -99,6 +99,20 @@ func set_stack(stack: Array[HpSegment]):
 
 func die():
 	death.emit()
+
+func total() -> int:
+	var result: int = 0
+	for seg in Stack:
+		result += seg.amount
+	return result
+
+func total_type(type: StringName) -> int:
+	var result: int = 0
+	for seg in Stack:
+		if seg.Type == type:
+			result += seg.amount
+	return result
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

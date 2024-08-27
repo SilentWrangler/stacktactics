@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://6tpfo0xj18qb"]
+
+[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_yqvxw"]
+[ext_resource type="Script" path="res://abilities/Ability.gd" id="2_buq5l"]
+[ext_resource type="Resource" uid="uid://dq7aemkta4r8c" path="res://abilities/parts/HardSlam.tres" id="2_rebre"]
+[ext_resource type="Texture2D" uid="uid://n1284asub3h7" path="res://img/ablilties/hardimpact.png" id="4_2raiw"]
+
+[resource]
+script = ExtResource("2_buq5l")
+parts = Array[ExtResource("1_yqvxw")]([ExtResource("2_rebre")])
+tags = Array[StringName]([])
+ap_cost = 2
+Name = "Hard Slam"
+Description = ""
+sprite = ExtResource("4_2raiw")

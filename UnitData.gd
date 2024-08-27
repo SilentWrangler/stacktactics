@@ -9,3 +9,4 @@ extends Resource
 @export var fortitude: int
 @export var abilities: Array[Ability]
 @export var inherent_tags: Array[StringName]
+@export var AI: BaseAI

@@ -21,12 +21,15 @@ func placeBuffs(targets: Array[Unit], duration: int, amount: int):
 func applyEffect(user: Unit, _target_hex: Vector2, targets: Array[Unit]):
 	var amount = user.calculate_power(flat_amount,amount_scaling_attribute,amount_scaling_multiplier)
 	if amount<1:
+		ability_part_finished.emit()
 		return
 	if is_infinite:
 		placeBuffs(targets,buff.INFINITE_DURATION,amount)
+		ability_part_finished.emit()
 		return
 	var duration = user.calculate_power(flat_duration, duration_scaling_attribute, duration_scaling_multiplier)
 	if duration<0:
+		ability_part_finished.emit()
 		return
 	placeBuffs(targets,duration,amount)
-		
+	ability_part_finished.emit()

@@ -12,7 +12,9 @@ extends Resource
 
 
 
-
+signal ability_done
 func applyAbility(user: Unit, target_hex: Vector2, targets: Array[Unit]):
 	for part in parts:
 		part.effect.applyEffect(user,target_hex,targets)
+		await part.effect.ability_part_finished
+	ability_done.emit()

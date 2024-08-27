@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://ia5m15im0lkk"]
+[gd_scene load_steps=19 format=4 uid="uid://ia5m15im0lkk"]
 
 [ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
 [ext_resource type="Script" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
 [ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="5_h5ovu"]
 [ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="6_4r61t"]
+[ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="6_mn2d2"]
 [ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="7_0prk5"]
 [ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="8_jg2a3"]
 
@@ -36,15 +37,18 @@ units_to_deploy = Array[ExtResource("2_txcir")]([ExtResource("3_mgvb7"), ExtReso
 manager = NodePath("../BattleManager")
 target = ExtResource("4_dmfho")
 target_location = Vector2i(5, 1)
+enemies_to_deploy = Array[ExtResource("2_txcir")]([ExtResource("6_mn2d2"), ExtResource("6_mn2d2"), ExtResource("6_mn2d2")])
 
-[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display")]
+[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display", "end_button")]
 script = ExtResource("1_jr73g")
 tilemap = NodePath("../Map")
 unit_parent = NodePath("../Units")
 player_deploy_locations = Array[Vector2i]([Vector2i(5, 3), Vector2i(4, 4), Vector2i(6, 4), Vector2i(5, 4)])
+enemy_deploy_locations = Array[Vector2i]([Vector2i(5, 0), Vector2i(4, 1), Vector2i(6, 1), Vector2i(5, 1)])
 AbilityButtonContainer = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/AbilityButtonCont")
 blocked_ability_texture = ExtResource("6_4r61t")
 AP_display = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay")
+end_button = NodePath("../BattleGUI/Control/VBoxContainer/EndTurnButton")
 
 [node name="Map" type="TileMapLayer" parent="."]
 use_parent_material = true
