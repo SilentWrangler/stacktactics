@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ia5m15im0lkk"]
+[gd_scene load_steps=21 format=4 uid="uid://ia5m15im0lkk"]
 
 [ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
 [ext_resource type="Script" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
@@ -13,6 +13,8 @@
 [ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="6_mn2d2"]
 [ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="7_0prk5"]
 [ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="8_jg2a3"]
+[ext_resource type="Texture2D" uid="uid://cr06jnq3easiq" path="res://img/ablilties/end_turn.png" id="11_k3aoa"]
+[ext_resource type="Texture2D" uid="uid://dx0q5yaafedly" path="res://img/ablilties/next.png" id="12_qy12n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjkha"]
 size = Vector2(514, 595)
@@ -100,13 +102,13 @@ texture_disabled = ExtResource("6_4r61t")
 [node name="EndTurnButton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_ut5cq")
-texture_normal = ExtResource("8_jg2a3")
+texture_normal = ExtResource("11_k3aoa")
 texture_disabled = ExtResource("6_4r61t")
 
 [node name="Nextunitbutton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_1qhf8")
-texture_normal = ExtResource("8_jg2a3")
+texture_normal = ExtResource("12_qy12n")
 texture_disabled = ExtResource("6_4r61t")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BattleGUI/Control"]

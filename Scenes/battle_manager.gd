@@ -29,6 +29,7 @@ var is_palyer_turn: bool = true
 var used_ability: Ability = null
 
 
+
 func start_ability_targeting(ability: Ability):
 	used_ability = ability
 	print("Start using ability")
@@ -122,9 +123,21 @@ func select_unit(u: Unit):
 			newButton.connect("pressed", func(): start_ability_targeting(ability))
 			AbilityButtonContainer.add_child(newButton)
 
+func count_side(side: Unit.Team) -> int:
+	var result: int = 0
+	for u in unit_list:
+		if not is_instance_valid(u):
+			continue
+		if u.side==side:
+			result +=1
+	return result
+	
+var selected_unit_list: Array[Unit]
 
 func next_unit():
 	var next = selected_unit
+	if selected_unit_list.size()>count_side(Unit.Team.Player)-2:
+		selected_unit_list.clear()
 	for u in unit_list:
 		if not is_instance_valid(u):
 			continue
@@ -134,6 +147,9 @@ func next_unit():
 			continue
 		if not u.action_points > 0:
 			continue
+		if u in selected_unit_list:
+			continue
+		selected_unit_list.append(selected_unit)
 		next = u
 		break
 	select_unit(next)

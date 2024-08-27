@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_hvl2u"]
 [ext_resource type="Script" path="res://abilities/Ability.gd" id="1_ox5ym"]
 [ext_resource type="Resource" uid="uid://jsduqyyw17el" path="res://abilities/parts/StepAdjacent.tres" id="2_25q8k"]
-[ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="4_v1y4c"]
+[ext_resource type="Texture2D" uid="uid://coiu23ehfcd1a" path="res://img/ablilties/move.png" id="4_vjp0d"]
 
 [resource]
 script = ExtResource("1_ox5ym")
@@ -12,4 +12,4 @@ tags = Array[StringName]([])
 ap_cost = 1
 Name = ""
 Description = ""
-sprite = ExtResource("4_v1y4c")
+sprite = ExtResource("4_vjp0d")
