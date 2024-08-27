@@ -27,14 +27,14 @@ func get_interaction(hp_type: StringName,damage_type: StringName):
 
 
 func take_damage(incoming_damage: DamageStack):
+	print("taking damage, hp total: ", total())
 	var current_segment_idx = Stack.size() - 1
 	print(incoming_damage.Stack.size())
 	while incoming_damage.Stack.size()>0 and Stack.size()>0 and Stack[0].amount>0 and current_segment_idx>=0:
 		var current_segment = Stack[current_segment_idx]
 		var head = incoming_damage.head()
 		var interaction : InteractionType = get_interaction(current_segment.Type, head.type)
-		print(head.type)
-		print(head.amount)
+		print(head.type, head.amount)
 		match interaction:
 			0: #Default
 				if current_segment.amount <= head.amount:
@@ -70,7 +70,7 @@ func take_damage(incoming_damage: DamageStack):
 			4: #Bypass
 				current_segment_idx-=1
 	queue_redraw()
-	print("damage dealt")
+	print("damage dealt, total hp left: ", total())
 	damage.emit()
 	if Stack.size()==0 or Stack[0].amount<1:
 		die()
@@ -94,7 +94,9 @@ func add_hp(type: StringName, amount: int, duration: int = HpSegment.INFINITE_DU
 	hp_added.emit()
 
 func set_stack(stack: Array[HpSegment]):
-	Stack = stack
+	Stack = []
+	for segment in stack:
+		add_hp(segment.Type,segment.amount,segment.duration)
 	queue_redraw()
 
 func die():
