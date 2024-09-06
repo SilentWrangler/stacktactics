@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Battle" load_steps=6 format=3 uid="uid://66blsnh8mgia"]
+
+[ext_resource type="Script" path="res://UnitData.gd" id="1_g18pi"]
+[ext_resource type="PackedScene" uid="uid://ia5m15im0lkk" path="res://Scenes/battle.tscn" id="1_suh3l"]
+[ext_resource type="Script" path="res://campaign/Battle.gd" id="2_nfsec"]
+[ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="2_qw2pm"]
+[ext_resource type="Resource" uid="uid://v6r1fgjdycl5" path="res://campaign/test campaign/rewards/test2.tres" id="4_2dkp2"]
+
+[resource]
+script = ExtResource("2_nfsec")
+battle_scene = ExtResource("1_suh3l")
+enemy_vanguard = Array[ExtResource("1_g18pi")]([ExtResource("2_qw2pm"), ExtResource("2_qw2pm"), ExtResource("2_qw2pm"), ExtResource("2_qw2pm")])
+enemy_reserve = Array[ExtResource("1_g18pi")]([])
+rewards = ExtResource("4_2dkp2")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Rewards" load_steps=3 format=3 uid="uid://v6r1fgjdycl5"]
+
+[ext_resource type="Script" path="res://campaign/Rewards.gd" id="1_4ffdy"]
+[ext_resource type="Script" path="res://UnitData.gd" id="2_qjr88"]
+
+[resource]
+script = ExtResource("1_4ffdy")
+node_rewards = Array[StringName]([&"test3"])
+unitRewards = Array[ExtResource("2_qjr88")]([])

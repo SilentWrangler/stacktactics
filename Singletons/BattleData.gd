@@ -14,3 +14,6 @@ var enemy_reserve:  Array[UnitData]
 var enemy_initiative: int = 5
 
 var unlocked_nodes: Array[StringName]
+var cleared_nodes: Array[StringName]
+
+var rewards: Rewards

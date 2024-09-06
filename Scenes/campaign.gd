@@ -18,7 +18,11 @@ func unlockNodes(node_ids: Array[StringName]):
 			nodeList[node].locked = false
 	for node in nodeList:
 		nodeList[node].refresh()
-	
+
+func clear_nodes(node_ids: Array[StringName]):
+	for node in nodeList:
+		if node in node_ids:
+			nodeList[node].cleared = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,7 +37,7 @@ func _ready():
 			print("Victory!")
 			BattleData.victory = false
 			var node = nodeList[BattleData.node_id]
-			giveRewards(node.reward)
+			giveRewards(BattleData.rewards)
 			node.cleared = true
 
 
@@ -43,6 +47,8 @@ func _process(delta):
 
 func giveRewards(rewards: Rewards):
 	print("giving rewards: ")
+	if not rewards:
+		return
 	unlockNodes(rewards.node_rewards)
 	for unit in rewards.unitRewards:
 		if vanguard.size()<VANGUARD_SIZE:
@@ -64,3 +70,9 @@ func persist_unlocked():
 	for n in nodeList:
 		if not nodeList[n].locked:
 			BattleData.unlocked_nodes.append(n)
+
+func persist_cleared():
+	BattleData.cleared_nodes.clear()
+	for n in nodeList:
+		if nodeList[n].cleared:
+			BattleData.cleared_nodes.append(n)
