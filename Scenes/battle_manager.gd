@@ -296,4 +296,4 @@ func back_to_campaign(victory: bool):
 	BattleData.from_battle = true
 	var tree = get_tree()
 	if tree:
-		tree.change_scene_to_file(BattleData.campaign)	
+		tree.change_scene_to_file(PlayerData.campaign)	

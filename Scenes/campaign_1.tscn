@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cv2ejho1e76f7"]
+[gd_scene load_steps=7 format=3 uid="uid://cv2ejho1e76f7"]
 
 [ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/map_node.tscn" id="1_hcet8"]
 [ext_resource type="Script" path="res://Scenes/campaign.gd" id="1_kep3p"]
-[ext_resource type="Resource" uid="uid://bx5lk8ls0bbtc" path="res://Units/humanoids/humans/nornoth_merc.tres" id="3_8fo00"]
-[ext_resource type="Script" path="res://UnitData.gd" id="3_cumec"]
 [ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/test1.tres" id="5_xtggv"]
 [ext_resource type="Resource" uid="uid://66blsnh8mgia" path="res://campaign/test campaign/encounters/test2.tres" id="6_ctgo1"]
 [ext_resource type="Resource" uid="uid://6kwbkqi0g7re" path="res://campaign/test campaign/encounters/test2_cleared.tres" id="7_2yoef"]
@@ -11,7 +9,6 @@
 
 [node name="Campaign" type="Node2D"]
 script = ExtResource("1_kep3p")
-vanguard = Array[ExtResource("3_cumec")]([ExtResource("3_8fo00")])
 player_location = &"test1"
 
 [node name="MapNode" parent="." instance=ExtResource("1_hcet8")]

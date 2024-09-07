@@ -1,5 +1,8 @@
 extends Node
 
+var node_id: StringName
+var campaign
+
 var vanguard: Array[UnitSlot]
 var reserve: Array[UnitSlot]
 var initiative = 5

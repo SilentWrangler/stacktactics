@@ -3,14 +3,13 @@ extends Node2D
 
 var nodeList: Dictionary
 
-@export var vanguard: Array[UnitData]
-@export var reserve: Array[UnitData]
+
 
 @export var player_location: StringName
 
 @onready var player_sprite = $PlayerSprite
 
-const VANGUARD_SIZE = 4
+
 
 func unlockNodes(node_ids: Array[StringName]):
 	for node in nodeList:
@@ -29,9 +28,8 @@ func _ready():
 	move_player(player_location,false)
 	if BattleData.from_battle:
 		unlockNodes(BattleData.unlocked_nodes)
-		move_player(BattleData.node_id, false)
-		vanguard = BattleData.player_vanguard
-		reserve = BattleData.player_reserve
+		clear_nodes(BattleData.cleared_nodes)
+		move_player(PlayerData.node_id, false)
 		BattleData.from_battle = false
 		if BattleData.victory:
 			print("Victory!")
@@ -52,6 +50,10 @@ func giveRewards(rewards: Rewards):
 	unlockNodes(rewards.node_rewards)
 	for unit in rewards.unitRewards:
 		PlayerData.addUnit(unit)
+	
+	if rewards.next_encounter:
+		var n = nodeList[player_location]
+		rewards.next_encounter.play_encounter(n)
 
 func move_player(to: StringName, tween: bool = true):
 	player_location=to
@@ -73,3 +75,7 @@ func persist_cleared():
 	for n in nodeList:
 		if nodeList[n].cleared:
 			BattleData.cleared_nodes.append(n)
+
+func persist_data():
+	persist_unlocked()
+	persist_cleared()

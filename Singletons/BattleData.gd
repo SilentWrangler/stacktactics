@@ -2,8 +2,7 @@ extends Node
 
 var victory: bool
 var from_battle: bool
-var node_id: StringName
-var campaign
+
 
 var player_vanguard: Array[UnitData]
 var player_reserve:  Array[UnitData]

@@ -17,11 +17,10 @@ func play_encounter(node: MapNode):
 	BattleData.player_vanguard = campaign.vanguard
 	BattleData.player_reserve = campaign.reserve
 	
-	BattleData.node_id = node.id
-	BattleData.campaign = campaign.scene_file_path
+	PlayerData.node_id = node.id
+	PlayerData.campaign = campaign.scene_file_path
 	
 	BattleData.rewards = rewards
 	
-	campaign.persist_unlocked()
-	campaign.persist_cleared()
+	campaign.persist_data()
 	node.get_tree().change_scene_to_packed(battle_scene)
