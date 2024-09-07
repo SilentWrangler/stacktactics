@@ -9,7 +9,6 @@ var attack: Ability
 var move: Ability
 
 func processAI(unit: Unit, manager: BattleManager):
-	print("Processing SAAI")
 	attack =  unit.Abilities[attack_ability_idx]
 	move = unit.Abilities[move_ability_idx]
 	var pre_targets =  find_closest(unit,manager,opposing_side(unit),search_range)
@@ -32,7 +31,6 @@ func processAI(unit: Unit, manager: BattleManager):
 	var path = targets_with_paths[target]
 	var idx = 1 if path.size() > 1 else 0
 	while unit.action_points >= move.ap_cost:
-		print("unit location: ", unit.map_position)
 		var grab = move.parts[0].targeting.grab_targets(manager,unit,path[idx])
 		if grab.status == AbilityTargteting.Status.Success:
 			manager.process_ablity(move,unit,grab)
@@ -54,7 +52,6 @@ func processAI(unit: Unit, manager: BattleManager):
 		
 
 func full_attack(unit: Unit, manager: BattleManager, target: Unit):
-	print("withing radius, attacking")
 	while unit.action_points>=attack.ap_cost:
 		var grab = attack.parts[0].targeting.grab_targets(manager,unit,target.map_position)
 		manager.process_ablity(attack,unit,grab)

@@ -168,7 +168,6 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 
 func _on_start_turn(side: Team):
 	if side==self.side:
-		print(side," UNIT TURN START")
 		action_points = AP_MAX
 		update_circle()
 
