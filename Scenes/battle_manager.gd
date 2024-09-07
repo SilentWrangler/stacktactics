@@ -113,6 +113,12 @@ func convert_to_tilemap(cube: Vector3i) -> Vector2i:
 	return Vector2i(col,row)
 
 func pass_turn():
+	if count_side(Unit.Team.Player)<1:
+		back_to_campaign(false)
+		return
+	if count_side(Unit.Team.Enemy)<1:
+		back_to_campaign(true)
+		return
 	print("turn passed")
 	select_unit(null)
 	emit_signal("end_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
@@ -281,9 +287,13 @@ func check_win_condition(kill: Unit):
 	print("++++++", kill.unitData.resource_path, " is dead ******")
 	var remaining = count_side(kill.side)
 	print("remaining units: ", remaining)
-	if kill.critical or remaining<=1: #either critical unit or last one remaining
-		BattleData.victory = kill.side == kill.Team.Enemy
-		BattleData.from_battle = true
-		get_tree().change_scene_to_file(BattleData.campaign)
+	if kill.critical or remaining<=1: #either critical unit or last one remaining	 
+		back_to_campaign(kill.side == kill.Team.Enemy)
 			
-		
+
+func back_to_campaign(victory: bool):
+	BattleData.victory = victory
+	BattleData.from_battle = true
+	var tree = get_tree()
+	if tree:
+		tree.change_scene_to_file(BattleData.campaign)	
