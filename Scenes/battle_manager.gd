@@ -60,6 +60,8 @@ func _ready():
 			var data = PlayerData.vanguard[i].unitData
 			var unit = deploy_unit(data,player_deploy_locations[i],Unit.Team.Player)
 			unit.slot = PlayerData.vanguard[i]
+			if unit.slot.isPlayer:
+				unit.critical = true
 	
 	var turn = [true,false]
 	var weights = [BattleData.player_initiative, BattleData.enemy_initiative]
@@ -273,10 +275,12 @@ func process_ais():
 		var AI = u.unitData.AI
 		if AI!=null:
 			AI.processAI(u,self)
+			
 
 func check_win_condition(kill: Unit):
-	print("++++++", kill.unitData.resource_name, " is dead ******")
+	print("++++++", kill.unitData.resource_path, " is dead ******")
 	var remaining = count_side(kill.side)
+	print("remaining units: ", remaining)
 	if kill.critical or remaining<=1: #either critical unit or last one remaining
 		BattleData.victory = kill.side == kill.Team.Enemy
 		BattleData.from_battle = true
