@@ -51,10 +51,7 @@ func giveRewards(rewards: Rewards):
 		return
 	unlockNodes(rewards.node_rewards)
 	for unit in rewards.unitRewards:
-		if vanguard.size()<VANGUARD_SIZE:
-			vanguard.append(unit)
-		else:
-			reserve.append(unit)
+		PlayerData.addUnit(unit)
 
 func move_player(to: StringName, tween: bool = true):
 	player_location=to

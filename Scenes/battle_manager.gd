@@ -55,8 +55,11 @@ func _ready():
 	
 	for i in range(len(BattleData.enemy_vanguard)):
 		deploy_unit(BattleData.enemy_vanguard[i],enemy_deploy_locations[i],Unit.Team.Enemy)
-	for i in range(len(BattleData.player_vanguard)):
-		deploy_unit(BattleData.player_vanguard[i],player_deploy_locations[i],Unit.Team.Player)
+	for i in range(len(PlayerData.vanguard)):
+		if not PlayerData.vanguard[i].isWounded:
+			var data = PlayerData.vanguard[i].unitData
+			var unit = deploy_unit(data,player_deploy_locations[i],Unit.Team.Player)
+			unit.slot = PlayerData.vanguard[i]
 	
 	var turn = [true,false]
 	var weights = [BattleData.player_initiative, BattleData.enemy_initiative]
@@ -126,7 +129,7 @@ func deploy_unit(unitData: UnitData, location: Vector2i, side: Unit.Team = Unit.
 	end_turn.connect(unit._on_end_turn)
 	start_turn.connect(unit._on_start_turn)
 	unit_list.append(unit)
-	
+	return unit
 
 func select_unit(u: Unit):
 	used_ability = null

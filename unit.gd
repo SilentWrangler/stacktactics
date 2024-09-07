@@ -29,6 +29,7 @@ extends Node2D
 @export var enemy_circles_normal: Array[Texture2D]
 @export var enemy_circles_critical: Array[Texture2D]
 
+var slot: PlayerData.UnitSlot
 
 var action_points: int = 3
 const AP_MAX = 3
