@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/map_node.tscn" id="1_hcet8"]
 [ext_resource type="Script" path="res://Scenes/campaign.gd" id="1_kep3p"]
-[ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/test1.tres" id="5_xtggv"]
-[ext_resource type="Resource" uid="uid://66blsnh8mgia" path="res://campaign/test campaign/encounters/test2.tres" id="6_ctgo1"]
-[ext_resource type="Resource" uid="uid://6kwbkqi0g7re" path="res://campaign/test campaign/encounters/test2_cleared.tres" id="7_2yoef"]
+[ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/battles/test1.tres" id="5_xtggv"]
+[ext_resource type="Resource" uid="uid://66blsnh8mgia" path="res://campaign/test campaign/encounters/battles/test2.tres" id="6_ctgo1"]
+[ext_resource type="Resource" uid="uid://6kwbkqi0g7re" path="res://campaign/test campaign/encounters/battles/test2_cleared.tres" id="7_2yoef"]
 [ext_resource type="Texture2D" uid="uid://dlp53a8eeyliv" path="res://img/units/humanoids/humans/nornoth_mercenary.png" id="9_voocg"]
 
 [node name="Campaign" type="Node2D"]

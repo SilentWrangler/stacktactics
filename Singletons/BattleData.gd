@@ -2,7 +2,9 @@ extends Node
 
 var victory: bool
 var from_battle: bool
+var from_event: bool
 
+var event: Event
 
 var player_vanguard: Array[UnitData]
 var player_reserve:  Array[UnitData]

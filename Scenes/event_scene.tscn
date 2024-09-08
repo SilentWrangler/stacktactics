@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://d13s2gqwbqj0g"]
+
+[ext_resource type="Script" path="res://Scenes/event_scene.gd" id="1_a2dbw"]
+
+[sub_resource type="Theme" id="Theme_n0y7j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lbecx"]
+font_size = 26
+
+[node name="EventScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a2dbw")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_left = 24.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_n0y7j")
+
+[node name="padding" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="EventTitle" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Event Title"
+label_settings = SubResource("LabelSettings_lbecx")
+horizontal_alignment = 1
+
+[node name="padding2" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="EventDescription" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+bbcode_enabled = true
+text = "this is event description [img]res://img/hp-icons/heart.png[/img]"
+
+[node name="Options" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="SidePicture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+stretch_mode = 5

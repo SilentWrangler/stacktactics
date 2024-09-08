@@ -14,8 +14,7 @@ func play_encounter(node: MapNode):
 	
 	var campaign = node.campaign
 	
-	BattleData.player_vanguard = campaign.vanguard
-	BattleData.player_reserve = campaign.reserve
+
 	
 	PlayerData.node_id = node.id
 	PlayerData.campaign = campaign.scene_file_path

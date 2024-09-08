@@ -1,9 +1,9 @@
 class_name  EventOption
 extends Resource
 
-var text: String
-var conditions: Array[OptionCondition]
-var outcome: OptionOutcome
+@export var text: String
+@export var conditions: Array[OptionCondition]
+@export var outcome: OptionOutcome
 
 func available() -> bool:
 	for cond in conditions:

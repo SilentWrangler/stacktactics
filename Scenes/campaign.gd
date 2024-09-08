@@ -26,7 +26,7 @@ func clear_nodes(node_ids: Array[StringName]):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	move_player(player_location,false)
-	if BattleData.from_battle:
+	if BattleData.from_battle or BattleData.from_event:
 		unlockNodes(BattleData.unlocked_nodes)
 		clear_nodes(BattleData.cleared_nodes)
 		move_player(PlayerData.node_id, false)
@@ -34,7 +34,7 @@ func _ready():
 		if BattleData.victory:
 			print("Victory!")
 			BattleData.victory = false
-			var node = nodeList[BattleData.node_id]
+			var node = nodeList[PlayerData.node_id]
 			giveRewards(BattleData.rewards)
 			node.cleared = true
 

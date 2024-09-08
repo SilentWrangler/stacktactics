@@ -11,7 +11,7 @@ const VANGUARD_SIZE = 4
 
 class UnitSlot:
 	var unitData: UnitData
-	var exp: int
+	var experience: int
 	var isPlayer: bool
 	var isWounded: bool
 # Called when the node enters the scene tree for the first time.

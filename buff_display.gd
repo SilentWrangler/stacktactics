@@ -23,7 +23,6 @@ func _draw():
 		draw_texture(buff.Icon,pos)
 		var text_pos = pos + Vector2(buff.Icon.get_width()+x_shift_label,0)
 		var txt = buff.get_duration_text()
-		var txt_size = font.get_string_size(txt)
 		draw_string(font,text_pos,txt,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size)
 		pos.y += buff.Icon.get_height() + y_spacing
 	
