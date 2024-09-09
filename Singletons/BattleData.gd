@@ -18,3 +18,4 @@ var unlocked_nodes: Array[StringName]
 var cleared_nodes: Array[StringName]
 
 var rewards: Rewards
+var extra_rewards: Array[Rewards]

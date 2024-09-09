@@ -17,6 +17,7 @@ duration = -1
 
 [resource]
 script = ExtResource("3_ttvl8")
+unit_type_ID = &"undead_Zombie"
 sprite_texture = ExtResource("5_fh5bq")
 default_hp = Array[ExtResource("2_s8v8f")]([SubResource("Resource_n6idc")])
 power = 2

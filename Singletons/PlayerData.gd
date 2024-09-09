@@ -7,6 +7,9 @@ var vanguard: Array[UnitSlot]
 var reserve: Array[UnitSlot]
 var initiative = 5
 
+var resources: Dictionary
+
+
 const VANGUARD_SIZE = 4
 
 class UnitSlot:
@@ -14,6 +17,7 @@ class UnitSlot:
 	var experience: int
 	var isPlayer: bool
 	var isWounded: bool
+	var extra_tags: Array[StringName]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if vanguard.size()<1:

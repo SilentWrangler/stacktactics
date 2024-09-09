@@ -56,10 +56,12 @@ func _ready():
 	for i in range(len(BattleData.enemy_vanguard)):
 		deploy_unit(BattleData.enemy_vanguard[i],enemy_deploy_locations[i],Unit.Team.Enemy)
 	for i in range(len(PlayerData.vanguard)):
-		if not PlayerData.vanguard[i].isWounded:
-			var data = PlayerData.vanguard[i].unitData
+		var slot = PlayerData.vanguard[i]
+		if not slot.isWounded:
+			var data = slot.unitData
 			var unit = deploy_unit(data,player_deploy_locations[i],Unit.Team.Player)
-			unit.slot = PlayerData.vanguard[i]
+			unit.slot = slot
+			unit.tags.append_array(slot.extra_tags)
 			if unit.slot.isPlayer:
 				unit.critical = true
 	

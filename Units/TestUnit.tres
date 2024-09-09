@@ -24,6 +24,7 @@ duration = -1
 
 [resource]
 script = ExtResource("3_h4kal")
+unit_type_ID = &"testUnit"
 sprite_texture = ExtResource("4_lxjx1")
 default_hp = Array[ExtResource("2_5f13m")]([SubResource("Resource_itwdt"), SubResource("Resource_uo0xs")])
 power = 2

@@ -31,6 +31,8 @@ func _ready():
 		clear_nodes(BattleData.cleared_nodes)
 		move_player(PlayerData.node_id, false)
 		BattleData.from_battle = false
+		for reward in BattleData.extra_rewards:
+			giveRewards(reward)
 		if BattleData.victory:
 			print("Victory!")
 			BattleData.victory = false

@@ -1,7 +1,7 @@
 class_name UnitData
 extends Resource
 
-
+@export var unit_type_ID: StringName
 @export var sprite_texture: Texture2D
 @export var default_hp: Array[HpSegment]
 @export var power: int

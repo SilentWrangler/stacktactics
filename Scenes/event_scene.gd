@@ -20,8 +20,8 @@ func _ready():
 			if option.available():
 				var button = Button.new()
 				button.text = option.text
-				button.tooltip_text = option.outcome.get_tooltip()
-				button.connect("pressed", func (): option.outcome.apply(get_tree()))
+				button.tooltip_text = option.get_tooltip()
+				button.connect("pressed", func (): option.apply_outcomes(get_tree()))
 				button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 				option_box.add_child(button)
 	
