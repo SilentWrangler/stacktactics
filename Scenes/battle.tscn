@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://ia5m15im0lkk"]
+[gd_scene load_steps=18 format=4 uid="uid://ia5m15im0lkk"]
 
 [ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
 [ext_resource type="Script" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
 [ext_resource type="Script" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
 [ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="5_h5ovu"]
 [ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="6_4r61t"]
+[ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/unit_info_display.tscn" id="6_l74pn"]
 [ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="7_0prk5"]
 [ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="8_jg2a3"]
 [ext_resource type="Texture2D" uid="uid://cl0cmduifjims" path="res://img/interface/enemy_turn.png" id="10_u5so6"]
@@ -68,6 +69,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+
+[node name="UnitInfoDisplay" parent="BattleGUI/Control" instance=ExtResource("6_l74pn")]
+visible = false
+layout_mode = 1
+offset_left = 856.0
+offset_right = 4.0
+offset_bottom = -200.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BattleGUI/Control"]
 layout_mode = 1

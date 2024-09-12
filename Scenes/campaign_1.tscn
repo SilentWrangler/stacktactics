@@ -1,15 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv2ejho1e76f7"]
+[gd_scene load_steps=9 format=3 uid="uid://cv2ejho1e76f7"]
 
 [ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/map_node.tscn" id="1_hcet8"]
 [ext_resource type="Script" path="res://Scenes/campaign.gd" id="1_kep3p"]
+[ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/resource_display.tscn" id="2_cpe4y"]
 [ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/battles/test1.tres" id="5_xtggv"]
 [ext_resource type="Resource" uid="uid://66blsnh8mgia" path="res://campaign/test campaign/encounters/battles/test2.tres" id="6_ctgo1"]
 [ext_resource type="Resource" uid="uid://6kwbkqi0g7re" path="res://campaign/test campaign/encounters/battles/test2_cleared.tres" id="7_2yoef"]
+[ext_resource type="Resource" uid="uid://cmvce3647hk3k" path="res://campaign/test campaign/encounters/camps/test3.tres" id="7_cgsku"]
 [ext_resource type="Texture2D" uid="uid://dlp53a8eeyliv" path="res://img/units/humanoids/humans/nornoth_mercenary.png" id="9_voocg"]
 
 [node name="Campaign" type="Node2D"]
 script = ExtResource("1_kep3p")
 player_location = &"test1"
+
+[node name="ResourceDisplay" parent="." instance=ExtResource("2_cpe4y")]
+clip_contents = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+autowrap_mode = 0
 
 [node name="MapNode" parent="." instance=ExtResource("1_hcet8")]
 id = &"test1"
@@ -29,7 +37,11 @@ cleared_encounter = ExtResource("7_2yoef")
 position = Vector2(489, 375)
 locked = true
 type = 1
+cleared_type = 1
 id = &"test3"
+cleared = true
+encounter = ExtResource("7_cgsku")
+cleared_encounter = ExtResource("7_cgsku")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("9_voocg")

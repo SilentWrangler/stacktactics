@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmiiccmauxovx"]
+
+[ext_resource type="Script" path="res://Scenes/resource_display.gd" id="1_v4t6x"]
+
+[node name="ResourceDisplay" type="RichTextLabel"]
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("1_v4t6x")

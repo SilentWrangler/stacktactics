@@ -17,6 +17,8 @@ duration = -1
 [resource]
 script = ExtResource("3_txfg1")
 unit_type_ID = &"humanoids_humans_peasant"
+unit_name = "Peasant"
+unit_description = "Even untrained peasants can be dangerous when defending their home and led by a skilled tactician. With experience and appropriate equipment, they may become hardened warriors."
 sprite_texture = ExtResource("4_1jdqe")
 default_hp = Array[ExtResource("2_o6uy5")]([SubResource("Resource_yj4ol")])
 power = 2

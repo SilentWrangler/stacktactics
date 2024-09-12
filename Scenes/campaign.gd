@@ -8,7 +8,7 @@ var nodeList: Dictionary
 @export var player_location: StringName
 
 @onready var player_sprite = $PlayerSprite
-
+@onready var resource_display = $ResourceDisplay
 
 
 func unlockNodes(node_ids: Array[StringName]):
@@ -49,6 +49,8 @@ func giveRewards(rewards: Rewards):
 	print("giving rewards: ")
 	if not rewards:
 		return
+	PlayerData.give_resources(rewards.resource_rewards)
+	resource_display.refresh()
 	unlockNodes(rewards.node_rewards)
 	for unit in rewards.unitRewards:
 		PlayerData.addUnit(unit)

@@ -25,6 +25,8 @@ duration = -1
 [resource]
 script = ExtResource("3_3u7c1")
 unit_type_ID = &"humanoids_humans_nornothMercanary"
+unit_name = "Nornoth Mercenary"
+unit_description = "Hailing from distant lands of Nornoth, these warriors sell their martial prowess to a highest bidder.  Well armored, incredibly skilled with both their axes and shields, and, strangely enough, fiercely loyal. Once their loyalty is bought, it stays bought."
 sprite_texture = ExtResource("6_hw188")
 default_hp = Array[ExtResource("2_b5oki")]([SubResource("Resource_5j0vv"), SubResource("Resource_iutud")])
 power = 3

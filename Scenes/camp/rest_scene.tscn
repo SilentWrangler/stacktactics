@@ -1,0 +1,263 @@
+[gd_scene load_steps=18 format=3 uid="uid://bjviks8ud43w6"]
+
+[ext_resource type="Script" path="res://Scenes/camp/rest_scene.gd" id="1_tqq1j"]
+[ext_resource type="Texture2D" uid="uid://dj2303utroolj" path="res://img/border.png" id="2_56ldu"]
+[ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/resource_display.tscn" id="3_q70eg"]
+[ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/unit_info_display.tscn" id="4_lyren"]
+[ext_resource type="PackedScene" uid="uid://p15ewbibtse0" path="res://Scenes/camp/unit_camp_selector.tscn" id="5_g1cjj"]
+[ext_resource type="Texture2D" uid="uid://dx0q5yaafedly" path="res://img/ablilties/next.png" id="6_lej2b"]
+[ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="7_frine"]
+[ext_resource type="Texture2D" uid="uid://cykccal1jl27r" path="res://img/ablilties/heal.png" id="8_wbshd"]
+[ext_resource type="Texture2D" uid="uid://byxmy4taqfbe7" path="res://img/ablilties/left.png" id="9_ubhb0"]
+[ext_resource type="Texture2D" uid="uid://coiu23ehfcd1a" path="res://img/ablilties/move.png" id="10_u6cgx"]
+[ext_resource type="Texture2D" uid="uid://buxmh6qsv15dy" path="res://img/units/humanoids/humans/peasant.png" id="11_amuil"]
+[ext_resource type="Texture2D" uid="uid://crjxtsee2i38k" path="res://img/ablilties/mass_heal.png" id="12_pewy4"]
+[ext_resource type="Texture2D" uid="uid://bs37gjngt2uxv" path="res://img/ablilties/battle.png" id="13_736tm"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_3sylx"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ean24"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fsc7l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2r4e"]
+font_size = 32
+font_color = Color(0.862745, 0.4, 0.0980392, 1)
+
+[node name="RestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tqq1j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceDisplay" parent="VBoxContainer" instance=ExtResource("3_q70eg")]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Manage Units" type="Control" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="UnitInfoDisplay1" parent="VBoxContainer/TabContainer/Manage Units" instance=ExtResource("4_lyren")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74
+offset_left = -0.47998
+offset_right = 0.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Manage Units"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.74
+anchor_bottom = 1.0
+offset_right = -0.47998
+
+[node name="Vanguard" type="HBoxContainer" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnitCampSelector3" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/Vanguard" instance=ExtResource("5_g1cjj")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_3sylx")
+
+[node name="UnitCampSelector2" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/Vanguard" instance=ExtResource("5_g1cjj")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_ean24")
+
+[node name="UnitCampSelector" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/Vanguard" instance=ExtResource("5_g1cjj")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_fsc7l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonToFromVanguard" type="TextureButton" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("6_lej2b")
+texture_pressed = ExtResource("6_lej2b")
+texture_hover = ExtResource("6_lej2b")
+texture_disabled = ExtResource("7_frine")
+texture_focused = ExtResource("6_lej2b")
+
+[node name="ButtonHeal" type="TextureButton" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("8_wbshd")
+texture_pressed = ExtResource("8_wbshd")
+texture_hover = ExtResource("8_wbshd")
+texture_disabled = ExtResource("7_frine")
+texture_focused = ExtResource("8_wbshd")
+
+[node name="ButtonLeft" type="TextureButton" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("9_ubhb0")
+texture_pressed = ExtResource("9_ubhb0")
+texture_hover = ExtResource("9_ubhb0")
+texture_disabled = ExtResource("7_frine")
+texture_focused = ExtResource("9_ubhb0")
+
+[node name="ButtonRight" type="TextureButton" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("9_ubhb0")
+texture_pressed = ExtResource("9_ubhb0")
+texture_hover = ExtResource("9_ubhb0")
+texture_disabled = ExtResource("7_frine")
+texture_focused = ExtResource("9_ubhb0")
+flip_h = true
+
+[node name="ButtonDismiss" type="TextureButton" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("10_u6cgx")
+texture_pressed = ExtResource("10_u6cgx")
+texture_hover = ExtResource("10_u6cgx")
+texture_disabled = ExtResource("7_frine")
+texture_focused = ExtResource("10_u6cgx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="Reserve" type="HBoxContainer" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/ScrollContainer/Reserve"]
+layout_mode = 2
+texture = ExtResource("11_amuil")
+
+[node name="ButtonHealAll" type="Button" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer"]
+layout_mode = 2
+text = "Heal All"
+icon = ExtResource("12_pewy4")
+
+[node name="Evolve Units" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="UnitInfoDisplay2" parent="VBoxContainer/TabContainer/Evolve Units" instance=ExtResource("4_lyren")]
+custom_minimum_size = Vector2(300, 620)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+offset_left = -8.0
+offset_right = 0.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="Manage Player" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ButtonLeave" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Leave Camp
+"
+icon = ExtResource("13_736tm")
+
+[node name="ConfirmationBlocker" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ConfirmationBlocker"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_56ldu")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmationBlocker/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WarningTitle" type="Label" parent="ConfirmationBlocker/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Dismissing Unit"
+label_settings = SubResource("LabelSettings_g2r4e")
+horizontal_alignment = 1
+
+[node name="WarningMessage" type="RichTextLabel" parent="ConfirmationBlocker/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Dismissing a unit is permanent and cannot be reversed. Are you sure you want to continue?"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmationBlocker/NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ConfirmButton" type="Button" parent="ConfirmationBlocker/NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="ConfirmationBlocker/NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Cancel
+"
+
+[connection signal="warining_interacted" from="." to="." method="_on_warining_interacted"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer/ButtonToFromVanguard" to="." method="_on_button_to_from_vanguard_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer/ButtonHeal" to="." method="_on_button_heal_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer/ButtonLeft" to="." method="_on_button_left_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer/ButtonRight" to="." method="_on_button_right_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/ButtonHealAll" to="." method="_on_button_heal_all_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonLeave" to="." method="_on_button_leave_pressed"]
+[connection signal="pressed" from="ConfirmationBlocker/NinePatchRect/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="ConfirmationBlocker/NinePatchRect/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

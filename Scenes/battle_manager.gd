@@ -23,6 +23,7 @@ signal start_turn(side: Unit.Team)
 @export var AP_display: ApDisplay
 @export var end_button: TextureButton
 @export var turn_indicator: TextureRect
+@onready var unit_display = $"../BattleGUI/Control/UnitInfoDisplay"
 @export_subgroup("Turn images")
 @export var player_turn_tex: Texture2D
 @export var enemy_turn_tex: Texture2D
@@ -143,6 +144,7 @@ func deploy_unit(unitData: UnitData, location: Vector2i, side: Unit.Team = Unit.
 
 func select_unit(u: Unit):
 	used_ability = null
+	
 	AP_display.show_icons(false)
 	if selected_unit:
 		selected_unit.sprite.modulate = Color(1,1,1)
@@ -150,6 +152,8 @@ func select_unit(u: Unit):
 	for ch in AbilityButtonContainer.get_children(): #clean up previous buttons
 		ch.free()
 	if u:
+		unit_display.visible = true
+		unit_display.display_from_unit(u)
 		AP_display.show_icons()
 		AP_display.adjust_amount(u.action_points)
 		u.sprite.modulate = Color(1.2,1.2,1.2)
@@ -160,6 +164,8 @@ func select_unit(u: Unit):
 			newButton.disabled = not can_use_ability(u, ability)
 			newButton.connect("pressed", func(): start_ability_targeting(ability))
 			AbilityButtonContainer.add_child(newButton)
+	else:
+		unit_display.visible = false
 
 func count_side(side: Unit.Team) -> int:
 	var result: int = 0
@@ -296,6 +302,12 @@ func check_win_condition(kill: Unit):
 func back_to_campaign(victory: bool):
 	BattleData.victory = victory
 	BattleData.from_battle = true
+	if victory:
+		for u in unit_list:
+			if is_instance_valid(u):
+				if u.side == Unit.Team.Player:
+					if u.slot:
+						u.slot.experience += BattleData.battle.exp
 	var tree = get_tree()
 	if tree:
 		tree.change_scene_to_file(PlayerData.campaign)	

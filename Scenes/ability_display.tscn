@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1b537lfw4agr"]
+
+[ext_resource type="Texture2D" uid="uid://bs37gjngt2uxv" path="res://img/ablilties/battle.png" id="1_52fo8"]
+[ext_resource type="Script" path="res://Scenes/ability_display.gd" id="2_v0n2s"]
+
+[node name="AbilityDisplay" type="TextureRect"]
+texture = ExtResource("1_52fo8")
+stretch_mode = 4
+script = ExtResource("2_v0n2s")
+
+[node name="Abilityname" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.384
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.848
+offset_top = 16.0
+offset_right = 20.0
+offset_bottom = -17.0
+text = "Ability Name"

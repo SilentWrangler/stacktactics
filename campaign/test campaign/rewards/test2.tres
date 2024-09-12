@@ -9,3 +9,6 @@ script = ExtResource("1_4ffdy")
 node_rewards = Array[StringName]([&"test3"])
 unitRewards = Array[ExtResource("2_qjr88")]([])
 next_encounter = ExtResource("1_yg3fm")
+resource_rewards = {
+"silver": 3
+}

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Camp" load_steps=4 format=3 uid="uid://cmvce3647hk3k"]
+
+[ext_resource type="PackedScene" uid="uid://bjviks8ud43w6" path="res://Scenes/camp/rest_scene.tscn" id="1_gsafk"]
+[ext_resource type="Script" path="res://campaign/camps/Camp.gd" id="2_7pjoy"]
+[ext_resource type="Script" path="res://campaign/camps/UnitEvolution.gd" id="3_3wg1x"]
+
+[resource]
+script = ExtResource("2_7pjoy")
+camp_scene = ExtResource("1_gsafk")
+unit_evolutions = Array[ExtResource("3_3wg1x")]([])
+healing_cost = {
+"silver": 1
+}

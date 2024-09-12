@@ -184,6 +184,8 @@ func _on_hp_stack_damage():
 
 func _on_hp_stack_death():
 	manager.check_win_condition(self)
+	if slot:
+		slot.isWounded = true
 	queue_free()
 
 
