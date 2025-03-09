@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=9 format=3 uid="uid://66764recvsua"]
 
 [ext_resource type="Resource" uid="uid://cty1owuhjyli2" path="res://ai/SimpleAttacker/Zombie.tres" id="1_a74np"]
-[ext_resource type="Script" path="res://abilities/Ability.gd" id="1_svh2v"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="1_svh2v"]
 [ext_resource type="Resource" uid="uid://bwywpknjb8ll" path="res://abilities/full_abilities/BasicMove.tres" id="2_i6u2p"]
-[ext_resource type="Script" path="res://HpSegment.gd" id="2_s8v8f"]
-[ext_resource type="Script" path="res://UnitData.gd" id="3_ttvl8"]
+[ext_resource type="Script" uid="uid://dojaxx5hhqjd3" path="res://HpSegment.gd" id="2_s8v8f"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="3_ttvl8"]
 [ext_resource type="Resource" uid="uid://6tpfo0xj18qb" path="res://abilities/full_abilities/Attacks/HardSlam.tres" id="4_5gf1y"]
 [ext_resource type="Texture2D" uid="uid://c8cw5605rkjn3" path="res://img/units/undead/zombie.png" id="5_fh5bq"]
 

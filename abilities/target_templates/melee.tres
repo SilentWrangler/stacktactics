@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AbilityTargteting" load_steps=2 format=3 uid="uid://beok2up1on3tp"]
 
-[ext_resource type="Script" path="res://abilities/AbilityTargeting.gd" id="1_j43m2"]
+[ext_resource type="Script" uid="uid://bgkcmxsgi6phg" path="res://abilities/AbilityTargeting.gd" id="1_j43m2"]
 
 [resource]
 script = ExtResource("1_j43m2")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SimpleDamage" load_steps=2 format=3 uid="uid://bgcyrg8bbftii"]
+
+[ext_resource type="Script" uid="uid://cvpbrhivwbm07" path="res://abilities/Code/SimpleDamage.gd" id="1_wxphe"]
+
+[resource]
+script = ExtResource("1_wxphe")
+damage_type = &"pierce"
+attribute_scaling = 2
+attribute_multiplier = 2.0
+flat_damage = 0

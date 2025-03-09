@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=9 format=3 uid="uid://1uf3ce31y1kn"]
+
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="1_4jq1c"]
+[ext_resource type="Script" uid="uid://dojaxx5hhqjd3" path="res://HpSegment.gd" id="2_jm1bn"]
+[ext_resource type="Resource" uid="uid://bwywpknjb8ll" path="res://abilities/full_abilities/BasicMove.tres" id="2_pau10"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="3_f5nuh"]
+[ext_resource type="Resource" uid="uid://chg6crq4dw36u" path="res://abilities/full_abilities/Attacks/LongStab.tres" id="3_lfvug"]
+[ext_resource type="Texture2D" uid="uid://03a4dowjwixn" path="res://img/units/humanoids/humans/levy_pikeman.png" id="5_65vyg"]
+
+[sub_resource type="Resource" id="Resource_5lwwp"]
+script = ExtResource("2_jm1bn")
+Type = &"flesh"
+amount = 4
+isVital = true
+duration = -1
+
+[sub_resource type="Resource" id="Resource_vf4lv"]
+script = ExtResource("2_jm1bn")
+Type = &"leather"
+amount = 2
+isVital = false
+duration = -1
+
+[resource]
+script = ExtResource("3_f5nuh")
+unit_type_ID = &"humanoids_humans_levy-pikeman"
+unit_name = "Levy Pikeman"
+unit_description = "A backbone of every army. Yesterdays peasants, equipped with hardboiled leather and long pikes and given some basic training, they can pose a serious threat in large numbers."
+sprite_texture = ExtResource("5_65vyg")
+default_hp = Array[ExtResource("2_jm1bn")]([SubResource("Resource_5lwwp"), SubResource("Resource_vf4lv")])
+power = 3
+arcana = 0
+fortitude = 2
+abilities = Array[ExtResource("1_4jq1c")]([ExtResource("2_pau10"), ExtResource("3_lfvug")])
+inherent_tags = Array[StringName]([&"humanoid", &"human", &"soldier", &"polearm"])

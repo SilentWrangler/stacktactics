@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcql84a8eovg3"]
+
+[ext_resource type="Texture2D" uid="uid://7bl2ats1w3og" path="res://img/units/circles/player/normal/player_circle_normal_0.tres" id="1_n1cqv"]
+[ext_resource type="Script" uid="uid://1dh4gqv0tbs6" path="res://Scenes/camp/unit_evolve_selector.gd" id="2_y8pjs"]
+[ext_resource type="Texture2D" uid="uid://bvhjtebfqxgrq" path="res://img/units/circles/player/normal/player_circle_normal_3.tres" id="3_juwjh"]
+[ext_resource type="Texture2D" uid="uid://buxmh6qsv15dy" path="res://img/units/humanoids/humans/peasant.png" id="4_h2g1a"]
+
+[node name="UnitEvolveSelector" type="Button"]
+custom_minimum_size = Vector2(136, 136)
+offset_right = 136.0
+offset_bottom = 136.0
+theme_type_variation = &"FlatButton"
+toggle_mode = true
+icon = ExtResource("1_n1cqv")
+script = ExtResource("2_y8pjs")
+unselected_texture = ExtResource("1_n1cqv")
+selected_texture = ExtResource("3_juwjh")
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("4_h2g1a")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

@@ -51,7 +51,16 @@ func display_from_slot(unitSlot: PlayerData.UnitSlot):
 	display_abilities(unitSlot.unitData.abilities)
 
 func display_evo(unitSlot: PlayerData.UnitSlot, evo: UnitData):
-	pass
+	clear()
+	unit_picture.texture = evo.sprite_texture
+	unit_name.text = "[font_size=%d] %s %s [/font_size]"  % [name_fontsize,evo.unit_name, unitSlot.exp_addition()]
+	unit_description.text = evo.unit_description
+	display_stats(evo.power,evo.arcana,evo.fortitude,unitSlot.unitData)
+	display_hp(evo.default_hp)
+	var total_tags = evo.inherent_tags.duplicate()
+	total_tags.append(unitSlot.extra_tags)
+	display_tags(total_tags)
+	display_abilities(evo.abilities)
 
 
 func display_tags(tags: Array[StringName]):

@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=4 uid="uid://ia5m15im0lkk"]
 
 [ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
-[ext_resource type="Script" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
-[ext_resource type="Script" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
+[ext_resource type="Script" uid="uid://b424fcr86qoen" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
+[ext_resource type="Script" uid="uid://mn7yrhkg4dd7" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
 [ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="5_h5ovu"]
 [ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="6_4r61t"]
 [ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/unit_info_display.tscn" id="6_l74pn"]

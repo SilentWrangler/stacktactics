@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://chg6crq4dw36u"]
+
+[ext_resource type="Script" uid="uid://d3e434qime8sw" path="res://abilities/AbilityPart.gd" id="1_y0013"]
+[ext_resource type="Resource" uid="uid://tswwscdeoxub" path="res://abilities/parts/farStab.tres" id="2_kdalp"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="2_p6ay8"]
+[ext_resource type="Texture2D" uid="uid://cde0wekfq4teh" path="res://img/ablilties/stab.png" id="3_mkc3d"]
+
+[resource]
+script = ExtResource("2_p6ay8")
+parts = Array[ExtResource("1_y0013")]([ExtResource("2_kdalp")])
+tags = Array[StringName]([&"attack", &"melee"])
+ap_cost = 2
+Name = "Far Stab"
+Description = ""
+sprite = ExtResource("3_mkc3d")

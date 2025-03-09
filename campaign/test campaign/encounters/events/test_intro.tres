@@ -1,29 +1,26 @@
-[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://cgrtg4r5edq5y"]
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://cgrtg4r5edq5y"]
 
 [ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event_scene.tscn" id="1_1had1"]
-[ext_resource type="Script" path="res://campaign/events/EventOption.gd" id="1_hkg4m"]
-[ext_resource type="Script" path="res://campaign/events/Event.gd" id="2_ctjww"]
-[ext_resource type="Script" path="res://campaign/events/conditions/OptionCondition.gd" id="3_i2v30"]
-[ext_resource type="Script" path="res://campaign/events/outcomes/ReturnToCampaign.gd" id="4_olshv"]
+[ext_resource type="Script" uid="uid://f2fx4u456r3p" path="res://campaign/events/EventOption.gd" id="1_hkg4m"]
+[ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="2_ctjww"]
+[ext_resource type="Script" uid="uid://borinnn0dv27l" path="res://campaign/events/conditions/OptionCondition.gd" id="3_i2v30"]
+[ext_resource type="Script" uid="uid://d008eaof0d2r5" path="res://campaign/events/outcomes/OptionOutcome.gd" id="4_aikqw"]
 [ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/battles/test1.tres" id="5_wbj43"]
-[ext_resource type="Script" path="res://campaign/Rewards.gd" id="6_3tfdx"]
-[ext_resource type="Script" path="res://UnitData.gd" id="7_siud7"]
-
-[sub_resource type="Resource" id="Resource_x7ay2"]
-script = ExtResource("4_olshv")
-victory = true
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="6_3tfdx"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="7_siud7"]
 
 [sub_resource type="Resource" id="Resource_cwkis"]
 script = ExtResource("1_hkg4m")
 text = "back to campaign"
 conditions = Array[ExtResource("3_i2v30")]([])
-outcome = SubResource("Resource_x7ay2")
+outcomes = Array[ExtResource("4_aikqw")]([])
 
 [sub_resource type="Resource" id="Resource_c1ngu"]
 script = ExtResource("6_3tfdx")
 node_rewards = Array[StringName]([])
 unitRewards = Array[ExtResource("7_siud7")]([])
 next_encounter = ExtResource("5_wbj43")
+resource_rewards = {}
 
 [resource]
 script = ExtResource("2_ctjww")

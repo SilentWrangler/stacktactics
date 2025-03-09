@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitEvolution" load_steps=4 format=3 uid="uid://cfsikdk554o0i"]
+
+[ext_resource type="Resource" uid="uid://1uf3ce31y1kn" path="res://Units/humanoids/humans/levy_pikeman.tres" id="1_okosi"]
+[ext_resource type="Script" uid="uid://b8t48er5bc24u" path="res://tag_set.gd" id="1_rdak0"]
+[ext_resource type="Script" uid="uid://byf5q4naakj0i" path="res://campaign/camps/UnitEvolution.gd" id="2_nergy"]
+
+[resource]
+script = ExtResource("2_nergy")
+required_exp = 3
+required_set_variants = Array[ExtResource("1_rdak0")]([])
+speciic_unit_type = true
+specific_unit_id = &"humanoids_humans_peasant"
+evolved_unit_data = ExtResource("1_okosi")
+cost = {}

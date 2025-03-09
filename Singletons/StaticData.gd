@@ -15,6 +15,7 @@ func  _ready():
 		&"flesh": preload("res://img/hp-icons/heart.png"),
 		&"metal": preload("res://img/hp-icons/chainmail.png"),
 		&"block": preload("res://img/hp-icons/shield.png"),
+		&"leather": preload("res://img/hp-icons/leather.png")
 	}
 	
 	resource_icons = {

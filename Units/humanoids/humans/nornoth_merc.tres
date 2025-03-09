@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://bx5lk8ls0bbtc"]
 
-[ext_resource type="Script" path="res://abilities/Ability.gd" id="1_sky1e"]
-[ext_resource type="Script" path="res://HpSegment.gd" id="2_b5oki"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="1_sky1e"]
+[ext_resource type="Script" uid="uid://dojaxx5hhqjd3" path="res://HpSegment.gd" id="2_b5oki"]
 [ext_resource type="Resource" uid="uid://bwywpknjb8ll" path="res://abilities/full_abilities/BasicMove.tres" id="2_c2vx3"]
-[ext_resource type="Script" path="res://UnitData.gd" id="3_3u7c1"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="3_3u7c1"]
 [ext_resource type="Resource" uid="uid://cqvots3y11380" path="res://abilities/full_abilities/Attacks/Slash.tres" id="3_ohc38"]
 [ext_resource type="Resource" uid="uid://4yc20q68stef" path="res://abilities/full_abilities/Support/Block.tres" id="4_bk2fj"]
 [ext_resource type="Texture2D" uid="uid://dlp53a8eeyliv" path="res://img/units/humanoids/humans/nornoth_mercenary.png" id="6_hw188"]

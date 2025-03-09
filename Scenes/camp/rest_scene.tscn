@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjviks8ud43w6"]
+[gd_scene load_steps=19 format=3 uid="uid://bjviks8ud43w6"]
 
-[ext_resource type="Script" path="res://Scenes/camp/rest_scene.gd" id="1_tqq1j"]
+[ext_resource type="Script" uid="uid://djc63e3eg0rfj" path="res://Scenes/camp/rest_scene.gd" id="1_tqq1j"]
 [ext_resource type="Texture2D" uid="uid://dj2303utroolj" path="res://img/border.png" id="2_56ldu"]
 [ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/resource_display.tscn" id="3_q70eg"]
 [ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/unit_info_display.tscn" id="4_lyren"]
@@ -11,14 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://byxmy4taqfbe7" path="res://img/ablilties/left.png" id="9_ubhb0"]
 [ext_resource type="Texture2D" uid="uid://coiu23ehfcd1a" path="res://img/ablilties/move.png" id="10_u6cgx"]
 [ext_resource type="Texture2D" uid="uid://buxmh6qsv15dy" path="res://img/units/humanoids/humans/peasant.png" id="11_amuil"]
+[ext_resource type="Texture2D" uid="uid://cfd5dk1usxmu1" path="res://img/ablilties/right.png" id="12_bxc8h"]
 [ext_resource type="Texture2D" uid="uid://crjxtsee2i38k" path="res://img/ablilties/mass_heal.png" id="12_pewy4"]
 [ext_resource type="Texture2D" uid="uid://bs37gjngt2uxv" path="res://img/ablilties/battle.png" id="13_736tm"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_3sylx"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_5d6ps"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_ean24"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_ajwwe"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_fsc7l"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_ruqkw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g2r4e"]
 font_size = 32
@@ -47,9 +48,10 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
 [node name="Manage Units" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -76,15 +78,15 @@ alignment = 1
 
 [node name="UnitCampSelector3" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/Vanguard" instance=ExtResource("5_g1cjj")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_3sylx")
+button_group = SubResource("ButtonGroup_5d6ps")
 
 [node name="UnitCampSelector2" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/Vanguard" instance=ExtResource("5_g1cjj")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_ean24")
+button_group = SubResource("ButtonGroup_ajwwe")
 
 [node name="UnitCampSelector" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer/Vanguard" instance=ExtResource("5_g1cjj")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_fsc7l")
+button_group = SubResource("ButtonGroup_ruqkw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Manage Units/VBoxContainer"]
 layout_mode = 2
@@ -157,19 +159,77 @@ text = "Heal All"
 icon = ExtResource("12_pewy4")
 
 [node name="Evolve Units" type="Control" parent="VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="UnitInfoDisplay2" parent="VBoxContainer/TabContainer/Evolve Units" instance=ExtResource("4_lyren")]
-custom_minimum_size = Vector2(300, 620)
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Evolve Units"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-offset_left = -8.0
-offset_right = 0.0
-grow_horizontal = 0
-grow_vertical = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="playerunitBox" type="VBoxContainer" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="UnitCampSelector" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/ScrollContainer/playerunitBox" instance=ExtResource("5_g1cjj")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="evolvebox" type="VBoxContainer" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/ScrollContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Control3" type="Control" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="UnitInfoDisplay_evo" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer" instance=ExtResource("4_lyren")]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("12_bxc8h")
+stretch_mode = 2
+
+[node name="UnitInfoDisplay_evo_from" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer" instance=ExtResource("4_lyren")]
+visible = false
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+
+[node name="EvolveButton" type="Button" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer"]
+layout_mode = 2
+text = "Evolve Unit"
+icon = ExtResource("12_bxc8h")
 
 [node name="Manage Player" type="Control" parent="VBoxContainer/TabContainer"]
 visible = false

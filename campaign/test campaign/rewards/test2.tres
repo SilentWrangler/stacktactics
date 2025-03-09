@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Rewards" load_steps=4 format=3 uid="uid://v6r1fgjdycl5"]
 
-[ext_resource type="Script" path="res://campaign/Rewards.gd" id="1_4ffdy"]
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="1_4ffdy"]
 [ext_resource type="Resource" uid="uid://dkca40odxpynd" path="res://campaign/test campaign/encounters/events/cleared_graveyard.tres" id="1_yg3fm"]
-[ext_resource type="Script" path="res://UnitData.gd" id="2_qjr88"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="2_qjr88"]
 
 [resource]
 script = ExtResource("1_4ffdy")

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=6 format=3 uid="uid://dcslgux2a2ssc"]
 
-[ext_resource type="Script" path="res://abilities/Ability.gd" id="1_p8bd2"]
-[ext_resource type="Script" path="res://HpSegment.gd" id="2_mkw3x"]
-[ext_resource type="Script" path="res://UnitData.gd" id="3_hjgw2"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="1_p8bd2"]
+[ext_resource type="Script" uid="uid://dojaxx5hhqjd3" path="res://HpSegment.gd" id="2_mkw3x"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="3_hjgw2"]
 [ext_resource type="Texture2D" uid="uid://bacm50loq5xsb" path="res://img/units/structures/target.png" id="4_hmlep"]
 
 [sub_resource type="Resource" id="Resource_2qt7j"]

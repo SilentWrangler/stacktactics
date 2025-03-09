@@ -14,6 +14,7 @@ signal warining_interacted(confirmed: bool)
 #end warning section
 
 @export var selection_template = preload("res://Scenes/camp/unit_camp_selector.tscn")
+@export var evolution_template = preload("res://Scenes/camp/unit_evolve_selector.tscn")
 @onready var vanguard_box = $"VBoxContainer/TabContainer/Manage Units/VBoxContainer/Vanguard"
 @onready var reserve_box = $"VBoxContainer/TabContainer/Manage Units/VBoxContainer/ScrollContainer/Reserve"
 @onready var manage_units_display = $"VBoxContainer/TabContainer/Manage Units/UnitInfoDisplay1"
@@ -25,12 +26,22 @@ signal warining_interacted(confirmed: bool)
 @onready var button_dismiss = $"VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer/ButtonDismiss"
 @onready var heal_all_button = $"VBoxContainer/TabContainer/Manage Units/VBoxContainer/ButtonHealAll"
 
+@onready var unit_box = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/ScrollContainer/playerunitBox"
+@onready var evo_box = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/ScrollContainer2/evolvebox"
+
+@onready var from_display = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/UnitInfoDisplay_evo"
+@onready var evo_display = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/UnitInfoDisplay_evo_from"
+
+
 class Selection:
 	var is_vanguard: bool
 	var slot: PlayerData.UnitSlot
 
 
 var selected : Array[Selection]
+
+var selected_evo: Selection
+var evo_target: UnitEvolution
 
 func clear_boxes():
 	for ch in vanguard_box.get_children():
@@ -60,6 +71,53 @@ func place_selectors():
 		t.display(sel)
 	button_availability()
 
+func place_evo_units():
+	for ch in unit_box.get_children():
+		ch.free()
+	for ch in evo_box.get_children():
+		ch.free()
+	var group = ButtonGroup.new()
+	for s in PlayerData.vanguard:
+		if not s.isPlayer:
+			var sel = Selection.new()
+			sel.is_vanguard = true
+			sel.slot = s
+			var t = selection_template.instantiate()
+			t.selection = sel
+			t.connect("toggled", func(is_toggled: bool): evo_sel_callback(is_toggled, sel))
+			t.button_group = group
+			unit_box.add_child(t)
+			t.display(sel)
+	for s in PlayerData.reserve:
+		var sel = Selection.new()
+		sel.is_vanguard = false
+		sel.slot = s
+		var t = selection_template.instantiate()
+		t.selection = sel
+		t.connect("toggled", func(is_toggled: bool): evo_sel_callback(is_toggled, sel))
+		t.button_group = group
+		unit_box.add_child(t)
+		t.display(sel)
+
+func evo_sel_callback(_is_toggled: bool, sel: Selection):
+	from_display.display_from_slot(sel.slot)
+	selected_evo = sel
+	place_evolutions()
+
+func evo_targ_sel_callback(_is_toggled: bool, evo: UnitEvolution):
+	evo_display.display_evo(selected_evo.slot,evo.evolved_unit_data)
+	evo_target = evo
+
+
+func place_evolutions():
+	var group = ButtonGroup.new()
+	for e in BattleData.camp.unit_evolutions:
+		if e.can_evolve(selected_evo.slot):
+			var t = evolution_template.instantiate()
+			t.button_group = group
+			evo_box.add_child(t)
+			t.display(e.evolved_unit_data)
+
 func selection_callback(is_toggled: bool, selection: Selection):
 	manage_units_display.display_from_slot(selection.slot)
 	print(is_toggled)
@@ -68,6 +126,8 @@ func selection_callback(is_toggled: bool, selection: Selection):
 	else:
 		selected.erase(selection)
 	button_availability()
+
+
 
 func button_availability():
 	print(selected)
@@ -131,10 +191,16 @@ func warn(
 	else:
 		cancel_callback.call()
 
+func refresh():
+	selected.clear()
+	resource_display.refresh()
+	place_selectors()
+	place_evo_units()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	place_selectors()
+	refresh()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -170,8 +236,8 @@ func _on_button_to_from_vanguard_pressed():
 		else:
 			PlayerData.reserve.erase(s.slot)
 			PlayerData.vanguard.append(s.slot)
-	selected.clear()
-	place_selectors()
+	
+	refresh()
 
 
 func _on_button_right_pressed():
@@ -183,8 +249,7 @@ func _on_button_right_pressed():
 	var buf = PlayerData.vanguard[swap_idx]
 	PlayerData.vanguard[swap_idx] = s.slot
 	PlayerData.vanguard[idx] = buf
-	selected.clear()
-	place_selectors()
+	refresh()
 	
 
 
@@ -197,8 +262,7 @@ func _on_button_left_pressed():
 	var buf = PlayerData.vanguard[swap_idx]
 	PlayerData.vanguard[swap_idx] = s.slot
 	PlayerData.vanguard[idx] = buf
-	selected.clear()
-	place_selectors()
+	refresh()
 
 
 func calc_healing_cost_for_selected() -> Dictionary:
@@ -241,9 +305,8 @@ func heal_selected():
 	PlayerData.take_resources(cost)
 	for s in selected:
 		s.slot.isWounded = false
-	selected.clear()
-	place_selectors()
-	resource_display.refresh()
+	refresh()
+	
 
 func heal_all():
 	var cost = calc_healing_cost_for_all()
@@ -254,6 +317,4 @@ func heal_all():
 	for s in PlayerData.reserve:
 		s.isWounded = false
 	
-	selected.clear()
-	place_selectors()
-	resource_display.refresh()
+	refresh()

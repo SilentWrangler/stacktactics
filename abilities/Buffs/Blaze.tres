@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Buff" load_steps=3 format=3 uid="uid://clkbv5hvi2vn4"]
 
-[ext_resource type="Script" path="res://abilities/Buff.gd" id="1_6vdwu"]
+[ext_resource type="Script" uid="uid://dl5vhqrloqisy" path="res://abilities/Buff.gd" id="1_6vdwu"]
 [ext_resource type="Texture2D" uid="uid://dboh52fl1t1wp" path="res://img/hp-icons/swirl.png" id="1_iguod"]
 
 [resource]

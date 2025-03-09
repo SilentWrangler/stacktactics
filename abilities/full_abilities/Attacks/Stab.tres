@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://cdgu04eocftr7"]
 
-[ext_resource type="Script" path="res://abilities/AbilityPart.gd" id="1_ccwym"]
+[ext_resource type="Script" uid="uid://d3e434qime8sw" path="res://abilities/AbilityPart.gd" id="1_ccwym"]
 [ext_resource type="Resource" uid="uid://d0sqkt62o2utp" path="res://abilities/parts/MeleeStab.tres" id="2_1mhly"]
-[ext_resource type="Script" path="res://abilities/Ability.gd" id="3_0m0dg"]
-[ext_resource type="Texture2D" uid="uid://l3hgh5qt3ano" path="res://img/ablilties/slash.png" id="4_wkgm2"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="3_0m0dg"]
+[ext_resource type="Texture2D" uid="uid://cde0wekfq4teh" path="res://img/ablilties/stab.png" id="4_26d6d"]
 
 [resource]
 script = ExtResource("3_0m0dg")
@@ -12,4 +12,4 @@ tags = Array[StringName]([])
 ap_cost = 1
 Name = "Stab"
 Description = ""
-sprite = ExtResource("4_wkgm2")
+sprite = ExtResource("4_26d6d")

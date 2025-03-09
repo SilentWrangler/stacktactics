@@ -27,4 +27,4 @@ func _process(delta):
 
 
 func _on_toggled(toggled_on):
-	icon = selected_texture if toggled_on else unselected_texture
+	icon = unselected_texture if toggled_on else selected_texture
