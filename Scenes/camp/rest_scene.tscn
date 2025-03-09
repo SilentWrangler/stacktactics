@@ -211,7 +211,7 @@ alignment = 1
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="UnitInfoDisplay_evo" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer" instance=ExtResource("4_lyren")]
+[node name="UnitInfoDisplay_evo_from" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer" instance=ExtResource("4_lyren")]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 
@@ -221,13 +221,13 @@ size_flags_vertical = 4
 texture = ExtResource("12_bxc8h")
 stretch_mode = 2
 
-[node name="UnitInfoDisplay_evo_from" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer" instance=ExtResource("4_lyren")]
-visible = false
+[node name="UnitInfoDisplay_evo" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer" instance=ExtResource("4_lyren")]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 
 [node name="EvolveButton" type="Button" parent="VBoxContainer/TabContainer/Evolve Units/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Evolve Unit"
 icon = ExtResource("12_bxc8h")
 
@@ -318,6 +318,7 @@ text = "Cancel
 [connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer/ButtonLeft" to="." method="_on_button_left_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/HBoxContainer/ButtonRight" to="." method="_on_button_right_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/Manage Units/VBoxContainer/ButtonHealAll" to="." method="_on_button_heal_all_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Evolve Units/VBoxContainer/EvolveButton" to="." method="_on_evolve_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonLeave" to="." method="_on_button_leave_pressed"]
 [connection signal="pressed" from="ConfirmationBlocker/NinePatchRect/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="ConfirmationBlocker/NinePatchRect/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

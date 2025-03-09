@@ -29,9 +29,10 @@ signal warining_interacted(confirmed: bool)
 @onready var unit_box = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/ScrollContainer/playerunitBox"
 @onready var evo_box = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/ScrollContainer2/evolvebox"
 
-@onready var from_display = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/UnitInfoDisplay_evo"
-@onready var evo_display = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/UnitInfoDisplay_evo_from"
+@onready var from_display = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/UnitInfoDisplay_evo_from"
+@onready var evo_display = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/HBoxContainer/UnitInfoDisplay_evo"
 
+@onready var evolve_button = $"VBoxContainer/TabContainer/Evolve Units/VBoxContainer/EvolveButton"
 
 class Selection:
 	var is_vanguard: bool
@@ -101,15 +102,22 @@ func place_evo_units():
 
 func evo_sel_callback(_is_toggled: bool, sel: Selection):
 	from_display.display_from_slot(sel.slot)
+	evo_display.clear()
 	selected_evo = sel
+	evolve_button.disabled = true
 	place_evolutions()
 
 func evo_targ_sel_callback(_is_toggled: bool, evo: UnitEvolution):
+	print("evo_targ_sel_callback (%s)" % str(_is_toggled))
+	print("Evo: %s" % str(evo) )
 	evo_display.display_evo(selected_evo.slot,evo.evolved_unit_data)
 	evo_target = evo
+	evolve_button.disabled = not evo_target.unit_allowed(selected_evo.slot)
 
 
 func place_evolutions():
+	for ch in evo_box.get_children():
+		ch.free()
 	var group = ButtonGroup.new()
 	for e in BattleData.camp.unit_evolutions:
 		if e.can_evolve(selected_evo.slot):
@@ -117,6 +125,7 @@ func place_evolutions():
 			t.button_group = group
 			evo_box.add_child(t)
 			t.display(e.evolved_unit_data)
+			t.connect("toggled", func(is_toggled: bool): evo_targ_sel_callback(is_toggled,e))
 
 func selection_callback(is_toggled: bool, selection: Selection):
 	manage_units_display.display_from_slot(selection.slot)
@@ -317,4 +326,18 @@ func heal_all():
 	for s in PlayerData.reserve:
 		s.isWounded = false
 	
+	refresh()
+
+
+
+
+
+func _on_evolve_button_pressed():
+	var msg = "Permanently transform %s into %s? Evolution will cost %s" % [selected_evo.slot.unitData.unit_name,
+	 evo_target.evolved_unit_data.unit_name, StaticData.get_resuorce_bbcode(evo_target.cost)]
+	warn("Evolving unit",msg,"Evolve","Cancel", confirm_evolve)
+
+func confirm_evolve():
+	evo_target.evolve(selected_evo.slot)
+	evolve_button.disabled = true
 	refresh()

@@ -11,4 +11,6 @@ required_set_variants = Array[ExtResource("1_rdak0")]([])
 speciic_unit_type = true
 specific_unit_id = &"humanoids_humans_peasant"
 evolved_unit_data = ExtResource("1_okosi")
-cost = {}
+cost = {
+&"silver": 2
+}

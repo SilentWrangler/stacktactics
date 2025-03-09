@@ -24,6 +24,7 @@ func clear():
 	unit_name.text=""
 	unit_tags.text=""
 	unit_description.text=""
+	hp_label.text=""
 
 func display_from_unit(unit: Unit):
 	clear()
