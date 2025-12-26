@@ -21,3 +21,5 @@ var cleared_nodes: Array[StringName]
 
 var rewards: Rewards
 var extra_rewards: Array[Rewards]
+
+var max_enemy_deploys: int = 1

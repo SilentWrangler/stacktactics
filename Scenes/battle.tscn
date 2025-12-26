@@ -30,16 +30,17 @@ events = [SubResource("InputEventAction_05fsw")]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display", "end_button", "turn_indicator")]
+[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display", "end_button", "deploy_menu_button", "turn_indicator")]
 script = ExtResource("1_jr73g")
 tilemap = NodePath("../Map")
 unit_parent = NodePath("../Units")
 player_deploy_locations = Array[Vector2i]([Vector2i(5, 3), Vector2i(4, 4), Vector2i(6, 4), Vector2i(5, 4)])
-enemy_deploy_locations = Array[Vector2i]([Vector2i(5, 0), Vector2i(4, 1), Vector2i(6, 1), Vector2i(5, 1)])
+enemy_deploy_locations = Array[Vector2i]([Vector2i(5, 1), Vector2i(4, 1), Vector2i(6, 1), Vector2i(5, 0)])
 AbilityButtonContainer = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/AbilityButtonCont")
 blocked_ability_texture = ExtResource("6_4r61t")
 AP_display = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay")
 end_button = NodePath("../BattleGUI/Control/VBoxContainer/EndTurnButton")
+deploy_menu_button = NodePath("../BattleGUI/Control/VBoxContainer/DeployButton")
 turn_indicator = NodePath("../BattleGUI/Control/Turn_indicator")
 player_turn_tex = ExtResource("16_bs478")
 enemy_turn_tex = ExtResource("10_u5so6")
@@ -71,11 +72,13 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="UnitInfoDisplay" parent="BattleGUI/Control" instance=ExtResource("6_l74pn")]
-visible = false
 layout_mode = 1
-offset_left = 856.0
-offset_right = 4.0
-offset_bottom = -200.0
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.005
+anchor_bottom = 0.65
+offset_left = 0.0639648
+offset_right = 0.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BattleGUI/Control"]
 layout_mode = 1
@@ -164,7 +167,55 @@ pivot_offset = Vector2(0, 1)
 texture = ExtResource("16_bs478")
 expand_mode = 3
 
+[node name="DeployPanel" type="PanelContainer" parent="BattleGUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.7599998
+offset_right = -352.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BattleGUI/Control/DeployPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="DeployContainer" type="VBoxContainer" parent="BattleGUI/Control/DeployPanel/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer"]
+custom_minimum_size = Vector2(0, 148)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Units" type="HBoxContainer" parent="BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="DeployConfirm" type="Button" parent="BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Deploy"
+
+[node name="DeployCancel" type="Button" parent="BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
 [connection signal="input_event" from="Map/MapArea" to="BattleManager" method="_on_map_area_input_event"]
 [connection signal="pressed" from="BattleGUI/Control/VBoxContainer/DeployButton" to="BattleManager" method="_on_deploy_button_pressed"]
 [connection signal="pressed" from="BattleGUI/Control/VBoxContainer/EndTurnButton" to="BattleManager" method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="BattleGUI/Control/VBoxContainer/Nextunitbutton" to="BattleManager" method="_on_nextunitbutton_pressed"]
+[connection signal="pressed" from="BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer/HBoxContainer/DeployConfirm" to="BattleManager" method="_on_deploy_confirm_pressed"]
+[connection signal="pressed" from="BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer/HBoxContainer/DeployCancel" to="BattleManager" method="_on_deploy_cancel_pressed"]

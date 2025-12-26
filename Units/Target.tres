@@ -9,18 +9,9 @@
 script = ExtResource("2_mkw3x")
 Type = &"wood"
 amount = 5
-isVital = false
-duration = -1
 
 [resource]
 script = ExtResource("3_hjgw2")
 unit_type_ID = &"target"
-unit_name = "Unit"
-unit_description = "Unit description goes here"
 sprite_texture = ExtResource("4_hmlep")
 default_hp = Array[ExtResource("2_mkw3x")]([SubResource("Resource_2qt7j")])
-power = 0
-arcana = 0
-fortitude = 0
-abilities = Array[ExtResource("1_p8bd2")]([])
-inherent_tags = Array[StringName]([])

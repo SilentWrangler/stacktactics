@@ -13,7 +13,6 @@ script = ExtResource("2_s8v8f")
 Type = &"flesh"
 amount = 6
 isVital = true
-duration = -1
 
 [resource]
 script = ExtResource("3_ttvl8")
@@ -23,8 +22,5 @@ unit_description = "A pale shambling corpse of a once living human. Their attack
 sprite_texture = ExtResource("5_fh5bq")
 default_hp = Array[ExtResource("2_s8v8f")]([SubResource("Resource_n6idc")])
 power = 2
-arcana = 0
-fortitude = 0
 abilities = Array[ExtResource("1_svh2v")]([ExtResource("2_i6u2p"), ExtResource("4_5gf1y")])
-inherent_tags = Array[StringName]([])
 AI = ExtResource("1_a74np")

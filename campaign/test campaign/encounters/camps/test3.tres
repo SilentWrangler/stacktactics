@@ -1,14 +1,21 @@
-[gd_resource type="Resource" script_class="Camp" load_steps=5 format=3 uid="uid://cmvce3647hk3k"]
+[gd_resource type="Resource" script_class="Camp" load_steps=8 format=3 uid="uid://cmvce3647hk3k"]
 
 [ext_resource type="PackedScene" uid="uid://bjviks8ud43w6" path="res://Scenes/camp/rest_scene.tscn" id="1_gsafk"]
 [ext_resource type="Script" uid="uid://bgcjjrg2kpxgl" path="res://campaign/camps/Camp.gd" id="2_7pjoy"]
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="2_675rs"]
 [ext_resource type="Script" uid="uid://byf5q4naakj0i" path="res://campaign/camps/UnitEvolution.gd" id="3_3wg1x"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="3_uurys"]
 [ext_resource type="Resource" uid="uid://cfsikdk554o0i" path="res://Units/evolutions/peasant_to_pikeman.tres" id="4_q7qfs"]
+
+[sub_resource type="Resource" id="Resource_nfvtp"]
+script = ExtResource("2_675rs")
+node_rewards = Array[StringName]([&"horde"])
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
 
 [resource]
 script = ExtResource("2_7pjoy")
-camp_scene = ExtResource("1_gsafk")
 unit_evolutions = Array[ExtResource("3_3wg1x")]([ExtResource("4_q7qfs")])
 healing_cost = {
 "silver": 1
 }
+rewards = SubResource("Resource_nfvtp")

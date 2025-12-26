@@ -22,8 +22,15 @@ signal start_turn(side: Unit.Team)
 @export var blocked_ability_texture: Texture
 @export var AP_display: ApDisplay
 @export var end_button: TextureButton
+@export var deploy_menu_button: TextureButton
 @export var turn_indicator: TextureRect
+
 @onready var unit_display = $"../BattleGUI/Control/UnitInfoDisplay"
+@onready var deploy_list = $"../BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer/ScrollContainer/Units"
+@onready var deploy_panel = $"../BattleGUI/Control/DeployPanel"
+@onready var confirm = $"../BattleGUI/Control/DeployPanel/PanelContainer/DeployContainer/HBoxContainer/DeployConfirm"
+@export var unit_button_template = preload("res://Scenes/camp/unit_evolve_selector.tscn")
+
 @export_subgroup("Turn images")
 @export var player_turn_tex: Texture2D
 @export var enemy_turn_tex: Texture2D
@@ -32,7 +39,10 @@ var is_palyer_turn: bool = true
 
 var used_ability: Ability = null
 
+var deployed_unit_data: UnitData
+var deployed_this_turn: bool
 
+var enemy_can_deploy: bool
 
 func start_ability_targeting(ability: Ability):
 	used_ability = ability
@@ -47,6 +57,7 @@ func process_ablity(ability: Ability, user: Unit, target_grab: AbilityTargteting
 	if user.side == user.Team.Player:
 		select_unit(user)
 	user.update_circle()
+	player_can_deploy()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -79,7 +90,8 @@ func _ready():
 		pass_turn()
 	
 
-
+func player_can_deploy():
+	deploy_menu_button.disabled = not is_palyer_turn or not any_free_deploy_tiles() or deployed_this_turn
 
 
 func can_use_ability(unit: Unit, ability: Ability) -> bool:
@@ -126,8 +138,10 @@ func pass_turn():
 	select_unit(null)
 	emit_signal("end_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
 	is_palyer_turn=not is_palyer_turn
+	deployed_this_turn = false
 	turn_indicator.texture = player_turn_tex if is_palyer_turn else enemy_turn_tex
 	emit_signal("start_turn", Unit.Team.Player if is_palyer_turn else Unit.Team.Enemy)
+	player_can_deploy()
 
 func deploy_unit(unitData: UnitData, location: Vector2i, side: Unit.Team = Unit.Team.Player):
 	var unit = unit_template.instantiate()
@@ -140,6 +154,9 @@ func deploy_unit(unitData: UnitData, location: Vector2i, side: Unit.Team = Unit.
 	end_turn.connect(unit._on_end_turn)
 	start_turn.connect(unit._on_start_turn)
 	unit_list.append(unit)
+	if side == Unit.Team.Player:
+		deployed_this_turn = true
+	player_can_deploy()
 	return unit
 
 func select_unit(u: Unit):
@@ -264,8 +281,33 @@ func use_abilities(event):
 				start_ability_targeting(ability)
 
 
+func place_deploy_buttons():
+	for ch in deploy_list.get_children():
+		ch.free()
+	var group = ButtonGroup.new()
+	for unit in PlayerData.reserve:
+		if not unit.isWounded and not unit.isDeployed:
+			var sel = RestManager.Selection.new()
+			sel.is_vanguard = false
+			sel.slot = unit
+			var t = unit_button_template.instantiate()
+			t.connect("toggled", func(is_toggled: bool): deploy_selection_callback(is_toggled, sel))
+			t.button_group = group
+			deploy_list.add_child(t)
+			t.display(unit.unitData)
+			
+func deploy_selection_callback(is_toggled: bool, sel: RestManager.Selection):
+	unit_display.visible = true
+	unit_display.display_from_slot(sel.slot)
+	deployed_unit_data = sel.slot.unitData
+	confirm.disabled = not any_free_deploy_tiles()
+	
 func _on_deploy_button_pressed():
-	pass # Replace with function body.
+	deploy_panel.visible = true 
+	unit_display.visible = false
+	selected_unit = null
+	confirm.disabled = true
+	place_deploy_buttons()
 
 
 func _on_nextunitbutton_pressed():
@@ -276,6 +318,7 @@ func _on_end_turn_button_pressed():
 	if is_palyer_turn:
 			pass_turn()
 			end_button.disabled = true
+			
 			process_ais()
 			pass_turn() 
 			end_button.disabled = false
@@ -289,6 +332,18 @@ func process_ais():
 		var AI = u.unitData.AI
 		if AI!=null:
 			AI.processAI(u,self)
+	if not enemy_can_deploy:
+		enemy_can_deploy = true
+	else:
+		for i in BattleData.max_enemy_deploys:
+			if any_free_deploy_tiles(Unit.Team.Enemy):
+				if len(BattleData.enemy_reserve)>0:
+					deploy_unit(
+						BattleData.enemy_reserve.pop_front(),
+						first_free_deploy_tile(Unit.Team.Enemy),
+						Unit.Team.Enemy)
+			else:
+				break
 			
 
 func check_win_condition(kill: Unit):
@@ -311,3 +366,31 @@ func back_to_campaign(victory: bool):
 	var tree = get_tree()
 	if tree:
 		tree.change_scene_to_file(PlayerData.campaign)	
+
+func any_free_deploy_tiles(side: Unit.Team = Unit.Team.Player):
+	var taken = get_taken_hexes()
+	var locs = player_deploy_locations if side==Unit.Team.Player else enemy_deploy_locations
+	for loc in locs:
+		if loc not in taken:
+			return true
+	return false
+
+func first_free_deploy_tile(side: Unit.Team = Unit.Team.Player):
+	var taken = get_taken_hexes()
+	var locs = player_deploy_locations if side==Unit.Team.Player else enemy_deploy_locations
+	for loc in locs:
+		if loc not in taken:
+			return loc
+	return null
+
+func _on_deploy_cancel_pressed():
+	deploy_panel.visible = false
+	unit_display.visible = false 
+	
+
+
+func _on_deploy_confirm_pressed():
+	deploy_unit(deployed_unit_data,first_free_deploy_tile())
+	deploy_panel.visible = false
+	unit_display.visible = false
+	

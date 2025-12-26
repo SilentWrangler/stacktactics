@@ -5,12 +5,14 @@ extends Encounter
 @export var enemy_vanguard: Array[UnitData]
 @export var enemy_reserve:  Array[UnitData]
 @export var exp: int = 1
+@export var max_enemy_deploys: int = 1
 
 func play_encounter(node: MapNode):
 	BattleData.victory = false
 		
 	BattleData.enemy_vanguard = enemy_vanguard
 	BattleData.enemy_reserve = enemy_reserve
+	BattleData.max_enemy_deploys = max_enemy_deploys
 	
 	var campaign = node.campaign
 	

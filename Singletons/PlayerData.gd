@@ -19,6 +19,7 @@ class UnitSlot:
 	var experience: int
 	var isPlayer: bool
 	var isWounded: bool
+	var isDeployed: bool
 	var extra_tags: Array[StringName]
 	
 	func get_tags() -> Array[StringName]:

@@ -15,7 +15,6 @@ victory = true
 [sub_resource type="Resource" id="Resource_kctbi"]
 script = ExtResource("2_xge6l")
 text = "Move on, for now"
-conditions = Array[ExtResource("3_gcn2n")]([])
 outcomes = Array[ExtResource("4_alpdq")]([SubResource("Resource_bgqqv")])
 
 [resource]
