@@ -7,17 +7,8 @@
 script = ExtResource("1_6vdwu")
 positivity = 1
 stack_id = &"blaze"
-duration = 0
-amount = 0
 decaying = true
 Name = "Blaze"
-Description = ""
-Icon = ExtResource("1_iguod")
-tags = Array[StringName]([])
-attribute_mod_attribute = 0
-attribute_mod_amount = 0
 damage_placement = 1
-damage_attr_scaling = 0
-damage_attr_multiplier = 0.0
 damage_flat_modifier = 1
 damage_type = &"fire"

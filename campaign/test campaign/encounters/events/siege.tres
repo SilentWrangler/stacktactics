@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://8qq631p46qa5"]
+
+[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event_scene.tscn" id="1_a706g"]
+[ext_resource type="Script" uid="uid://f2fx4u456r3p" path="res://campaign/events/EventOption.gd" id="1_quwms"]
+[ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="2_1p6vg"]
+[ext_resource type="Script" uid="uid://borinnn0dv27l" path="res://campaign/events/conditions/OptionCondition.gd" id="3_nmt6b"]
+[ext_resource type="Script" uid="uid://d008eaof0d2r5" path="res://campaign/events/outcomes/OptionOutcome.gd" id="4_kw6y5"]
+[ext_resource type="Script" uid="uid://bwuesjr00i6c7" path="res://campaign/events/outcomes/ReturnToCampaign.gd" id="5_k4iqm"]
+[ext_resource type="Resource" uid="uid://dmcjmcb3j5046" path="res://campaign/test campaign/encounters/battles/siege.tres" id="6_k4iqm"]
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="7_iwdl2"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="8_guqr0"]
+
+[sub_resource type="Resource" id="Resource_iwdl2"]
+script = ExtResource("1_quwms")
+text = "Onwards!"
+metadata/_custom_type_script = "uid://f2fx4u456r3p"
+
+[sub_resource type="Resource" id="Resource_guqr0"]
+script = ExtResource("5_k4iqm")
+metadata/_custom_type_script = "uid://bwuesjr00i6c7"
+
+[sub_resource type="Resource" id="Resource_rskje"]
+script = ExtResource("1_quwms")
+text = "Perhaps later, I need to gather more forces"
+outcomes = Array[ExtResource("4_kw6y5")]([SubResource("Resource_guqr0")])
+metadata/_custom_type_script = "uid://f2fx4u456r3p"
+
+[sub_resource type="Resource" id="Resource_xv1sv"]
+script = ExtResource("7_iwdl2")
+next_encounter = ExtResource("6_k4iqm")
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
+[resource]
+script = ExtResource("2_1p6vg")
+event_scene = ExtResource("1_a706g")
+title = "Assault on ulrich's castle"
+text = "Finally, Ulrich's castle stands before you. Your friend is locked up in its dungeon, and mad necromancer's troops guard the walls. Is it time to attack?"
+options = Array[ExtResource("1_quwms")]([SubResource("Resource_iwdl2"), SubResource("Resource_rskje")])
+rewards = SubResource("Resource_xv1sv")
+metadata/_custom_type_script = "uid://cox6e8oimurq4"

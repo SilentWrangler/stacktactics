@@ -80,6 +80,43 @@ func persist_cleared():
 		if nodeList[n].cleared:
 			BattleData.cleared_nodes.append(n)
 
-func persist_data():
+func persist_data(to_file=false):
 	persist_unlocked()
 	persist_cleared()
+	if to_file:
+		var save_dict = {
+			"player_data":PlayerData.get_data(),
+			"battle_data":BattleData.get_data()
+		}
+		print(save_dict)
+		var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+		var json_string = JSON.stringify(save_dict)
+		save_file.store_line(json_string)
+
+
+func _on_save_button_pressed():
+	persist_data(true)
+
+
+func _on_load_buttol_pressed():
+	if not FileAccess.file_exists("user://savegame.save"):
+			return # Error! We don't have a save to load.
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+
+		# Creates the helper class to interact with JSON.
+		var json = JSON.new()
+
+		# Check if there is any error while parsing the JSON string, skip in case of failure.
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		else:
+			PlayerData.set_data(json.data["player_data"])
+			BattleData.set_data(json.data["battle_data"])
+			BattleData.from_event = true
+			get_tree().reload_current_scene()
+			
+			

@@ -24,24 +24,16 @@
 
 [sub_resource type="Resource" id="Resource_4pfig"]
 script = ExtResource("2_jiw2d")
-Type = &""
 amount = 5
 isVital = true
-duration = -1
 
 [sub_resource type="Resource" id="Resource_l73ce"]
 script = ExtResource("2_jiw2d")
-Type = &""
 amount = 2
-isVital = false
-duration = -1
 
 [sub_resource type="Resource" id="Resource_mwaso"]
 script = ExtResource("2_jiw2d")
-Type = &""
 amount = 4
-isVital = false
-duration = -1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ucjkq"]
 radius = 57.0

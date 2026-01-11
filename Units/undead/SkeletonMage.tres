@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://cpual5lty0r0l"]
+
+[ext_resource type="Resource" uid="uid://yumrhgckfiq0" path="res://ai/Support/SkeletonMage.tres" id="1_a1egg"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="1_sooua"]
+[ext_resource type="Script" uid="uid://dojaxx5hhqjd3" path="res://HpSegment.gd" id="2_sbqvy"]
+[ext_resource type="Resource" uid="uid://bwywpknjb8ll" path="res://abilities/full_abilities/BasicMove.tres" id="2_xiv0o"]
+[ext_resource type="Resource" uid="uid://bcqkbowdqnrhe" path="res://abilities/full_abilities/Attacks/IceBlast.tres" id="3_a1egg"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="3_m40x5"]
+[ext_resource type="Resource" uid="uid://dj26k012tdwmg" path="res://abilities/full_abilities/Support/EmpowerAlly.tres" id="5_7stx5"]
+[ext_resource type="Texture2D" uid="uid://b5nh7vcqsw7qb" path="res://img/units/undead/skeleton_mage.png" id="6_7stx5"]
+
+[sub_resource type="Resource" id="Resource_sooua"]
+script = ExtResource("2_sbqvy")
+Type = &"bone"
+amount = 5
+isVital = true
+metadata/_custom_type_script = "uid://dojaxx5hhqjd3"
+
+[resource]
+script = ExtResource("3_m40x5")
+unit_type_ID = &"undead_SkeletonMage"
+unit_name = "Skeleton Mage"
+unit_description = "Former necromancers that have achived immortality, but lost their mind in the process, forever guarding their (or more talented collegaue's) lair, like an automaton. A weak mockery of a true Lich, but incredibly dangerous regardless"
+sprite_texture = ExtResource("6_7stx5")
+default_hp = Array[ExtResource("2_sbqvy")]([SubResource("Resource_sooua")])
+power = 1
+arcana = 3
+abilities = Array[ExtResource("1_sooua")]([ExtResource("2_xiv0o"), ExtResource("3_a1egg"), ExtResource("5_7stx5")])
+AI = ExtResource("1_a1egg")
+metadata/_custom_type_script = "uid://dv2dpnhfn0jo"

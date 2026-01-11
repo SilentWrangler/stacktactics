@@ -12,15 +12,10 @@
 [sub_resource type="Resource" id="Resource_cwkis"]
 script = ExtResource("1_hkg4m")
 text = "back to campaign"
-conditions = Array[ExtResource("3_i2v30")]([])
-outcomes = Array[ExtResource("4_aikqw")]([])
 
 [sub_resource type="Resource" id="Resource_c1ngu"]
 script = ExtResource("6_3tfdx")
-node_rewards = Array[StringName]([])
-unitRewards = Array[ExtResource("7_siud7")]([])
 next_encounter = ExtResource("5_wbj43")
-resource_rewards = {}
 
 [resource]
 script = ExtResource("2_ctjww")

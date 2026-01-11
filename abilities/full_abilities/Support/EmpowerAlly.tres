@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://dj26k012tdwmg"]
+
+[ext_resource type="Script" uid="uid://d3e434qime8sw" path="res://abilities/AbilityPart.gd" id="1_mdswx"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="2_0ssqk"]
+[ext_resource type="Resource" uid="uid://bxnc7dktwwfal" path="res://abilities/Effects/Buffs/Empower.tres" id="2_ap762"]
+[ext_resource type="Resource" uid="uid://c04uac17jady3" path="res://abilities/target_templates/close_ally.tres" id="3_jiqd5"]
+
+[sub_resource type="Resource" id="Resource_w5k2s"]
+script = ExtResource("1_mdswx")
+effect = ExtResource("2_ap762")
+targeting = ExtResource("3_jiqd5")
+metadata/_custom_type_script = "uid://d3e434qime8sw"
+
+[resource]
+script = ExtResource("2_0ssqk")
+parts = Array[ExtResource("1_mdswx")]([SubResource("Resource_w5k2s")])
+ap_cost = 2
+metadata/_custom_type_script = "uid://b3ef62rf4ckxc"

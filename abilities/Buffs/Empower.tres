@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=3 format=3 uid="uid://bwtywtblqx1v4"]
+
+[ext_resource type="Texture2D" uid="uid://5o816lwmbxrg" path="res://img/hp-icons/empower.png" id="1_1u5cg"]
+[ext_resource type="Script" uid="uid://dl5vhqrloqisy" path="res://abilities/Buff.gd" id="2_ayvov"]
+
+[resource]
+script = ExtResource("2_ayvov")
+stack_id = &"empower"
+duration = 1
+amount = 1
+Icon = ExtResource("1_1u5cg")
+attribute_mod_attribute = 2
+attribute_mod_amount = 1
+metadata/_custom_type_script = "uid://dl5vhqrloqisy"

@@ -3,8 +3,14 @@
 [resource]
 data = {
 "damage_types": [&"pierce", &"slash", &"impact", &"fire", &"electricity", &"cold", &"acid", &"arcane"],
-"hp_types": [&"flesh", &"metal", &"leather", &"wood", &"rock", &"fire", &"electricity", &"water", &"block", &"dodge"],
+"hp_types": [&"flesh", &"metal", &"leather", &"wood", &"rock", &"fire", &"electricity", &"water", &"block", &"dodge", &"bone"],
 "special_interactions": {
+"bone": {
+"arcane": 1.0,
+"cold": 2.0,
+"impact": 1.0,
+"pierce": 2.0
+},
 "fire": {
 "cold": 1.0,
 "fire": 3.0

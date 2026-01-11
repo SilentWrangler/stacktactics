@@ -12,15 +12,11 @@
 script = ExtResource("2_b5oki")
 Type = &"flesh"
 amount = 5
-isVital = false
-duration = -1
 
 [sub_resource type="Resource" id="Resource_iutud"]
 script = ExtResource("2_b5oki")
 Type = &"metal"
 amount = 4
-isVital = false
-duration = -1
 
 [resource]
 script = ExtResource("3_3u7c1")
@@ -30,7 +26,6 @@ unit_description = "Hailing from distant lands of Nornoth, these warriors sell t
 sprite_texture = ExtResource("6_hw188")
 default_hp = Array[ExtResource("2_b5oki")]([SubResource("Resource_5j0vv"), SubResource("Resource_iutud")])
 power = 3
-arcana = 0
 fortitude = 3
 abilities = Array[ExtResource("1_sky1e")]([ExtResource("2_c2vx3"), ExtResource("3_ohc38"), ExtResource("4_bk2fj")])
 inherent_tags = Array[StringName]([&"humanoid", &"human", &"soldier", &"shield"])

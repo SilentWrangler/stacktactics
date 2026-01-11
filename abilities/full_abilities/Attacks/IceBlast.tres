@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=9 format=3 uid="uid://bcqkbowdqnrhe"]
+
+[ext_resource type="Script" uid="uid://d3e434qime8sw" path="res://abilities/AbilityPart.gd" id="1_k34xf"]
+[ext_resource type="Script" uid="uid://cvpbrhivwbm07" path="res://abilities/Code/SimpleDamage.gd" id="2_47b32"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="2_nwghq"]
+[ext_resource type="Script" uid="uid://bgkcmxsgi6phg" path="res://abilities/AbilityTargeting.gd" id="3_42ug0"]
+[ext_resource type="Texture2D" uid="uid://n1284asub3h7" path="res://img/ablilties/hardimpact.png" id="5_qqkni"]
+
+[sub_resource type="Resource" id="Resource_18ly7"]
+script = ExtResource("2_47b32")
+damage_type = &"ice"
+attribute_scaling = 1
+attribute_multiplier = 2.0
+metadata/_custom_type_script = "uid://cvpbrhivwbm07"
+
+[sub_resource type="Resource" id="Resource_arhpg"]
+script = ExtResource("3_42ug0")
+targets = 2
+radius = 3
+metadata/_custom_type_script = "uid://bgkcmxsgi6phg"
+
+[sub_resource type="Resource" id="Resource_rxj3o"]
+script = ExtResource("1_k34xf")
+effect = SubResource("Resource_18ly7")
+targeting = SubResource("Resource_arhpg")
+metadata/_custom_type_script = "uid://d3e434qime8sw"
+
+[resource]
+script = ExtResource("2_nwghq")
+parts = Array[ExtResource("1_k34xf")]([SubResource("Resource_rxj3o")])
+ap_cost = 3
+Name = "Ice Blast"
+Description = "A powerful blast of ice, dealing massive damage"
+sprite = ExtResource("5_qqkni")
+metadata/_custom_type_script = "uid://b3ef62rf4ckxc"

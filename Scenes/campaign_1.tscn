@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cv2ejho1e76f7"]
+[gd_scene load_steps=31 format=3 uid="uid://cv2ejho1e76f7"]
 
 [ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/map_node.tscn" id="1_hcet8"]
 [ext_resource type="Script" uid="uid://do4ibcyirj178" path="res://Scenes/campaign.gd" id="1_kep3p"]
@@ -19,6 +19,10 @@
 [ext_resource type="Script" uid="uid://d008eaof0d2r5" path="res://campaign/events/outcomes/OptionOutcome.gd" id="17_6dmn7"]
 [ext_resource type="Script" uid="uid://bwuesjr00i6c7" path="res://campaign/events/outcomes/ReturnToCampaign.gd" id="18_6t00i"]
 [ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="19_xa5m1"]
+[ext_resource type="Resource" uid="uid://8qq631p46qa5" path="res://campaign/test campaign/encounters/events/siege.tres" id="20_pkwdp"]
+[ext_resource type="PackedScene" uid="uid://bjviks8ud43w6" path="res://Scenes/camp/rest_scene.tscn" id="20_sby8k"]
+[ext_resource type="Script" uid="uid://bgcjjrg2kpxgl" path="res://campaign/camps/Camp.gd" id="21_pkwdp"]
+[ext_resource type="Script" uid="uid://byf5q4naakj0i" path="res://campaign/camps/UnitEvolution.gd" id="22_cjyqq"]
 
 [sub_resource type="Resource" id="Resource_twd6x"]
 script = ExtResource("12_sby8k")
@@ -46,13 +50,23 @@ text = "Onwards to victory!"
 outcomes = Array[ExtResource("17_6dmn7")]([SubResource("Resource_ruwuq")])
 metadata/_custom_type_script = "uid://f2fx4u456r3p"
 
+[sub_resource type="Resource" id="Resource_sby8k"]
+script = ExtResource("12_sby8k")
+node_rewards = Array[StringName]([&"boss"])
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
 [sub_resource type="Resource" id="Resource_gnywe"]
 script = ExtResource("19_xa5m1")
 event_scene = ExtResource("14_cjyqq")
 title = "Horde Defeated"
 text = "The horde of undead standing between you and Ulrich's castle is gone. Time to finally rescue your friend!"
 options = Array[ExtResource("15_iudq3")]([SubResource("Resource_gtsik")])
+rewards = SubResource("Resource_sby8k")
 metadata/_custom_type_script = "uid://cox6e8oimurq4"
+
+[sub_resource type="Resource" id="Resource_obmqf"]
+script = ExtResource("21_pkwdp")
+metadata/_custom_type_script = "uid://bgcjjrg2kpxgl"
 
 [node name="Campaign" type="Node2D"]
 script = ExtResource("1_kep3p")
@@ -99,5 +113,30 @@ locked = true
 type = 3
 cleared_type = 2
 id = &"horde"
+paths = Array[StringName]([&"boss"])
 encounter = SubResource("Resource_hjuvi")
 cleared_encounter = SubResource("Resource_gnywe")
+
+[node name="MapNode5" parent="." instance=ExtResource("1_hcet8")]
+position = Vector2(945, 327)
+locked = true
+type = 3
+cleared_type = 1
+id = &"boss"
+encounter = ExtResource("20_pkwdp")
+cleared_encounter = SubResource("Resource_obmqf")
+
+[node name="loadButtol" type="Button" parent="."]
+offset_top = 18.0
+offset_right = 42.0
+offset_bottom = 41.0
+text = "Load"
+
+[node name="saveButton" type="Button" parent="."]
+offset_top = 44.0
+offset_right = 42.0
+offset_bottom = 67.0
+text = "Save"
+
+[connection signal="pressed" from="loadButtol" to="." method="_on_load_buttol_pressed"]
+[connection signal="pressed" from="saveButton" to="." method="_on_save_button_pressed"]

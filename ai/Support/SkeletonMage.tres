@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="SupportAI" load_steps=8 format=3 uid="uid://yumrhgckfiq0"]
+
+[ext_resource type="Script" uid="uid://dfcy1putm4iij" path="res://ai/SimpleAttacker/SimpleAttackerAI.gd" id="1_ibsrv"]
+[ext_resource type="Script" uid="uid://1qbqak0d3ywg" path="res://ai/Support/SupportAI.gd" id="1_rs5cr"]
+[ext_resource type="Script" uid="uid://gur336gke5ge" path="res://ai/SimpleBuff/SimpleBuff.gd" id="2_lwpj0"]
+[ext_resource type="Script" uid="uid://b65n64kyix1wy" path="res://ai/SimpleEscape/SimpleEscapeAI.gd" id="3_vdl3c"]
+
+[sub_resource type="Resource" id="Resource_riulj"]
+script = ExtResource("1_ibsrv")
+metadata/_custom_type_script = "uid://dfcy1putm4iij"
+
+[sub_resource type="Resource" id="Resource_jdgab"]
+script = ExtResource("2_lwpj0")
+metadata/_custom_type_script = "uid://gur336gke5ge"
+
+[sub_resource type="Resource" id="Resource_ui8gx"]
+script = ExtResource("3_vdl3c")
+metadata/_custom_type_script = "uid://b65n64kyix1wy"
+
+[resource]
+script = ExtResource("1_rs5cr")
+EscapeAI = SubResource("Resource_ui8gx")
+AtttackAI = SubResource("Resource_riulj")
+BuffAI = SubResource("Resource_jdgab")
+metadata/_custom_type_script = "uid://1qbqak0d3ywg"

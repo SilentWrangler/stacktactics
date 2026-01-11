@@ -40,6 +40,16 @@ class UnitSlot:
 			return "It's you. The one and only."
 		return unitData.unit_description
 	
+	func get_data()  -> Dictionary:
+		return {
+			"unitData": unitData.resource_path,
+			"experience":experience,
+			"isPlayer":isPlayer,
+			"isWounded":isWounded,
+			"isDeployed":isDeployed,
+			"extra_tags":extra_tags
+		}
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if vanguard.size()<1:
@@ -63,6 +73,8 @@ func addUnit(unitData: UnitData):
 		vanguard.append(slot)
 	else:
 		reserve.append(slot)
+	
+	return slot
 
 func can_afford(cost: Dictionary) -> bool:
 	for k in cost:
@@ -103,3 +115,50 @@ func multiply_resources(base: Dictionary, multiplier: int) -> Dictionary:
 	for k in base:
 		result[k] = base[k] * multiplier
 	return result
+
+func get_data() -> Dictionary:
+	var van = []
+	for v in vanguard:
+		van.append(v.get_data())
+	var res = []
+	for r in reserve:
+		res.append(r.get_data())
+	return {
+		"node_id":node_id,
+		"campaign": campaign,
+		"vanguard":van,
+		"reserve":res,
+		"initiative":initiative,
+		"resources":resources,
+		"flags":flags,
+		"player_name":player_name
+	}
+
+func set_data(data: Dictionary):
+	node_id = data["node_id"]
+	initiative = data["initiative"]
+	resources = data["resources"]
+	flags.clear()
+	for f in data["flags"]:
+		flags.append(f)
+	player_name = data["player_name"]
+	campaign = data["campaign"]
+	vanguard.clear()
+	for u in data["vanguard"]:
+		var s  = addUnit(load(u['unitData']))
+		s.experience = u["experience"]
+		s.isWounded = u["isWounded"]
+		s.isDeployed = u["isDeployed"]
+		for t in u["extra_tags"]:
+			s.extra_tags.append(t)
+	reserve.clear()
+	for u in data["reserve"]:
+		var s  = addUnit(load(u['unitData']))
+		if not s in reserve:
+			vanguard.erase(s)
+			reserve.append(s)
+		s.experience = u["experience"]
+		s.isWounded = u["isWounded"]
+		s.isDeployed = u["isDeployed"]
+		for t in u["extra_tags"]:
+			s.extra_tags.append(t)
