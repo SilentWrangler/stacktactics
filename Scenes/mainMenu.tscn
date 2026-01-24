@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bon7f873kg41p"]
+[gd_scene load_steps=7 format=3 uid="uid://bon7f873kg41p"]
+
+[ext_resource type="Script" uid="uid://bb3oy8fiwa5hv" path="res://Scenes/main_menu.gd" id="1_60k44"]
+[ext_resource type="PackedScene" uid="uid://c7r77thxghmrv" path="res://Scenes/save_slot_margin_container.tscn" id="2_5pknu"]
+[ext_resource type="PackedScene" uid="uid://cadxgm3tyef5r" path="res://Scenes/campaign_select.tscn" id="3_b7htb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7grp"]
 font_size = 41
 
 [sub_resource type="LabelSettings" id="LabelSettings_60k44"]
 font_size = 52
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pknu"]
+font_size = 44
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,14 +20,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_60k44")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MenuPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -12.0
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="MenuPanel/VBoxContainer"]
 layout_mode = 2
 text = "
 StackTactics
@@ -28,7 +46,7 @@ StackTactics
 label_settings = SubResource("LabelSettings_h7grp")
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer"]
 layout_mode = 2
 text = "
 Main Menu
@@ -36,6 +54,185 @@ Main Menu
 label_settings = SubResource("LabelSettings_60k44")
 horizontal_alignment = 1
 
-[node name="SelectCampaign" type="Button" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="SelectCampaign" type="Button" parent="MenuPanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 30
 text = "Select Campaign"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="Settings" type="Button" parent="MenuPanel/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Settings"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MenuPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="Quit" type="Button" parent="MenuPanel/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="CampaignSelectPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CampaignSelectPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CampaignSelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "
+Select Campaign
+"
+label_settings = SubResource("LabelSettings_5pknu")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CampaignSelectPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="NewCampaign" type="Button" parent="CampaignSelectPanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 30
+text = "New Campaign"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CampaignSelectPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+scroll_deadzone = 1
+
+[node name="saveList" type="VBoxContainer" parent="CampaignSelectPanel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SaveSlotMarginContainer" parent="CampaignSelectPanel/VBoxContainer/ScrollContainer/saveList" instance=ExtResource("2_5pknu")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CampaignSelectPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="CancelCampaign" type="Button" parent="CampaignSelectPanel/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 30
+text = "Cancel"
+
+[node name="NewGamePanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewGamePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="NewGamePanel/VBoxContainer"]
+layout_mode = 2
+text = "
+New Campaign
+"
+label_settings = SubResource("LabelSettings_5pknu")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NewGamePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NewGamePanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CampaignList" type="VBoxContainer" parent="NewGamePanel/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CampaignSelect" parent="NewGamePanel/VBoxContainer/MarginContainer/ScrollContainer/CampaignList" instance=ExtResource("3_b7htb")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="NewGamePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NewGamePanel/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewGamePanel/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Save Name:"
+
+[node name="filename" type="TextEdit" parent="NewGamePanel/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "savefile"
+
+[node name="Start" type="Button" parent="NewGamePanel/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Start New Campaign"
+
+[node name="CancelNewCampaign" type="Button" parent="NewGamePanel/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="MenuPanel/VBoxContainer/MarginContainer/SelectCampaign" to="." method="_on_select_campaign_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/MarginContainer3/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CampaignSelectPanel/VBoxContainer/MarginContainer/NewCampaign" to="." method="_on_new_campaign_pressed"]
+[connection signal="pressed" from="CampaignSelectPanel/VBoxContainer/MarginContainer2/CancelCampaign" to="." method="_on_cancel_campaign_pressed"]
+[connection signal="text_changed" from="NewGamePanel/VBoxContainer/MarginContainer2/HBoxContainer/filename" to="." method="_on_filename_text_changed"]
+[connection signal="pressed" from="NewGamePanel/VBoxContainer/MarginContainer2/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="NewGamePanel/VBoxContainer/MarginContainer2/HBoxContainer/CancelNewCampaign" to="." method="_on_cancel_new_campaign_pressed"]

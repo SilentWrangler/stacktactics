@@ -11,6 +11,7 @@ var nodeList: Dictionary
 @onready var resource_display = $ResourceDisplay
 
 
+
 func unlockNodes(node_ids: Array[StringName]):
 	for node in nodeList:
 		if node in node_ids:
@@ -51,7 +52,8 @@ func giveRewards(rewards: Rewards):
 	if not rewards:
 		return
 	PlayerData.give_resources(rewards.resource_rewards)
-	resource_display.refresh()
+	if resource_display:
+		resource_display.refresh()
 	unlockNodes(rewards.node_rewards)
 	for unit in rewards.unitRewards:
 		PlayerData.addUnit(unit)
@@ -90,7 +92,7 @@ func persist_data(to_file=false):
 			"battle_data":BattleData.get_data()
 		}
 		print(save_dict)
-		var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+		var save_file = FileAccess.open(StaticData.save_folder +"%s.save" % PlayerData.savefile_name, FileAccess.WRITE)
 		var json_string = JSON.stringify(save_dict)
 		save_file.store_line(json_string)
 
@@ -100,9 +102,9 @@ func _on_save_button_pressed():
 
 
 func _on_load_buttol_pressed():
-	if not FileAccess.file_exists("user://savegame.save"):
+	if not FileAccess.file_exists(StaticData.save_folder + "%s.save" % PlayerData.savefile_name):
 			return # Error! We don't have a save to load.
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var save_file = FileAccess.open("user://saves/%s.save" % PlayerData.savefile_name, FileAccess.READ)
 	while save_file.get_position() < save_file.get_length():
 		var json_string = save_file.get_line()
 
@@ -121,3 +123,8 @@ func _on_load_buttol_pressed():
 			get_tree().reload_current_scene()
 			
 			
+
+
+func _on_save_button_2_pressed():
+	persist_data(true)
+	get_tree().change_scene_to_file("res://Scenes/mainMenu.tscn")

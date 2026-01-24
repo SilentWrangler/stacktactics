@@ -11,6 +11,7 @@ var resources: Dictionary
 var flags : Array[StringName]
 
 var player_name = "The Player"
+var savefile_name: String
 
 const VANGUARD_SIZE = 4
 
@@ -131,7 +132,8 @@ func get_data() -> Dictionary:
 		"initiative":initiative,
 		"resources":resources,
 		"flags":flags,
-		"player_name":player_name
+		"player_name":player_name,
+		"savefile_name":savefile_name
 	}
 
 func set_data(data: Dictionary):
@@ -142,6 +144,7 @@ func set_data(data: Dictionary):
 	for f in data["flags"]:
 		flags.append(f)
 	player_name = data["player_name"]
+	savefile_name = data["savefile_name"]
 	campaign = data["campaign"]
 	vanguard.clear()
 	for u in data["vanguard"]:

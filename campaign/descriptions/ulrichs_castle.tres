@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CampaignDescription" load_steps=2 format=3 uid="uid://cfjoljw3o8m4l"]
+
+[ext_resource type="Script" uid="uid://rdq8wpcbl3dy" path="res://campaign/campaign_desc.gd" id="1_35ahm"]
+
+[resource]
+script = ExtResource("1_35ahm")
+name = "Ulrich's Castle"
+description = "A small campaign where you free the barony overrun by undead"
+file = "res://Scenes/campaign/campaign_1.tscn"
+default_save = "tutorial"
+starting_node = &"test1"
+metadata/_custom_type_script = "uid://rdq8wpcbl3dy"

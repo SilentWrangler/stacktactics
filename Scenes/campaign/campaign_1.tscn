@@ -74,12 +74,6 @@ metadata/_custom_type_script = "uid://bgcjjrg2kpxgl"
 script = ExtResource("1_5nv2b")
 player_location = &"test1"
 
-[node name="ResourceDisplay" parent="." instance=ExtResource("2_i5ss6")]
-clip_contents = false
-size_flags_horizontal = 3
-size_flags_vertical = 3
-autowrap_mode = 0
-
 [node name="MapNode" parent="." instance=ExtResource("3_qm0u1")]
 position = Vector2(153, 317)
 id = &"test1"
@@ -127,18 +121,6 @@ id = &"boss"
 encounter = ExtResource("21_ccetv")
 cleared_encounter = SubResource("Resource_obmqf")
 
-[node name="loadButtol" type="Button" parent="."]
-offset_top = 18.0
-offset_right = 42.0
-offset_bottom = 41.0
-text = "Load"
-
-[node name="saveButton" type="Button" parent="."]
-offset_top = 44.0
-offset_right = 42.0
-offset_bottom = 67.0
-text = "Save"
-
 [node name="MapNode6" parent="." instance=ExtResource("3_qm0u1")]
 position = Vector2(93, 214)
 type = 1
@@ -147,5 +129,34 @@ id = &"free_camp"
 encounter = ExtResource("25_i53bd")
 cleared_encounter = ExtResource("25_i53bd")
 
-[connection signal="pressed" from="loadButtol" to="." method="_on_load_buttol_pressed"]
-[connection signal="pressed" from="saveButton" to="." method="_on_save_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResourceDisplay" parent="VBoxContainer" instance=ExtResource("2_i5ss6")]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "afsasfaajssssssssssssssssssojidsjoijsd"
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="loadButtol" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[node name="saveButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="saveButton2" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save & Quit"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/loadButtol" to="." method="_on_load_buttol_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/saveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/saveButton2" to="." method="_on_save_button_2_pressed"]

@@ -1,7 +1,7 @@
 class_name Battle
 extends Encounter
 
-@export var battle_scene: PackedScene = preload("res://Scenes/battle.tscn")
+@export var battle_scene: PackedScene = preload("res://Scenes/battle/battle.tscn")
 @export var enemy_vanguard: Array[UnitData]
 @export var enemy_reserve:  Array[UnitData]
 @export var exp: int = 1

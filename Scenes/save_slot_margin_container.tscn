@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7r77thxghmrv"]
+
+[ext_resource type="Script" uid="uid://c5qoqxbqcvux6" path="res://Scenes/save_slot_margin_container.gd" id="1_wqaat"]
+
+[node name="SaveSlotMarginContainer" type="MarginContainer" node_paths=PackedStringArray("button")]
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_wqaat")
+button = NodePath("SaveslotButton")
+
+[node name="SaveslotButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 30
+text = "Save 1"

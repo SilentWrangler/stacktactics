@@ -15,7 +15,7 @@ extends ScrollContainer
 @export var name_fontsize = 24
 
 
-var ability_template = preload("res://Scenes/ability_display.tscn")
+var ability_template = preload("res://Scenes/battle/ability_display.tscn")
 
 func clear():
 	for ch in ability_box.get_children():

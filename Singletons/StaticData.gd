@@ -1,5 +1,7 @@
 extends Node
 
+var save_folder = "user://saves/"
+
 var damage_data = {}
 var hp_icons = {}
 @export var resource_icons = {}
