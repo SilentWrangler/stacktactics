@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://m1ihmnbq3l21"]
 
-[ext_resource type="Script" uid="uid://0bjxy3ab73wa" path="res://Scenes/unit_info_display.gd" id="1_gide5"]
+[ext_resource type="Script" uid="uid://0bjxy3ab73wa" path="res://Scenes/battle/unit_info_display.gd" id="1_gide5"]
 [ext_resource type="Texture2D" uid="uid://buxmh6qsv15dy" path="res://img/units/humanoids/humans/peasant.png" id="1_x2w54"]
 [ext_resource type="Texture2D" uid="uid://chwsvjk2sqouj" path="res://img/buff-icons/mana1.png" id="2_drw28"]
 [ext_resource type="Texture2D" uid="uid://cf4y66dshle5x" path="res://img/buff-icons/fist.png" id="3_jf3s7"]

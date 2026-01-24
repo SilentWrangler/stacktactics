@@ -1,17 +1,17 @@
 [gd_scene load_steps=18 format=4 uid="uid://ia5m15im0lkk"]
 
-[ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="1_3qm0u"]
-[ext_resource type="Script" uid="uid://b424fcr86qoen" path="res://Scenes/battle_manager.gd" id="1_jr73g"]
-[ext_resource type="Script" uid="uid://mn7yrhkg4dd7" path="res://Scenes/ap_display.gd" id="5_cfkqy"]
-[ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="5_h5ovu"]
-[ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="6_4r61t"]
-[ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/unit_info_display.tscn" id="6_l74pn"]
-[ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="7_0prk5"]
-[ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="8_jg2a3"]
-[ext_resource type="Texture2D" uid="uid://cl0cmduifjims" path="res://img/interface/enemy_turn.png" id="10_u5so6"]
-[ext_resource type="Texture2D" uid="uid://cr06jnq3easiq" path="res://img/ablilties/end_turn.png" id="11_k3aoa"]
-[ext_resource type="Texture2D" uid="uid://dx0q5yaafedly" path="res://img/ablilties/next.png" id="12_qy12n"]
-[ext_resource type="Texture2D" uid="uid://c7kfupbi4qn06" path="res://img/interface/player_turn.png" id="16_bs478"]
+[ext_resource type="Script" uid="uid://b424fcr86qoen" path="res://Scenes/battle/battle_manager.gd" id="1_8q1pg"]
+[ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="2_xwsv1"]
+[ext_resource type="Texture2D" uid="uid://c7kfupbi4qn06" path="res://img/interface/player_turn.png" id="3_xldij"]
+[ext_resource type="Texture2D" uid="uid://cl0cmduifjims" path="res://img/interface/enemy_turn.png" id="4_o5ms1"]
+[ext_resource type="TileSet" uid="uid://bk44ur0tequge" path="res://img/tilesets/battlefield.tres" id="5_onkcd"]
+[ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/battle/unit_info_display.tscn" id="6_segsv"]
+[ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="7_sqhwe"]
+[ext_resource type="Texture2D" uid="uid://cr06jnq3easiq" path="res://img/ablilties/end_turn.png" id="8_fj4ke"]
+[ext_resource type="Texture2D" uid="uid://dx0q5yaafedly" path="res://img/ablilties/next.png" id="9_yjn7a"]
+[ext_resource type="Script" uid="uid://mn7yrhkg4dd7" path="res://Scenes/battle/ap_display.gd" id="10_pr673"]
+[ext_resource type="Texture2D" uid="uid://cgl8lj4xvkk37" path="res://img/ap/ap_full.tres" id="11_iqjay"]
+[ext_resource type="Texture2D" uid="uid://c6h7ygenuj5mh" path="res://img/ap/ap_spent.tres" id="12_lul2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjkha"]
 size = Vector2(514, 595)
@@ -31,24 +31,24 @@ events = [SubResource("InputEventAction_05fsw")]
 [node name="Node2D" type="Node2D"]
 
 [node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "unit_parent", "AbilityButtonContainer", "AP_display", "end_button", "deploy_menu_button", "turn_indicator")]
-script = ExtResource("1_jr73g")
+script = ExtResource("1_8q1pg")
 tilemap = NodePath("../Map")
 unit_parent = NodePath("../Units")
 player_deploy_locations = Array[Vector2i]([Vector2i(5, 3), Vector2i(4, 4), Vector2i(6, 4), Vector2i(5, 4)])
 enemy_deploy_locations = Array[Vector2i]([Vector2i(5, 1), Vector2i(4, 1), Vector2i(6, 1), Vector2i(5, 0)])
 AbilityButtonContainer = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/AbilityButtonCont")
-blocked_ability_texture = ExtResource("6_4r61t")
+blocked_ability_texture = ExtResource("2_xwsv1")
 AP_display = NodePath("../BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay")
 end_button = NodePath("../BattleGUI/Control/VBoxContainer/EndTurnButton")
 deploy_menu_button = NodePath("../BattleGUI/Control/VBoxContainer/DeployButton")
 turn_indicator = NodePath("../BattleGUI/Control/Turn_indicator")
-player_turn_tex = ExtResource("16_bs478")
-enemy_turn_tex = ExtResource("10_u5so6")
+player_turn_tex = ExtResource("3_xldij")
+enemy_turn_tex = ExtResource("4_o5ms1")
 
 [node name="Map" type="TileMapLayer" parent="."]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAFAAEAAAAAAAAAAQAHAAMAAAAAAAAAAQAGAAMAAAAAAAAAAQAFAAMAAAAAAAAAAQAEAAMAAAAAAAAAAQAEAAIAAAAAAAAAAQAFAAIAAAAAAAAAAQAGAAIAAAAAAAAAAQADAAMAAAAAAAAAAQAEAAQAAAAAAAAAAQAGAAQAAAAAAAAAAQAFAAQAAAAAAAAAAQADAAIAAAAAAAAAAQADAAEAAAAAAAAAAQAEAAEAAAAAAAAAAQAFAAAAAAAAAAAAAQAGAAEAAAAAAAAAAQAHAAEAAAAAAAAAAQAHAAIAAAAAAAAAAQA=")
-tile_set = ExtResource("1_3qm0u")
+tile_set = ExtResource("5_onkcd")
 
 [node name="MapArea" type="Area2D" parent="Map"]
 
@@ -71,7 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="UnitInfoDisplay" parent="BattleGUI/Control" instance=ExtResource("6_l74pn")]
+[node name="UnitInfoDisplay" parent="BattleGUI/Control" instance=ExtResource("6_segsv")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75
@@ -98,20 +98,20 @@ alignment = 1
 [node name="DeployButton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
 layout_mode = 2
 disabled = true
-texture_normal = ExtResource("8_jg2a3")
-texture_disabled = ExtResource("6_4r61t")
+texture_normal = ExtResource("7_sqhwe")
+texture_disabled = ExtResource("2_xwsv1")
 
 [node name="EndTurnButton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_ut5cq")
-texture_normal = ExtResource("11_k3aoa")
-texture_disabled = ExtResource("6_4r61t")
+texture_normal = ExtResource("8_fj4ke")
+texture_disabled = ExtResource("2_xwsv1")
 
 [node name="Nextunitbutton" type="TextureButton" parent="BattleGUI/Control/VBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_1qhf8")
-texture_normal = ExtResource("12_qy12n")
-texture_disabled = ExtResource("6_4r61t")
+texture_normal = ExtResource("9_yjn7a")
+texture_disabled = ExtResource("2_xwsv1")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BattleGUI/Control"]
 layout_mode = 1
@@ -131,25 +131,25 @@ offset_bottom = 40.0
 
 [node name="APDisplay" type="VBoxContainer" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2" node_paths=PackedStringArray("icons")]
 layout_mode = 2
-script = ExtResource("5_cfkqy")
+script = ExtResource("10_pr673")
 icons = [NodePath("TextureRect"), NodePath("TextureRect2"), NodePath("TextureRect3")]
-full = ExtResource("5_h5ovu")
-spent = ExtResource("7_0prk5")
+full = ExtResource("11_iqjay")
+spent = ExtResource("12_lul2p")
 
 [node name="TextureRect" type="TextureRect" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay"]
 visible = false
 layout_mode = 2
-texture = ExtResource("5_h5ovu")
+texture = ExtResource("11_iqjay")
 
 [node name="TextureRect2" type="TextureRect" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay"]
 visible = false
 layout_mode = 2
-texture = ExtResource("5_h5ovu")
+texture = ExtResource("11_iqjay")
 
 [node name="TextureRect3" type="TextureRect" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2/APDisplay"]
 visible = false
 layout_mode = 2
-texture = ExtResource("5_h5ovu")
+texture = ExtResource("11_iqjay")
 
 [node name="AbilityButtonCont" type="HBoxContainer" parent="BattleGUI/Control/NinePatchRect/HBoxContainer2"]
 layout_mode = 2
@@ -164,7 +164,7 @@ offset_right = 80.0
 offset_bottom = 40.0
 grow_horizontal = 2
 pivot_offset = Vector2(0, 1)
-texture = ExtResource("16_bs478")
+texture = ExtResource("3_xldij")
 expand_mode = 3
 
 [node name="DeployPanel" type="PanelContainer" parent="BattleGUI/Control"]

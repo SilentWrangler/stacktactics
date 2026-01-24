@@ -1,14 +1,22 @@
-[gd_resource type="Resource" script_class="Battle" load_steps=6 format=3 uid="uid://dmcjmcb3j5046"]
+[gd_resource type="Resource" script_class="Battle" load_steps=9 format=3 uid="uid://dmcjmcb3j5046"]
 
-[ext_resource type="PackedScene" uid="uid://ia5m15im0lkk" path="res://Scenes/battle.tscn" id="1_46lci"]
+[ext_resource type="PackedScene" uid="uid://ia5m15im0lkk" path="res://Scenes/battle/battle.tscn" id="1_46lci"]
 [ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="2_web8f"]
 [ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="3_i8urd"]
 [ext_resource type="Script" uid="uid://brthhyvrttqhg" path="res://campaign/Battle.gd" id="3_oiqni"]
 [ext_resource type="Resource" uid="uid://cpual5lty0r0l" path="res://Units/undead/SkeletonMage.tres" id="4_0edd3"]
+[ext_resource type="Resource" uid="uid://cl36magdh1w4p" path="res://campaign/test campaign/encounters/events/after_siege.tres" id="5_0edd3"]
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="6_fwme0"]
+
+[sub_resource type="Resource" id="Resource_gioar"]
+script = ExtResource("6_fwme0")
+next_encounter = ExtResource("5_0edd3")
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
 
 [resource]
 script = ExtResource("3_oiqni")
 enemy_vanguard = Array[ExtResource("2_web8f")]([ExtResource("3_i8urd"), ExtResource("3_i8urd"), ExtResource("3_i8urd"), ExtResource("4_0edd3")])
 enemy_reserve = Array[ExtResource("2_web8f")]([ExtResource("3_i8urd"), ExtResource("3_i8urd"), ExtResource("3_i8urd"), ExtResource("3_i8urd")])
 max_enemy_deploys = 2
+rewards = SubResource("Resource_gioar")
 metadata/_custom_type_script = "uid://brthhyvrttqhg"

@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="Event" load_steps=17 format=3 uid="uid://bom25nk4023bu"]
+
+[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event/event_scene.tscn" id="1_7fauh"]
+[ext_resource type="Script" uid="uid://f2fx4u456r3p" path="res://campaign/events/EventOption.gd" id="1_7v0j7"]
+[ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="2_0y004"]
+[ext_resource type="Script" uid="uid://borinnn0dv27l" path="res://campaign/events/conditions/OptionCondition.gd" id="3_gtikt"]
+[ext_resource type="Script" uid="uid://d008eaof0d2r5" path="res://campaign/events/outcomes/OptionOutcome.gd" id="4_oi0fh"]
+[ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/battles/test1.tres" id="5_sgq28"]
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="6_2pt6l"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="7_f6wtv"]
+[ext_resource type="Script" uid="uid://ghsme36aika5" path="res://campaign/events/outcomes/RewardsOutcome.gd" id="8_83ift"]
+[ext_resource type="Script" uid="uid://bwuesjr00i6c7" path="res://campaign/events/outcomes/ReturnToCampaign.gd" id="9_4rfl6"]
+
+[sub_resource type="Resource" id="Resource_102jc"]
+script = ExtResource("6_2pt6l")
+next_encounter = ExtResource("5_sgq28")
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
+[sub_resource type="Resource" id="Resource_jyvs4"]
+script = ExtResource("8_83ift")
+rewards = SubResource("Resource_102jc")
+metadata/_custom_type_script = "uid://ghsme36aika5"
+
+[sub_resource type="Resource" id="Resource_y6uq4"]
+script = ExtResource("9_4rfl6")
+see_next = true
+metadata/_custom_type_script = "uid://bwuesjr00i6c7"
+
+[sub_resource type="Resource" id="Resource_plo2o"]
+script = ExtResource("1_7v0j7")
+text = "Now beat up some archery targets in melee to inspire peasants to join you"
+outcomes = Array[ExtResource("4_oi0fh")]([SubResource("Resource_jyvs4"), SubResource("Resource_y6uq4")])
+metadata/_custom_type_script = "uid://f2fx4u456r3p"
+
+[sub_resource type="Resource" id="Resource_oi0fh"]
+script = ExtResource("9_4rfl6")
+metadata/_custom_type_script = "uid://bwuesjr00i6c7"
+
+[sub_resource type="Resource" id="Resource_sgq28"]
+script = ExtResource("1_7v0j7")
+text = "Hold on, i want to wander the map first"
+outcomes = Array[ExtResource("4_oi0fh")]([SubResource("Resource_oi0fh")])
+metadata/_custom_type_script = "uid://f2fx4u456r3p"
+
+[resource]
+script = ExtResource("2_0y004")
+event_scene = ExtResource("1_7fauh")
+title = "Welcome to StackTactics"
+text = "This event is here temporarily in lieu of a proper tutorial.
+
+StackTactics is a turn-based strategy game with \"free-roam\" campaign. You can re-enter any campaign node at any time, though the encounters in the may change after the first time you clear them.
+
+In battle, you left-click units (or use Tab) to select them, use bottom-left buttons or number keys to select abilities (moving is an ability, usually on key 1) and right-click the hex or unit you want to target. Bottom-right buttons let you select next unit (Tab), end your turn (Enter0 and sometimes deploy extra units if you have them."
+options = Array[ExtResource("1_7v0j7")]([SubResource("Resource_plo2o"), SubResource("Resource_sgq28")])
+metadata/_custom_type_script = "uid://cox6e8oimurq4"

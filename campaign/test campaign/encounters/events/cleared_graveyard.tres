@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Event" load_steps=10 format=3 uid="uid://dkca40odxpynd"]
 
-[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event_scene.tscn" id="1_lxyci"]
+[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event/event_scene.tscn" id="1_lxyci"]
 [ext_resource type="Script" uid="uid://f2fx4u456r3p" path="res://campaign/events/EventOption.gd" id="2_xge6l"]
 [ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="3_5suxa"]
 [ext_resource type="Script" uid="uid://borinnn0dv27l" path="res://campaign/events/conditions/OptionCondition.gd" id="3_gcn2n"]

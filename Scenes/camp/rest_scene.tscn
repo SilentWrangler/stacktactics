@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://djc63e3eg0rfj" path="res://Scenes/camp/rest_scene.gd" id="1_tqq1j"]
 [ext_resource type="Texture2D" uid="uid://dj2303utroolj" path="res://img/border.png" id="2_56ldu"]
-[ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/resource_display.tscn" id="3_q70eg"]
-[ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/unit_info_display.tscn" id="4_lyren"]
+[ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/campaign/resource_display.tscn" id="3_q70eg"]
+[ext_resource type="PackedScene" uid="uid://m1ihmnbq3l21" path="res://Scenes/battle/unit_info_display.tscn" id="4_lyren"]
 [ext_resource type="PackedScene" uid="uid://p15ewbibtse0" path="res://Scenes/camp/unit_camp_selector.tscn" id="5_g1cjj"]
 [ext_resource type="Texture2D" uid="uid://dx0q5yaafedly" path="res://img/ablilties/next.png" id="6_lej2b"]
 [ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="7_frine"]

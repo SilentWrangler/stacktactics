@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bon7f873kg41p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h7grp"]
+font_size = 41
+
+[sub_resource type="LabelSettings" id="LabelSettings_60k44"]
+font_size = 52
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "
+StackTactics
+"
+label_settings = SubResource("LabelSettings_h7grp")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "
+Main Menu
+"
+label_settings = SubResource("LabelSettings_60k44")
+horizontal_alignment = 1
+
+[node name="SelectCampaign" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Select Campaign"

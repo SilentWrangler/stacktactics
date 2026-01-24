@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Battle" load_steps=7 format=3 uid="uid://6kwbkqi0g7re"]
 
-[ext_resource type="PackedScene" uid="uid://ia5m15im0lkk" path="res://Scenes/battle.tscn" id="1_eq6m5"]
+[ext_resource type="PackedScene" uid="uid://ia5m15im0lkk" path="res://Scenes/battle/battle.tscn" id="1_eq6m5"]
 [ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="2_u4i6d"]
 [ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="3_i2va4"]
 [ext_resource type="Script" uid="uid://brthhyvrttqhg" path="res://campaign/Battle.gd" id="3_o70yg"]

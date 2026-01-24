@@ -1,0 +1,151 @@
+[gd_scene load_steps=33 format=3 uid="uid://cv2ejho1e76f7"]
+
+[ext_resource type="Script" uid="uid://do4ibcyirj178" path="res://Scenes/campaign/campaign.gd" id="1_5nv2b"]
+[ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/campaign/resource_display.tscn" id="2_i5ss6"]
+[ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/campaign/map_node.tscn" id="3_qm0u1"]
+[ext_resource type="Resource" uid="uid://bom25nk4023bu" path="res://campaign/test campaign/encounters/events/tutorial.tres" id="4_7qthq"]
+[ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/battles/test1.tres" id="5_lpis4"]
+[ext_resource type="Resource" uid="uid://66blsnh8mgia" path="res://campaign/test campaign/encounters/battles/test2.tres" id="6_v2b8e"]
+[ext_resource type="Resource" uid="uid://6kwbkqi0g7re" path="res://campaign/test campaign/encounters/battles/test2_cleared.tres" id="7_o2e58"]
+[ext_resource type="Resource" uid="uid://cmvce3647hk3k" path="res://campaign/test campaign/encounters/camps/test3.tres" id="8_n28x1"]
+[ext_resource type="Texture2D" uid="uid://dlp53a8eeyliv" path="res://img/units/humanoids/humans/nornoth_mercenary.png" id="9_yc8qd"]
+[ext_resource type="PackedScene" uid="uid://ia5m15im0lkk" path="res://Scenes/battle/battle.tscn" id="10_7pxyy"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="11_e40yj"]
+[ext_resource type="Resource" uid="uid://66764recvsua" path="res://Units/undead/Zombie.tres" id="12_hloed"]
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="13_o0i80"]
+[ext_resource type="Script" uid="uid://brthhyvrttqhg" path="res://campaign/Battle.gd" id="14_osqck"]
+[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event/event_scene.tscn" id="15_811qn"]
+[ext_resource type="Script" uid="uid://f2fx4u456r3p" path="res://campaign/events/EventOption.gd" id="16_7tjjq"]
+[ext_resource type="Script" uid="uid://borinnn0dv27l" path="res://campaign/events/conditions/OptionCondition.gd" id="17_5vxms"]
+[ext_resource type="Script" uid="uid://d008eaof0d2r5" path="res://campaign/events/outcomes/OptionOutcome.gd" id="18_wpwyx"]
+[ext_resource type="Script" uid="uid://bwuesjr00i6c7" path="res://campaign/events/outcomes/ReturnToCampaign.gd" id="19_jgjtf"]
+[ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="20_hwkih"]
+[ext_resource type="Resource" uid="uid://8qq631p46qa5" path="res://campaign/test campaign/encounters/events/siege.tres" id="21_ccetv"]
+[ext_resource type="PackedScene" uid="uid://bjviks8ud43w6" path="res://Scenes/camp/rest_scene.tscn" id="22_4aoun"]
+[ext_resource type="Script" uid="uid://bgcjjrg2kpxgl" path="res://campaign/camps/Camp.gd" id="23_fi1ks"]
+[ext_resource type="Script" uid="uid://byf5q4naakj0i" path="res://campaign/camps/UnitEvolution.gd" id="24_1gp34"]
+[ext_resource type="Resource" uid="uid://c0xb27sbxs8u7" path="res://campaign/test campaign/encounters/camps/free_camp.tres" id="25_i53bd"]
+
+[sub_resource type="Resource" id="Resource_twd6x"]
+script = ExtResource("13_o0i80")
+resource_rewards = {
+&"silver": 10
+}
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
+[sub_resource type="Resource" id="Resource_hjuvi"]
+script = ExtResource("14_osqck")
+enemy_vanguard = Array[ExtResource("11_e40yj")]([ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed")])
+enemy_reserve = Array[ExtResource("11_e40yj")]([ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed"), ExtResource("12_hloed")])
+max_enemy_deploys = 3
+rewards = SubResource("Resource_twd6x")
+metadata/_custom_type_script = "uid://brthhyvrttqhg"
+
+[sub_resource type="Resource" id="Resource_ruwuq"]
+script = ExtResource("19_jgjtf")
+victory = true
+metadata/_custom_type_script = "uid://bwuesjr00i6c7"
+
+[sub_resource type="Resource" id="Resource_gtsik"]
+script = ExtResource("16_7tjjq")
+text = "Onwards to victory!"
+outcomes = Array[ExtResource("18_wpwyx")]([SubResource("Resource_ruwuq")])
+metadata/_custom_type_script = "uid://f2fx4u456r3p"
+
+[sub_resource type="Resource" id="Resource_sby8k"]
+script = ExtResource("13_o0i80")
+node_rewards = Array[StringName]([&"boss"])
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
+[sub_resource type="Resource" id="Resource_gnywe"]
+script = ExtResource("20_hwkih")
+event_scene = ExtResource("15_811qn")
+title = "Horde Defeated"
+text = "The horde of undead standing between you and Ulrich's castle is gone. Time to finally rescue your friend!"
+options = Array[ExtResource("16_7tjjq")]([SubResource("Resource_gtsik")])
+rewards = SubResource("Resource_sby8k")
+metadata/_custom_type_script = "uid://cox6e8oimurq4"
+
+[sub_resource type="Resource" id="Resource_obmqf"]
+script = ExtResource("23_fi1ks")
+metadata/_custom_type_script = "uid://bgcjjrg2kpxgl"
+
+[node name="Campaign" type="Node2D"]
+script = ExtResource("1_5nv2b")
+player_location = &"test1"
+
+[node name="ResourceDisplay" parent="." instance=ExtResource("2_i5ss6")]
+clip_contents = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+autowrap_mode = 0
+
+[node name="MapNode" parent="." instance=ExtResource("3_qm0u1")]
+position = Vector2(153, 317)
+id = &"test1"
+paths = Array[StringName]([&"test2", &"free_camp"])
+encounter = ExtResource("4_7qthq")
+cleared_encounter = ExtResource("5_lpis4")
+
+[node name="MapNode2" parent="." instance=ExtResource("3_qm0u1")]
+position = Vector2(360, 200)
+locked = true
+id = &"test2"
+paths = Array[StringName]([&"test3"])
+encounter = ExtResource("6_v2b8e")
+cleared_encounter = ExtResource("7_o2e58")
+
+[node name="MapNode3" parent="." instance=ExtResource("3_qm0u1")]
+position = Vector2(489, 375)
+locked = true
+type = 1
+cleared_type = 1
+id = &"test3"
+cleared = true
+paths = Array[StringName]([&"horde"])
+encounter = ExtResource("8_n28x1")
+cleared_encounter = ExtResource("8_n28x1")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("9_yc8qd")
+offset = Vector2(0, -48)
+
+[node name="MapNode4" parent="." instance=ExtResource("3_qm0u1")]
+position = Vector2(733, 414)
+locked = true
+cleared_type = 2
+id = &"horde"
+paths = Array[StringName]([&"boss"])
+encounter = SubResource("Resource_hjuvi")
+cleared_encounter = SubResource("Resource_gnywe")
+
+[node name="MapNode5" parent="." instance=ExtResource("3_qm0u1")]
+position = Vector2(945, 327)
+locked = true
+cleared_type = 1
+id = &"boss"
+encounter = ExtResource("21_ccetv")
+cleared_encounter = SubResource("Resource_obmqf")
+
+[node name="loadButtol" type="Button" parent="."]
+offset_top = 18.0
+offset_right = 42.0
+offset_bottom = 41.0
+text = "Load"
+
+[node name="saveButton" type="Button" parent="."]
+offset_top = 44.0
+offset_right = 42.0
+offset_bottom = 67.0
+text = "Save"
+
+[node name="MapNode6" parent="." instance=ExtResource("3_qm0u1")]
+position = Vector2(93, 214)
+type = 1
+cleared_type = 1
+id = &"free_camp"
+encounter = ExtResource("25_i53bd")
+cleared_encounter = ExtResource("25_i53bd")
+
+[connection signal="pressed" from="loadButtol" to="." method="_on_load_buttol_pressed"]
+[connection signal="pressed" from="saveButton" to="." method="_on_save_button_pressed"]

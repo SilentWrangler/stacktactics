@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Event" load_steps=20 format=3 uid="uid://cl36magdh1w4p"]
+
+[ext_resource type="Script" uid="uid://f2fx4u456r3p" path="res://campaign/events/EventOption.gd" id="1_014xy"]
+[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event/event_scene.tscn" id="1_vp0ft"]
+[ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="2_4yy00"]
+[ext_resource type="Script" uid="uid://borinnn0dv27l" path="res://campaign/events/conditions/OptionCondition.gd" id="3_7xdhs"]
+[ext_resource type="Script" uid="uid://d008eaof0d2r5" path="res://campaign/events/outcomes/OptionOutcome.gd" id="4_r0cqs"]
+[ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="5_v2r2o"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="6_qcsjy"]
+[ext_resource type="Script" uid="uid://ghsme36aika5" path="res://campaign/events/outcomes/RewardsOutcome.gd" id="7_7jjnv"]
+[ext_resource type="Script" uid="uid://bwuesjr00i6c7" path="res://campaign/events/outcomes/ReturnToCampaign.gd" id="8_pjdyt"]
+[ext_resource type="Resource" uid="uid://1uf3ce31y1kn" path="res://Units/humanoids/humans/levy_pikeman.tres" id="9_nanrf"]
+[ext_resource type="Resource" uid="uid://bx5lk8ls0bbtc" path="res://Units/humanoids/humans/nornoth_merc.tres" id="10_3qrow"]
+
+[sub_resource type="Resource" id="Resource_7r0li"]
+script = ExtResource("5_v2r2o")
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
+[sub_resource type="Resource" id="Resource_sf5nt"]
+script = ExtResource("7_7jjnv")
+rewards = SubResource("Resource_7r0li")
+metadata/_custom_type_script = "uid://ghsme36aika5"
+
+[sub_resource type="Resource" id="Resource_uwnhs"]
+script = ExtResource("8_pjdyt")
+victory = true
+metadata/_custom_type_script = "uid://bwuesjr00i6c7"
+
+[sub_resource type="Resource" id="Resource_qugqy"]
+script = ExtResource("1_014xy")
+text = "Loot th treasury"
+outcomes = Array[ExtResource("4_r0cqs")]([SubResource("Resource_sf5nt"), SubResource("Resource_uwnhs")])
+metadata/_custom_type_script = "uid://f2fx4u456r3p"
+
+[sub_resource type="Resource" id="Resource_tvba6"]
+script = ExtResource("5_v2r2o")
+unitRewards = Array[ExtResource("6_qcsjy")]([ExtResource("9_nanrf"), ExtResource("9_nanrf"), ExtResource("10_3qrow")])
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
+[sub_resource type="Resource" id="Resource_3ncyc"]
+script = ExtResource("7_7jjnv")
+rewards = SubResource("Resource_tvba6")
+metadata/_custom_type_script = "uid://ghsme36aika5"
+
+[sub_resource type="Resource" id="Resource_kbpiu"]
+script = ExtResource("8_pjdyt")
+victory = true
+metadata/_custom_type_script = "uid://bwuesjr00i6c7"
+
+[sub_resource type="Resource" id="Resource_vp0ft"]
+script = ExtResource("1_014xy")
+text = "Recruit the prisoners"
+outcomes = Array[ExtResource("4_r0cqs")]([SubResource("Resource_3ncyc"), SubResource("Resource_kbpiu")])
+metadata/_custom_type_script = "uid://f2fx4u456r3p"
+
+[resource]
+script = ExtResource("2_4yy00")
+event_scene = ExtResource("1_vp0ft")
+title = "Ulrich's castle aftermath"
+text = "The Ulrich's castle is freed! In the dungeon there were some powefrul warriors, awaiting their fate, and in the treasury there's a small fortune.
+
+(there's no more nodes in this campaign, the choice is kinda meaningless)"
+options = Array[ExtResource("1_014xy")]([SubResource("Resource_qugqy"), SubResource("Resource_vp0ft")])
+metadata/_custom_type_script = "uid://cox6e8oimurq4"

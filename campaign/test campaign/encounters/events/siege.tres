@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://8qq631p46qa5"]
+[gd_resource type="Resource" script_class="Event" load_steps=18 format=3 uid="uid://8qq631p46qa5"]
 
-[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event_scene.tscn" id="1_a706g"]
+[ext_resource type="PackedScene" uid="uid://d13s2gqwbqj0g" path="res://Scenes/event/event_scene.tscn" id="1_a706g"]
 [ext_resource type="Script" uid="uid://f2fx4u456r3p" path="res://campaign/events/EventOption.gd" id="1_quwms"]
 [ext_resource type="Script" uid="uid://cox6e8oimurq4" path="res://campaign/events/Event.gd" id="2_1p6vg"]
 [ext_resource type="Script" uid="uid://borinnn0dv27l" path="res://campaign/events/conditions/OptionCondition.gd" id="3_nmt6b"]
@@ -9,10 +9,27 @@
 [ext_resource type="Resource" uid="uid://dmcjmcb3j5046" path="res://campaign/test campaign/encounters/battles/siege.tres" id="6_k4iqm"]
 [ext_resource type="Script" uid="uid://bjy5oqvt066ia" path="res://campaign/Rewards.gd" id="7_iwdl2"]
 [ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="8_guqr0"]
+[ext_resource type="Script" uid="uid://ghsme36aika5" path="res://campaign/events/outcomes/RewardsOutcome.gd" id="8_iwdl2"]
+
+[sub_resource type="Resource" id="Resource_5tehw"]
+script = ExtResource("7_iwdl2")
+next_encounter = ExtResource("6_k4iqm")
+metadata/_custom_type_script = "uid://bjy5oqvt066ia"
+
+[sub_resource type="Resource" id="Resource_p2hj7"]
+script = ExtResource("8_iwdl2")
+rewards = SubResource("Resource_5tehw")
+metadata/_custom_type_script = "uid://ghsme36aika5"
+
+[sub_resource type="Resource" id="Resource_cw11m"]
+script = ExtResource("5_k4iqm")
+see_next = true
+metadata/_custom_type_script = "uid://bwuesjr00i6c7"
 
 [sub_resource type="Resource" id="Resource_iwdl2"]
 script = ExtResource("1_quwms")
 text = "Onwards!"
+outcomes = Array[ExtResource("4_kw6y5")]([SubResource("Resource_p2hj7"), SubResource("Resource_cw11m")])
 metadata/_custom_type_script = "uid://f2fx4u456r3p"
 
 [sub_resource type="Resource" id="Resource_guqr0"]

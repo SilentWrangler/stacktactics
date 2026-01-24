@@ -33,6 +33,7 @@ func _ready():
 		BattleData.from_battle = false
 		for reward in BattleData.extra_rewards:
 			giveRewards(reward)
+		BattleData.extra_rewards.clear()
 		if BattleData.victory:
 			print("Victory!")
 			BattleData.victory = false

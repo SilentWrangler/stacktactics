@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bsybr2rdxcn6s"]
 
 [ext_resource type="Texture2D" uid="uid://bs37gjngt2uxv" path="res://img/ablilties/battle.png" id="1_soxc6"]
-[ext_resource type="Script" uid="uid://bpwnefia7fucu" path="res://Scenes/map_node.gd" id="2_62dhh"]
+[ext_resource type="Script" uid="uid://bpwnefia7fucu" path="res://Scenes/campaign/map_node.gd" id="2_62dhh"]
 [ext_resource type="Texture2D" uid="uid://mby46phcv26t" path="res://img/ablilties/empty.png" id="3_kqcfr"]
 [ext_resource type="Texture2D" uid="uid://b4cxm7h1dy1h7" path="res://img/ablilties/blocked.png" id="4_v5snr"]
 

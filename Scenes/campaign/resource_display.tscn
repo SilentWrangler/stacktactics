@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmiiccmauxovx"]
 
-[ext_resource type="Script" uid="uid://b2fasici2gel6" path="res://Scenes/resource_display.gd" id="1_v4t6x"]
+[ext_resource type="Script" uid="uid://b2fasici2gel6" path="res://Scenes/campaign/resource_display.gd" id="1_v4t6x"]
 
 [node name="ResourceDisplay" type="RichTextLabel"]
 bbcode_enabled = true
