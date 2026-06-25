@@ -165,3 +165,15 @@ func set_data(data: Dictionary):
 		s.isDeployed = u["isDeployed"]
 		for t in u["extra_tags"]:
 			s.extra_tags.append(t)
+
+
+func clear():
+	node_id = ""
+	initiative = 5
+	resources = {}
+	flags.clear()
+	player_name = ""
+	savefile_name = ""
+	campaign = ""
+	vanguard.clear()
+	reserve.clear()

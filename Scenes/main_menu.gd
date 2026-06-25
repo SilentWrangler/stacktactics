@@ -3,6 +3,7 @@ extends Control
 @onready var select_panel = $CampaignSelectPanel
 @onready var menu_panel = $MenuPanel
 @onready var newgame_panel = $NewGamePanel
+@onready var credits_panel = $Credits
 
 @onready var save_list = $CampaignSelectPanel/VBoxContainer/ScrollContainer/saveList
 @export var save_button_template = preload("res://Scenes/save_slot_margin_container.tscn")
@@ -121,3 +122,12 @@ func _on_start_pressed():
 		PlayerData.campaign = selectted_campaign.file
 		PlayerData.node_id = selectted_campaign.starting_node
 		get_tree().change_scene_to_file(PlayerData.campaign)
+
+
+func _on_credits_pressed():
+	menu_panel.visible = false
+	credits_panel.visible = true
+
+func _on_close_credits_pressed():
+	menu_panel.visible = true
+	credits_panel.visible = false

@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://biaatwj0r105n"]
+
+[ext_resource type="Script" uid="uid://do4ibcyirj178" path="res://Scenes/campaign/campaign.gd" id="1_brnlj"]
+[ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/campaign/map_node.tscn" id="2_gnfom"]
+[ext_resource type="Texture2D" uid="uid://dlp53a8eeyliv" path="res://img/units/humanoids/humans/nornoth_mercenary.png" id="3_utmgo"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_g2oxx"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_nv72b"]
+[ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/campaign/resource_display.tscn" id="6_gnfom"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_utmgo"]
+
+[sub_resource type="Resource" id="Resource_l0adv"]
+script = ExtResource("5_nv72b")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx1vk"]
+size = Vector2(1486, 734)
+
+[node name="Campaign2" type="Node2D"]
+script = ExtResource("1_brnlj")
+player_location = &"c2_1"
+
+[node name="MapNode" parent="." instance=ExtResource("2_gnfom")]
+position = Vector2(123, 252)
+id = &"c2_1"
+paths = Array[StringName]([&"c2_2"])
+
+[node name="MapNode2" parent="." instance=ExtResource("2_gnfom")]
+position = Vector2(300, 343)
+id = &"c2_2"
+paths = Array[StringName]([&"c2_3", &"c2_4"])
+
+[node name="MapNode3" parent="." instance=ExtResource("2_gnfom")]
+position = Vector2(369, 494)
+id = &"c2_3"
+
+[node name="MapNode4" parent="." instance=ExtResource("2_gnfom")]
+position = Vector2(534, 366)
+id = &"c2_4"
+paths = Array[StringName]([&"c2_5"])
+
+[node name="MapNode5" parent="." instance=ExtResource("2_gnfom")]
+position = Vector2(825, 386)
+id = &"c2_5"
+paths = Array[StringName]([&"c2_6"])
+
+[node name="MapNode6" parent="." instance=ExtResource("2_gnfom")]
+position = Vector2(1113, 364)
+id = &"c2_6"
+paths = Array[StringName]([&"c2_7"])
+
+[node name="MapNode7" parent="." instance=ExtResource("2_gnfom")]
+position = Vector2(1411, 320)
+id = &"c2_7"
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(119, 191)
+texture = ExtResource("3_utmgo")
+offset = Vector2(0, -48)
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(119, 191)
+script = ExtResource("4_g2oxx")
+follow_mode = 5
+follow_target = NodePath("../PlayerSprite")
+tween_resource = SubResource("Resource_l0adv")
+follow_damping = true
+draw_limits = true
+limit_target = NodePath("../CameraBounds/CollisionShape2D")
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="CameraBounds" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds"]
+position = Vector2(733, 357)
+shape = SubResource("RectangleShape2D_nx1vk")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
+position = Vector2(566, 314)
+limit_left = -10
+limit_top = -10
+limit_right = 1476
+limit_bottom = 724
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("7_utmgo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D"]
+offset_left = -566.0
+offset_top = -314.0
+offset_right = -304.0
+offset_bottom = -218.0
+
+[node name="ResourceDisplay" parent="Camera2D/VBoxContainer" instance=ExtResource("6_gnfom")]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "afsasfaajssssssssssssssssssojidsjoijsd"
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="loadButtol" type="Button" parent="Camera2D/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[node name="saveButton" type="Button" parent="Camera2D/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="saveButton2" type="Button" parent="Camera2D/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save & Quit"
+
+[connection signal="pressed" from="Camera2D/VBoxContainer/VBoxContainer/loadButtol" to="." method="_on_load_buttol_pressed"]
+[connection signal="pressed" from="Camera2D/VBoxContainer/VBoxContainer/saveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Camera2D/VBoxContainer/VBoxContainer/saveButton2" to="." method="_on_save_button_2_pressed"]

@@ -8,8 +8,6 @@
 [resource]
 script = ExtResource("2_kjd3g")
 parts = Array[ExtResource("1_skksp")]([ExtResource("2_27rks")])
-tags = Array[StringName]([])
-ap_cost = 1
+tags = Array[StringName]([&"attack", &"melee"])
 Name = "Slash"
-Description = ""
 sprite = ExtResource("5_v6aal")

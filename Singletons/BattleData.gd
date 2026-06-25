@@ -37,3 +37,7 @@ func set_data(data: Dictionary):
 	cleared_nodes.clear()
 	for un in data["cleared_nodes"]:
 		cleared_nodes.append(un)
+
+func clear():
+	unlocked_nodes.clear()
+	cleared_nodes.clear()

@@ -28,6 +28,7 @@ metadata/_custom_type_script = "uid://d3e434qime8sw"
 [resource]
 script = ExtResource("2_nwghq")
 parts = Array[ExtResource("1_k34xf")]([SubResource("Resource_rxj3o")])
+tags = Array[StringName]([&"attack", &"ranged", &"magic"])
 ap_cost = 3
 Name = "Ice Blast"
 Description = "A powerful blast of ice, dealing massive damage"

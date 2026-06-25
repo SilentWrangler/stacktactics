@@ -20,5 +20,6 @@ unit_description = "Even untrained peasants can be dangerous when defending thei
 sprite_texture = ExtResource("4_1jdqe")
 default_hp = Array[ExtResource("2_o6uy5")]([SubResource("Resource_yj4ol")])
 power = 2
+fortitude = 1
 abilities = Array[ExtResource("1_gbu1f")]([ExtResource("2_4rk81"), ExtResource("3_4jn0e")])
 inherent_tags = Array[StringName]([&"humanoid", &"human"])

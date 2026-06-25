@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UnitEvolution" load_steps=4 format=3 uid="uid://drujeks6s814x"]
+
+[ext_resource type="Resource" uid="uid://c5tj0fy3imtsv" path="res://Units/humanoids/humans/human_hunter.tres" id="1_7lcbm"]
+[ext_resource type="Script" uid="uid://b8t48er5bc24u" path="res://tag_set.gd" id="1_njc5h"]
+[ext_resource type="Script" uid="uid://byf5q4naakj0i" path="res://campaign/camps/UnitEvolution.gd" id="2_7lcbm"]
+
+[resource]
+script = ExtResource("2_7lcbm")
+required_exp = 3
+speciic_unit_type = true
+specific_unit_id = &"humanoids_humans_peasant"
+evolved_unit_data = ExtResource("1_7lcbm")
+cost = {
+&"silver": 2
+}
+metadata/_custom_type_script = "uid://byf5q4naakj0i"

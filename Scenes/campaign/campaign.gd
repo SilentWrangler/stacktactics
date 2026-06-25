@@ -8,7 +8,7 @@ var nodeList: Dictionary
 @export var player_location: StringName
 
 @onready var player_sprite = $PlayerSprite
-@onready var resource_display = $ResourceDisplay
+@onready var resource_display = $Camera2D/VBoxContainer/ResourceDisplay
 
 
 
@@ -123,8 +123,11 @@ func _on_load_buttol_pressed():
 			get_tree().reload_current_scene()
 			
 			
-
+func clear_data():
+	PlayerData.clear()
+	BattleData.clear()
 
 func _on_save_button_2_pressed():
 	persist_data(true)
+	clear_data()
 	get_tree().change_scene_to_file("res://Scenes/mainMenu.tscn")

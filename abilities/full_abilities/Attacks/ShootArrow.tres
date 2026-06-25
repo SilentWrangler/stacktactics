@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=8 format=3 uid="uid://0c5kgmqwbbnh"]
+
+[ext_resource type="Script" uid="uid://d3e434qime8sw" path="res://abilities/AbilityPart.gd" id="1_g0me4"]
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="2_7t51p"]
+[ext_resource type="Resource" uid="uid://5nrusvwfsuke" path="res://abilities/Effects/Attacks/BasicPierce.tres" id="2_co7dd"]
+[ext_resource type="Script" uid="uid://bgkcmxsgi6phg" path="res://abilities/AbilityTargeting.gd" id="3_kc7al"]
+[ext_resource type="Texture2D" uid="uid://bqudmbjckuikd" path="res://img/ablilties/arrow.png" id="5_j31us"]
+
+[sub_resource type="Resource" id="Resource_hwf2f"]
+script = ExtResource("3_kc7al")
+targets = 2
+radius = 3
+target_allegiance = 1
+metadata/_custom_type_script = "uid://bgkcmxsgi6phg"
+
+[sub_resource type="Resource" id="Resource_l6302"]
+script = ExtResource("1_g0me4")
+effect = ExtResource("2_co7dd")
+targeting = SubResource("Resource_hwf2f")
+metadata/_custom_type_script = "uid://d3e434qime8sw"
+
+[resource]
+script = ExtResource("2_7t51p")
+parts = Array[ExtResource("1_g0me4")]([SubResource("Resource_l6302")])
+tags = Array[StringName]([&"attack", &"ranged"])
+Name = "Shoot Arrow"
+Description = "Fire an arrow at the opponent"
+sprite = ExtResource("5_j31us")
+metadata/_custom_type_script = "uid://b3ef62rf4ckxc"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://cv2ejho1e76f7"]
+[gd_scene load_steps=39 format=3 uid="uid://cv2ejho1e76f7"]
 
 [ext_resource type="Script" uid="uid://do4ibcyirj178" path="res://Scenes/campaign/campaign.gd" id="1_5nv2b"]
 [ext_resource type="PackedScene" uid="uid://cmiiccmauxovx" path="res://Scenes/campaign/resource_display.tscn" id="2_i5ss6"]
+[ext_resource type="Texture2D" uid="uid://drri1bc32b7t5" path="res://img/maps/ulrichs_castle_alt.png" id="2_qm0u1"]
 [ext_resource type="PackedScene" uid="uid://bsybr2rdxcn6s" path="res://Scenes/campaign/map_node.tscn" id="3_qm0u1"]
 [ext_resource type="Resource" uid="uid://bom25nk4023bu" path="res://campaign/test campaign/encounters/events/tutorial.tres" id="4_7qthq"]
 [ext_resource type="Resource" uid="uid://dblvdi1u81gyx" path="res://campaign/test campaign/encounters/battles/test1.tres" id="5_lpis4"]
@@ -25,6 +26,9 @@
 [ext_resource type="Script" uid="uid://bgcjjrg2kpxgl" path="res://campaign/camps/Camp.gd" id="23_fi1ks"]
 [ext_resource type="Script" uid="uid://byf5q4naakj0i" path="res://campaign/camps/UnitEvolution.gd" id="24_1gp34"]
 [ext_resource type="Resource" uid="uid://c0xb27sbxs8u7" path="res://campaign/test campaign/encounters/camps/free_camp.tres" id="25_i53bd"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="26_lpis4"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="27_v2b8e"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_o2e58"]
 
 [sub_resource type="Resource" id="Resource_twd6x"]
 script = ExtResource("13_o0i80")
@@ -70,19 +74,30 @@ metadata/_custom_type_script = "uid://cox6e8oimurq4"
 script = ExtResource("23_fi1ks")
 metadata/_custom_type_script = "uid://bgcjjrg2kpxgl"
 
+[sub_resource type="Resource" id="Resource_n28x1"]
+script = ExtResource("27_v2b8e")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc8qd"]
+size = Vector2(1151, 641)
+
 [node name="Campaign" type="Node2D"]
 script = ExtResource("1_5nv2b")
 player_location = &"test1"
 
+[node name="UlrichsCastle" type="Sprite2D" parent="."]
+position = Vector2(575.5, 328)
+scale = Vector2(1.0521023, 1.0522876)
+texture = ExtResource("2_qm0u1")
+
 [node name="MapNode" parent="." instance=ExtResource("3_qm0u1")]
-position = Vector2(153, 317)
+position = Vector2(206, 227)
 id = &"test1"
 paths = Array[StringName]([&"test2", &"free_camp"])
 encounter = ExtResource("4_7qthq")
 cleared_encounter = ExtResource("5_lpis4")
 
 [node name="MapNode2" parent="." instance=ExtResource("3_qm0u1")]
-position = Vector2(360, 200)
+position = Vector2(399, 208)
 locked = true
 id = &"test2"
 paths = Array[StringName]([&"test3"])
@@ -90,7 +105,7 @@ encounter = ExtResource("6_v2b8e")
 cleared_encounter = ExtResource("7_o2e58")
 
 [node name="MapNode3" parent="." instance=ExtResource("3_qm0u1")]
-position = Vector2(489, 375)
+position = Vector2(515, 325)
 locked = true
 type = 1
 cleared_type = 1
@@ -101,11 +116,12 @@ encounter = ExtResource("8_n28x1")
 cleared_encounter = ExtResource("8_n28x1")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(578, 332)
 texture = ExtResource("9_yc8qd")
 offset = Vector2(0, -48)
 
 [node name="MapNode4" parent="." instance=ExtResource("3_qm0u1")]
-position = Vector2(733, 414)
+position = Vector2(718, 313)
 locked = true
 cleared_type = 2
 id = &"horde"
@@ -122,18 +138,51 @@ encounter = ExtResource("21_ccetv")
 cleared_encounter = SubResource("Resource_obmqf")
 
 [node name="MapNode6" parent="." instance=ExtResource("3_qm0u1")]
-position = Vector2(93, 214)
+position = Vector2(130, 129)
 type = 1
 cleared_type = 1
 id = &"free_camp"
 encounter = ExtResource("25_i53bd")
 cleared_encounter = ExtResource("25_i53bd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(578, 332)
+script = ExtResource("26_lpis4")
+follow_mode = 5
+follow_target = NodePath("../PlayerSprite")
+tween_resource = SubResource("Resource_n28x1")
+follow_damping = true
+dead_zone_width = 0.2
+dead_zone_height = 0.2
+draw_limits = true
+limit_target = NodePath("../CameraBounds/CollisionShape2D")
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
-[node name="ResourceDisplay" parent="VBoxContainer" instance=ExtResource("2_i5ss6")]
+[node name="CameraBounds" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds"]
+position = Vector2(575.5, 327.5)
+shape = SubResource("RectangleShape2D_yc8qd")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
+position = Vector2(578, 332)
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("28_o2e58")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D"]
+offset_left = -566.0
+offset_top = -314.0
+offset_right = -304.0
+offset_bottom = -218.0
+
+[node name="ResourceDisplay" parent="Camera2D/VBoxContainer" instance=ExtResource("2_i5ss6")]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -141,22 +190,18 @@ size_flags_vertical = 3
 text = "afsasfaajssssssssssssssssssojidsjoijsd"
 autowrap_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="loadButtol" type="Button" parent="VBoxContainer/VBoxContainer"]
+[node name="loadButtol" type="Button" parent="Camera2D/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Load"
 
-[node name="saveButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+[node name="saveButton" type="Button" parent="Camera2D/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Save"
 
-[node name="saveButton2" type="Button" parent="VBoxContainer/VBoxContainer"]
+[node name="saveButton2" type="Button" parent="Camera2D/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Save & Quit"
-
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/loadButtol" to="." method="_on_load_buttol_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/saveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/saveButton2" to="." method="_on_save_button_2_pressed"]

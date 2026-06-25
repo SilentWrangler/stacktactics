@@ -20,11 +20,20 @@ config/icon="res://icon.svg"
 StaticData="*res://Singletons/StaticData.gd"
 BattleData="*res://Singletons/BattleData.gd"
 PlayerData="*res://Singletons/PlayerData.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+
+[display]
+
+window/size/resizable=false
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [gui]
 

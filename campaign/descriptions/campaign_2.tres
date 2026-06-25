@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CampaignDescription" load_steps=2 format=3 uid="uid://8qmxrb6pjx5t"]
+
+[ext_resource type="Script" uid="uid://rdq8wpcbl3dy" path="res://campaign/campaign_desc.gd" id="1_tmtd7"]
+
+[resource]
+script = ExtResource("1_tmtd7")
+default_save = "test"
+starting_node = &"c2_1"
+metadata/_custom_type_script = "uid://rdq8wpcbl3dy"

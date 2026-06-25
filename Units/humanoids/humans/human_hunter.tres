@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=8 format=3 uid="uid://c5tj0fy3imtsv"]
+
+[ext_resource type="Script" uid="uid://b3ef62rf4ckxc" path="res://abilities/Ability.gd" id="1_prbwf"]
+[ext_resource type="Resource" uid="uid://bwywpknjb8ll" path="res://abilities/full_abilities/BasicMove.tres" id="2_2iix1"]
+[ext_resource type="Resource" uid="uid://0c5kgmqwbbnh" path="res://abilities/full_abilities/Attacks/ShootArrow.tres" id="3_1e1dk"]
+[ext_resource type="Script" uid="uid://dojaxx5hhqjd3" path="res://HpSegment.gd" id="4_w3mj4"]
+[ext_resource type="Script" uid="uid://dv2dpnhfn0jo" path="res://UnitData.gd" id="5_f2elf"]
+[ext_resource type="Texture2D" uid="uid://4ybop4q44qwe" path="res://img/units/humanoids/humans/hunter.png" id="6_lhuos"]
+
+[sub_resource type="Resource" id="Resource_vpgvq"]
+script = ExtResource("4_w3mj4")
+Type = &"flesh"
+amount = 4
+isVital = true
+metadata/_custom_type_script = "uid://dojaxx5hhqjd3"
+
+[resource]
+script = ExtResource("5_f2elf")
+unit_type_ID = &"humanoids_humans_hunter"
+unit_name = "Hunter"
+unit_description = "Peasants oftentimes train with bows, mostly for hunting small game. Poacher's job  is risky and ofthe thankless, so for an appropriate compensation these hunters ofthen join roving bands of mercenaries to hunt a different kinf of prey."
+sprite_texture = ExtResource("6_lhuos")
+default_hp = Array[ExtResource("4_w3mj4")]([SubResource("Resource_vpgvq")])
+power = 3
+fortitude = 1
+abilities = Array[ExtResource("1_prbwf")]([ExtResource("2_2iix1"), ExtResource("3_1e1dk")])
+inherent_tags = Array[StringName]([&"humanoid", &"human", &"ranged"])
+metadata/_custom_type_script = "uid://dv2dpnhfn0jo"
